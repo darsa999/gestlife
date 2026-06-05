@@ -4,6 +4,7 @@
 // ════════════════════════════════════════════════════════════════
 
 import { useState, useEffect, useRef } from "react";
+import { I18nProvider, useTranslation } from "./src/i18n/i18nContext";
 
 // ════════════════════════════════════════════════════
 // SHARED DATA — Country Programs (Refactored visual accents)
@@ -60,45 +61,7 @@ const PROGRAMS = {
   },
 };
 
-// ════════════════════════════════════════════════════
-// QUIZ DATA
-// ════════════════════════════════════════════════════
-const QUIZ_QUESTIONS = [
-  {
-    id: 1, question: "რა ასაკი გაქვთ?", icon: "🎂",
-    options: [
-      { label: "25–35 წელი", value: "ok", score: 1 },
-      { label: "36–42 წელი", value: "ok", score: 1 },
-      { label: "43–50 წელი", value: "review", score: 0 },
-      { label: "50+ წელი", value: "fail", score: -1 },
-    ],
-  },
-  {
-    id: 2, question: "თქვენი ჯანმრთელობის სტატუსი?", icon: "🏃‍♀️",
-    options: [
-      { label: "შესანიშნავი — BMI 18–24", value: "ok", score: 1 },
-      { label: "კარგი — BMI 25–28", value: "ok", score: 1 },
-      { label: "საშუალო — BMI 29–32", value: "review", score: 0 },
-      { label: "განსახილველია — BMI 32+", value: "review", score: 0 },
-    ],
-  },
-  {
-    id: 3, question: "გყავთ თუ არა საკუთარი შვილი?", icon: "👨‍👩‍👧‍👦",
-    options: [
-      { label: "დიახ, 1 ან მეტი", value: "ok", score: 1 },
-      { label: "არა, მაგრამ გვინდა", value: "ok", score: 1 },
-      { label: "გვაქვს სამედიცინო მდგომარეობა", value: "review", score: 0 },
-    ],
-  },
-  {
-    id: 4, question: "სამართლებრივი ფონი", icon: "📋",
-    options: [
-      { label: "სრულიად სუფთა", value: "ok", score: 1 },
-      { label: "მცირე ადმინ. დარღვევა", value: "review", score: 0 },
-      { label: "სისხლის სამართლის სარჩელი", value: "fail", score: -1 },
-    ],
-  },
-];
+
 
 // ════════════════════════════════════════════════════
 // DASHBOARD STATIC DATA
@@ -116,15 +79,7 @@ const SURROGATE = {
   ],
 };
 
-const STAGES = [
-  { label: "სკრინინგი", icon: "🔍", done: true },
-  { label: "შეთანხმება", icon: "📄", done: true },
-  { label: "სინქრონიზაცია", icon: "💉", done: true },
-  { label: "ემბრიო გადატანა", icon: "🌱", done: false, active: true },
-  { label: "ორსულობის დადასტურება", icon: "🤰", done: false },
-  { label: "ტრიმესტრი I–III", icon: "👶", done: false },
-  { label: "მშობიარობა", icon: "🏥", done: false },
-];
+
 
 const MEDICAL_RESULTS = [
   { date: "17 მაი 2025", test: "ჰორმონული პანელი", result: "ნორმა", value: "E2: 245 pg/mL / P4: 1.2 ng/mL" },
@@ -225,13 +180,7 @@ function ChatIcon({ className = "w-[18px] h-[18px]" }) {
   );
 }
 
-function HeartIcon({ className = "w-5 h-5", fill = "none" }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-    </svg>
-  );
-}
+
 
 // ════════════════════════════════════════════════════
 // DYNAMIC THEME SYSTEM & ACCENT SWITCHER
@@ -342,38 +291,119 @@ function BellyWaveTop({ className = "", program = "georgia" }) {
 // ════════════════════════════════════════════════════
 // ROOT ROUTER
 // ════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════
+// LANGUAGE DROPDOWN (Glassmorphic)
+// ════════════════════════════════════════════════════
+function LanguageDropdown() {
+  const { i18n } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const languages = [
+    { code: "ka", label: "KA", flag: "🇬🇪" },
+    { code: "en", label: "EN", flag: "🇬🇧" },
+    { code: "ru", label: "RU", flag: "🇷🇺" },
+    { code: "es", label: "ES", flag: "🇪🇸" },
+  ];
+
+  const currentLang = languages.find((l) => l.code === i18n.language) || languages[0];
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative shrink-0" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gestlife-grey-20/40 bg-white/40 hover:bg-white/60 backdrop-blur-md text-xs font-bold text-gestlife-grey-70 shadow-sm transition-all duration-300 ease-in-out cursor-pointer select-none"
+      >
+        <span>{currentLang.flag}</span>
+        <span>{currentLang.label}</span>
+        <svg
+          className={`w-3 h-3 text-gestlife-grey-50 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-32 origin-top-right rounded-xl border border-gestlife-grey-20/40 bg-white/90 backdrop-blur-md shadow-lg py-1.5 z-[100] transition-all duration-300 ease-in-out">
+          {languages.map((lang) => {
+            const isSelected = lang.code === i18n.language;
+            return (
+              <button
+                key={lang.code}
+                onClick={() => {
+                  i18n.changeLanguage(lang.code);
+                  setIsOpen(false);
+                }}
+                className={`w-full flex items-center gap-2 px-3 py-2 text-left text-xs font-bold transition-all duration-200 ${
+                  isSelected
+                    ? "bg-gestlife-grey-20/40 text-gestlife-grey-80"
+                    : "text-gestlife-grey-60 hover:bg-gestlife-grey-20/20 hover:text-gestlife-grey-80"
+                }`}
+              >
+                <span>{lang.flag}</span>
+                <span>{lang.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ════════════════════════════════════════════════════
+// ROOT ROUTER
+// ════════════════════════════════════════════════════
 export default function GestlifeApp() {
   const [currentView, setCurrentView] = useState("homepage");
   const [registeredUser, setRegisteredUser] = useState(null);
 
   // Load gradient assets globally
   return (
-    <div className="min-h-screen flex flex-col font-opensans bg-[#FCFBFE] text-gestlife-grey-80 select-none">
-      {/* Brand Gradient Definition */}
-      <svg width="0" height="0" className="absolute">
-        <defs>
-          <linearGradient id="brand-gradient-element" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F26BC1" />
-            <stop offset="100%" stopColor="#79B0F5" />
-          </linearGradient>
-          <linearGradient id="greece-gradient-element" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#79B0F5" />
-            <stop offset="100%" stopColor="#C7DBFF" />
-          </linearGradient>
-        </defs>
-      </svg>
+    <I18nProvider>
+      <div className="min-h-screen flex flex-col font-opensans bg-[#FCFBFE] text-gestlife-grey-80 select-none">
+        {/* Brand Gradient Definition */}
+        <svg width="0" height="0" className="absolute">
+          <defs>
+            <linearGradient id="brand-gradient-element" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#F26BC1" />
+              <stop offset="100%" stopColor="#79B0F5" />
+            </linearGradient>
+            <linearGradient id="greece-gradient-element" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#79B0F5" />
+              <stop offset="100%" stopColor="#C7DBFF" />
+            </linearGradient>
+          </defs>
+        </svg>
 
-      {currentView === "dashboard" ? (
-        <SurrogateDashboard
-          user={registeredUser}
-          onLogout={() => { setRegisteredUser(null); setCurrentView("homepage"); }}
-        />
-      ) : (
-        <SurrogacyHomepage
-          onEnterDashboard={(userData) => { setRegisteredUser(userData); setCurrentView("dashboard"); }}
-        />
-      )}
-    </div>
+        {currentView === "dashboard" ? (
+          <SurrogateDashboard
+            user={registeredUser}
+            onLogout={() => { setRegisteredUser(null); setCurrentView("homepage"); }}
+          />
+        ) : (
+          <SurrogacyHomepage
+            onEnterDashboard={(userData) => { setRegisteredUser(userData); setCurrentView("dashboard"); }}
+          />
+        )}
+      </div>
+    </I18nProvider>
   );
 }
 
@@ -381,18 +411,42 @@ export default function GestlifeApp() {
 // PHASE 1 — PUBLIC BRANDED HOMEPAGE
 // ════════════════════════════════════════════════════
 function SurrogacyHomepage({ onEnterDashboard }) {
+  const { t } = useTranslation();
   const [program, setProgram] = useState("georgia");
   const [transitioning, setTransitioning] = useState(false);
   const [openMyth, setOpenMyth] = useState(null);
   const [quizStep, setQuizStep] = useState(0);
-  const [quizAnswers, setQuizAnswers] = useState([]);
   const [quizScore, setQuizScore] = useState(0);
   const [formData, setFormData] = useState({ name: "", phone: "", password: "" });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const quizRef = useRef(null);
 
-  const data = PROGRAMS[program];
+  const data = {
+    id: program,
+    name: t(`programs.${program}.name`),
+    nameEn: program === "greece" ? "Greece Program" : "Georgia Program",
+    flag: program === "greece" ? "🇬🇷" : "🇬🇪",
+    accentBg: program === "greece" ? "bg-blue-50/50 border-blue-100/80 text-blue-800" : "bg-red-50/50 border-red-100/80 text-red-800",
+    accentBorder: program === "greece" ? "border-blue-200" : "border-red-200",
+    accentText: program === "greece" ? "text-blue-600" : "text-red-600",
+    stats: [
+      { value: program === "greece" ? "2005" : "20+", label: t(`programs.${program}.stats.0`) },
+      { value: program === "greece" ? "EU" : "98%", label: t(`programs.${program}.stats.1`) },
+      { value: program === "greece" ? "300+" : "500+", label: t(`programs.${program}.stats.2`) },
+    ],
+    myths: [
+      { myth: t(`programs.${program}.myths.0.myth`), truth: t(`programs.${program}.myths.0.truth`), icon: "⚖️" },
+      { myth: t(`programs.${program}.myths.1.myth`), truth: t(`programs.${program}.myths.1.truth`), icon: program === "greece" ? "🌍" : "👨‍👩‍👧" },
+      { myth: t(`programs.${program}.myths.2.myth`), truth: t(`programs.${program}.myths.2.truth`), icon: program === "greece" ? "🏛️" : "💰" },
+      { myth: t(`programs.${program}.myths.3.myth`), truth: t(`programs.${program}.myths.3.truth`), icon: program === "greece" ? "💊" : "🏥" },
+    ],
+    headline: t(`programs.${program}.headline`),
+    subheadline: t(`programs.${program}.subheadline`),
+    legalNote: t(`programs.${program}.legalNote`),
+    quizIntro: t(`programs.${program}.quizIntro`),
+  };
+
   const theme = getTheme(program);
 
   const switchProgram = (newProg) => {
@@ -402,7 +456,6 @@ function SurrogacyHomepage({ onEnterDashboard }) {
       setProgram(newProg);
       setOpenMyth(null);
       setQuizStep(0);
-      setQuizAnswers([]);
       setQuizScore(0);
       setFormSubmitted(false);
       setTransitioning(false);
@@ -410,7 +463,6 @@ function SurrogacyHomepage({ onEnterDashboard }) {
   };
 
   const handleAnswer = (option) => {
-    setQuizAnswers((prev) => [...prev, option]);
     setQuizScore((prev) => prev + option.score);
     setQuizStep((prev) => (prev < 4 ? prev + 1 : 5));
   };
@@ -422,12 +474,57 @@ function SurrogacyHomepage({ onEnterDashboard }) {
   };
 
   const getQualification = () => {
-    if (quizScore >= 3) return { status: "qualified", label: "კვალიფიცირებული ხართ! ✅", cls: "text-emerald-700 bg-emerald-50 border-emerald-200" };
-    if (quizScore >= 1) return { status: "review", label: "განსახილველი შემთხვევა 📋", cls: "text-amber-700 bg-amber-50 border-amber-200" };
-    return { status: "fail", label: "ამ ეტაპზე ვერ ვაგრძელებთ ❌", cls: "text-red-700 bg-red-50 border-red-200" };
+    if (quizScore >= 3) return { status: "qualified", label: t("quiz.result.qualified"), cls: "text-emerald-700 bg-emerald-50 border-emerald-200" };
+    if (quizScore >= 1) return { status: "review", label: t("quiz.result.review"), cls: "text-amber-700 bg-amber-50 border-amber-200" };
+    return { status: "fail", label: t("quiz.result.fail"), cls: "text-red-700 bg-red-50 border-red-200" };
   };
 
-  const currentQuestion = QUIZ_QUESTIONS[quizStep - 1];
+  const localizedQuizQuestions = [
+    {
+      id: 1,
+      question: t("quiz.questions.age.title"),
+      icon: "🎂",
+      options: [
+        { label: t("quiz.questions.age.o1"), value: "ok", score: 1 },
+        { label: t("quiz.questions.age.o2"), value: "ok", score: 1 },
+        { label: t("quiz.questions.age.o3"), value: "review", score: 0 },
+        { label: t("quiz.questions.age.o4"), value: "fail", score: -1 },
+      ],
+    },
+    {
+      id: 2,
+      question: t("quiz.questions.bmi.title"),
+      icon: "🏃‍♀️",
+      options: [
+        { label: t("quiz.questions.bmi.o1"), value: "ok", score: 1 },
+        { label: t("quiz.questions.bmi.o2"), value: "ok", score: 1 },
+        { label: t("quiz.questions.bmi.o3"), value: "review", score: 0 },
+        { label: t("quiz.questions.bmi.o4"), value: "review", score: 0 },
+      ],
+    },
+    {
+      id: 3,
+      question: t("quiz.questions.child.title"),
+      icon: "👨‍👩‍👧‍👦",
+      options: [
+        { label: t("quiz.questions.child.o1"), value: "ok", score: 1 },
+        { label: t("quiz.questions.child.o2"), value: "ok", score: 1 },
+        { label: t("quiz.questions.child.o3"), value: "review", score: 0 },
+      ],
+    },
+    {
+      id: 4,
+      question: t("quiz.questions.legal.title"),
+      icon: "📋",
+      options: [
+        { label: t("quiz.questions.legal.o1"), value: "ok", score: 1 },
+        { label: t("quiz.questions.legal.o2"), value: "review", score: 0 },
+        { label: t("quiz.questions.legal.o3"), value: "fail", score: -1 },
+      ],
+    },
+  ];
+
+  const currentQuestion = localizedQuizQuestions[quizStep - 1];
   const qualification = quizStep === 5 ? getQualification() : null;
 
   return (
@@ -441,37 +538,42 @@ function SurrogacyHomepage({ onEnterDashboard }) {
             <img src={program === "greece" ? "/logo_blue.png" : "/logo_cropped.png"} alt="Gestlife Logo" className="h-9 sm:h-10 w-auto hover:scale-[1.02] transition-transform" />
           </div>
 
-          {/* Program Segmented Control Selector */}
-          <div className="flex bg-gestlife-grey-20/50 rounded-full p-1 border border-gestlife-grey-20/30 shadow-inner">
-            {Object.values(PROGRAMS).map((prog) => {
-              const isActive = program === prog.id;
-              const activeBg = prog.id === "greece" ? "bg-greece-gradient shadow-md" : "bg-brand-gradient shadow-md";
-              return (
-                <button
-                  key={prog.id}
-                  onClick={() => switchProgram(prog.id)}
-                  className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 ease-in-out ${
-                    isActive
-                      ? `${activeBg} text-white scale-105`
-                      : "text-gestlife-grey-60 hover:text-gestlife-grey-80"
-                  }`}
-                >
-                  <span className="text-base">{prog.flag}</span>
-                  <span className="hidden sm:inline font-montserrat">{prog.nameEn}</span>
-                </button>
-              );
-            })}
+          {/* Program Switcher & Language Dropdown */}
+          <div className="flex items-center gap-3.5">
+            <div className="flex bg-gestlife-grey-20/50 rounded-full p-1 border border-gestlife-grey-20/30 shadow-inner">
+              {Object.values(PROGRAMS).map((prog) => {
+                const isActive = program === prog.id;
+                const activeBg = prog.id === "greece" ? "bg-greece-gradient shadow-md" : "bg-brand-gradient shadow-md";
+                return (
+                  <button
+                    key={prog.id}
+                    onClick={() => switchProgram(prog.id)}
+                    className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 ease-in-out ${
+                      isActive
+                        ? `${activeBg} text-white scale-105`
+                        : "text-gestlife-grey-60 hover:text-gestlife-grey-80"
+                    }`}
+                  >
+                    <span className="text-base">{prog.flag}</span>
+                    <span className="hidden sm:inline font-montserrat">{prog.nameEn}</span>
+                  </button>
+                );
+              })}
+            </div>
+            
+            {/* Language Selection Dropdown */}
+            <LanguageDropdown />
           </div>
 
           {/* Navigation Links */}
           <nav className="flex items-center gap-5 sm:gap-7 shrink-0">
-            <a href="#myths" className="hidden md:inline text-sm font-semibold text-gestlife-grey-60 hover:text-gestlife-grey-80 transition-colors">მითები</a>
-            <a href="#quiz" className="hidden md:inline text-sm font-semibold text-gestlife-grey-60 hover:text-gestlife-grey-80 transition-colors">კვალიფიკაცია</a>
+            <a href="#myths" className="hidden md:inline text-sm font-semibold text-gestlife-grey-60 hover:text-gestlife-grey-80 transition-colors">{t("nav.myths")}</a>
+            <a href="#quiz" className="hidden md:inline text-sm font-semibold text-gestlife-grey-60 hover:text-gestlife-grey-80 transition-colors">{t("nav.qualification")}</a>
             <button
               onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(6); }}
               className={`px-5 py-2.5 rounded-full text-white text-xs font-bold shadow-md ${theme.gradient} hover:shadow-lg hover:scale-105 transition-all cursor-pointer`}
             >
-              შესვლა
+              {t("nav.login")}
             </button>
           </nav>
         </div>
@@ -524,19 +626,19 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                   onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(1); }}
                   className={`px-7 py-3.5 rounded-full text-white font-bold text-sm tracking-wide shadow-xl ${theme.gradient} hover:shadow-2xl hover:scale-105 active:scale-98 transition-all cursor-pointer`}
                 >
-                  ტესტის დაწყება →
+                  {t("hero.startQuiz")}
                 </button>
                 <button 
                   onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(0); }}
                   className={`px-7 py-3.5 rounded-full border-2 border-gestlife-grey-20 text-gestlife-grey-80 font-bold text-sm hover:bg-white ${theme.hoverBorder} hover:shadow-sm transition-all cursor-pointer`}
                 >
-                  გაიგეთ მეტი
+                  {t("hero.learnMore")}
                 </button>
               </div>
 
               {/* Legal Notice */}
               <div className={`border rounded-xl p-4 text-xs font-medium leading-relaxed bg-white/60 backdrop-blur-sm shadow-sm border-l-4 ${theme.legalBorder} max-w-xl`}>
-                <span className="font-bold text-gestlife-grey-80">⚖️ სამართლებრივი ინფო:</span> {data.legalNote}
+                <span className="font-bold text-gestlife-grey-80">{t("hero.legalInfo")}</span> {data.legalNote}
               </div>
             </div>
 
@@ -556,8 +658,8 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                   {videoPlaying ? (
                     <div className="text-center space-y-4">
                       <div className="text-5xl animate-bounce">🎬</div>
-                      <div className="text-xs font-bold tracking-widest uppercase bg-black/40 rounded-full px-4 py-1.5">ვიდეო იტვირთება...</div>
-                      <div className="text-[11px] text-white/70">დემო რეჟიმი • Gestlife Media Embed</div>
+                      <div className="text-xs font-bold tracking-widest uppercase bg-black/40 rounded-full px-4 py-1.5">{t("hero.videoLoading")}</div>
+                      <div className="text-[11px] text-white/70">{t("hero.videoDemoMode")}</div>
                     </div>
                   ) : (
                     <div className="text-center space-y-4 flex flex-col items-center">
@@ -566,17 +668,19 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                       </div>
                       <div>
                         <div className="font-bold text-sm sm:text-base leading-snug">
-                          {program === "georgia" ? "საქართველოს პროგრამის მიმოხილვა" : "საბერძნეთის პროგრამის მიმოხილვა"}
+                          {program === "georgia" ? t("hero.videoTitleGeorgia") : t("hero.videoTitleGreece")}
                         </div>
-                        <div className="text-[10px] text-white/70 mt-1 uppercase tracking-wide">3:45 წთ • ქართული სუბტიტრები</div>
+                        <div className="text-[10px] text-white/70 mt-1 uppercase tracking-wide">
+                          {program === "georgia" ? t("hero.videoSubtitleGeorgia") : t("hero.videoSubtitleGreece")}
+                        </div>
                       </div>
                     </div>
                   )}
                 </div>
                 
                 <div className="absolute bottom-4 left-4 flex gap-2 z-10">
-                  <span className="bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">⚕️ სამედიცინო</span>
-                  <span className="bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">⚖️ სამართლებრივი</span>
+                  <span className="bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">{t("hero.tagMedical")}</span>
+                  <span className="bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">{t("hero.tagLegal")}</span>
                 </div>
               </div>
             </div>
@@ -593,11 +697,11 @@ function SurrogacyHomepage({ onEnterDashboard }) {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-12 space-y-3.5">
               <div className={`inline-block px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest ${theme.subBg30} text-gestlife-grey-80 border ${theme.accentBorder20}`}>
-                {data.flag} FACT CHECK
+                {data.flag} {t("myths.tag")}
               </div>
-              <h2 className="text-2xl sm:text-3xl font-montserrat font-extrabold text-gestlife-grey-80">მითები vs. სინამდვილე</h2>
+              <h2 className="text-2xl sm:text-3xl font-montserrat font-extrabold text-gestlife-grey-80">{t("myths.title")}</h2>
               <p className="text-gestlife-grey-60 font-medium max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-                ბარათზე დაწკაპუნებით გაიგებთ სიმართლეს {program === "georgia" ? "საქართველოს" : "საბერძნეთის"} სუროგაციის შესახებ
+                {t("myths.subtitle")}
               </p>
             </div>
 
@@ -615,7 +719,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
-                          <div className="text-[10px] font-extrabold uppercase tracking-wider text-gestlife-grey-40 mb-1">❌ მითი</div>
+                          <div className="text-[10px] font-extrabold uppercase tracking-wider text-gestlife-grey-40 mb-1">❌ {t("myths.mythTag")}</div>
                           <h3 className="font-montserrat font-bold text-gestlife-grey-80 text-base leading-snug">"{item.myth}"</h3>
                         </div>
                         <div className={`w-7 h-7 rounded-full flex items-center justify-center text-white text-xs shrink-0 transition-transform duration-300 ${theme.gradient} ${openMyth === idx ? "rotate-180" : ""}`}>
@@ -624,7 +728,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                       </div>
                       {openMyth === idx && (
                         <div className="mt-4 pt-3 border-t border-gestlife-grey-20/30 space-y-2">
-                          <div className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600">✅ სინამდვილე</div>
+                          <div className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600">✅ {t("myths.truthTag")}</div>
                           <p className="text-gestlife-grey-80 leading-relaxed text-sm font-medium pl-3 border-l-2 border-emerald-500">
                             {item.truth}
                           </p>
@@ -648,9 +752,9 @@ function SurrogacyHomepage({ onEnterDashboard }) {
           <div className="max-w-2xl mx-auto px-4 relative z-10 mt-8">
             <div className="text-center mb-10 space-y-3">
               <div className={`inline-block px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest ${theme.gradient} text-white`}>
-                ⏱ 30 წამი
+                {t("quiz.duration")}
               </div>
-              <h2 className="text-2xl sm:text-3xl font-montserrat font-extrabold text-gestlife-grey-80">კვალიფიკაციის ტესტი</h2>
+              <h2 className="text-2xl sm:text-3xl font-montserrat font-extrabold text-gestlife-grey-80">{t("quiz.title")}</h2>
               <p className="text-gestlife-grey-60 font-medium text-sm sm:text-base">{data.quizIntro}</p>
             </div>
 
@@ -673,12 +777,12 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                     <div className={`w-16 h-16 rounded-full flex items-center justify-center ${theme.gradient} text-white text-3xl mx-auto shadow-md`}>
                       ✨
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">მზად ხართ ტესტისთვის?</h3>
+                    <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">{t("quiz.intro.title")}</h3>
                     <p className="text-gestlife-grey-60 font-medium text-sm leading-relaxed max-w-sm mx-auto">
-                      გაიარეთ 4 მარტივი კითხვა, რათა შეაფასოთ თქვენი პირველადი კვალიფიკაცია {program === "georgia" ? "საქართველოს" : "საბერძნეთის"} სუროგაციის პროგრამისთვის
+                      {t("quiz.intro.desc")}
                     </p>
                     <ul className="text-left space-y-3.5 max-w-xs mx-auto py-2 font-medium text-sm text-gestlife-grey-80">
-                      {["ასაკობრივი ზღვარი", "ჯანმრთელობის ინდექსი / BMI", "ოჯახური მდგომარეობა", "სამართლებრივი ფონი"].map((item, i) => (
+                      {[t("quiz.intro.item1"), t("quiz.intro.item2"), t("quiz.intro.item3"), t("quiz.intro.item4")].map((item, i) => (
                         <li key={i} className="flex items-center gap-3">
                           <span className={`w-5.5 h-5.5 rounded-full text-white text-[10px] flex items-center justify-center font-bold ${theme.gradient} shrink-0`}>
                             {i + 1}
@@ -691,9 +795,9 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                       onClick={() => setQuizStep(1)}
                       className={`w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg hover:shadow-xl hover:scale-102 active:scale-98 transition-all ${theme.gradient} cursor-pointer`}
                     >
-                      ტესტის დაწყება →
+                      {t("hero.startQuiz")}
                     </button>
-                    <p className="text-[10px] text-gestlife-grey-40 font-semibold uppercase tracking-wide">⚕️ საინფორმაციო მიზნებისთვის • სრულიად უფასო</p>
+                    <p className="text-[10px] text-gestlife-grey-40 font-semibold uppercase tracking-wide">{t("quiz.intro.badge")}</p>
                   </div>
                 )}
 
@@ -701,7 +805,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                 {quizStep >= 1 && quizStep <= 4 && currentQuestion && (
                   <div className="space-y-6">
                     <div className="flex items-center justify-between text-xs font-bold text-gestlife-grey-40 uppercase tracking-widest">
-                      <span>კითხვა {quizStep} / 4</span>
+                      <span>{t("quiz.questionStep", { step: quizStep })}</span>
                       <span>{data.flag} {data.nameEn}</span>
                     </div>
                     <div className="text-center space-y-3">
@@ -732,7 +836,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                       {qualification.status === "qualified" ? "🎉" : qualification.status === "review" ? "📋" : "💙"}
                     </div>
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80 mb-3">ტესტის შედეგი</h3>
+                      <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80 mb-3">{t("quiz.result.title")}</h3>
                       <div className={`inline-block px-6 py-2.5 rounded-full border font-bold text-base uppercase tracking-wide ${qualification.cls}`}>
                         {qualification.label}
                       </div>
@@ -741,26 +845,26 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                       <div className="space-y-5">
                         <p className="text-gestlife-grey-60 font-medium text-sm leading-relaxed max-w-sm mx-auto">
                           {qualification.status === "qualified"
-                            ? "გილოცავთ! თქვენ პირველადი კვალიფიკაციის კრიტერიუმებს აკმაყოფილებთ. შეავსეთ სარეგისტრაციო ფორმა თქვენი პორტალის გასააქტიურებლად."
-                            : "თქვენი მონაცემები საჭიროებს ინდივიდუალურ შეფასებას. გთხოვთ გააგრძელოთ რეგისტრაცია, რათა ჩვენი კოორდინატორი დაგიკავშირდეთ."}
+                            ? t("quiz.result.qualifiedText")
+                            : t("quiz.result.reviewText")}
                         </p>
                         <button
                           onClick={() => setQuizStep(6)}
                           className={`w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg ${theme.gradient} hover:scale-102 active:scale-98 transition-all cursor-pointer`}
                         >
-                          რეგისტრაციის გაგრძელება →
+                          {t("quiz.result.continue")}
                         </button>
                       </div>
                     ) : (
                       <div className="space-y-5">
                         <p className="text-gestlife-grey-60 font-medium text-sm leading-relaxed max-w-sm mx-auto">
-                          სამწუხაროდ, პირველადი კრიტერიუმებით ვერ ვაგრძელებთ პროცესს, თუმცა ჩვენს სპეციალისტებს შეუძლიათ მოგაწოდონ დამატებითი დეტალები.
+                          {t("quiz.result.failText")}
                         </p>
                         <button
                           className="w-full py-3.5 rounded-2xl border-2 border-gestlife-grey-20 text-gestlife-grey-80 font-bold hover:bg-gestlife-grey-20/10 transition-all cursor-pointer"
-                          onClick={() => { setQuizStep(0); setQuizAnswers([]); setQuizScore(0); }}
+                          onClick={() => { setQuizStep(0); setQuizScore(0); }}
                         >
-                          ხელახლა ცდა
+                          {t("quiz.result.retry")}
                         </button>
                       </div>
                     )}
@@ -774,36 +878,36 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                       <>
                         <div className="text-center space-y-2">
                           <div className="text-4xl">📝</div>
-                          <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">პორტალის აქტივაცია</h3>
-                          <p className="text-gestlife-grey-60 text-xs font-semibold uppercase tracking-wider">{data.flag} {data.nameEn} — რეგისტრაცია</p>
+                          <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">{t("quiz.form.title")}</h3>
+                          <p className="text-gestlife-grey-60 text-xs font-semibold uppercase tracking-wider">{data.flag} {data.nameEn} — {t("quiz.form.registration", "Registration")}</p>
                         </div>
                         
                         <div className="space-y-4 text-left">
                           <div>
-                            <label className="block text-xs font-bold text-gestlife-grey-60 uppercase tracking-wide mb-1.5">სრული სახელი</label>
+                            <label className="block text-xs font-bold text-gestlife-grey-60 uppercase tracking-wide mb-1.5">{t("quiz.form.fullName")}</label>
                             <input
                               type="text"
-                              placeholder="მაგ: ნინო გელაშვილი"
+                              placeholder={t("quiz.form.fullNamePlaceholder")}
                               value={formData.name}
                               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                               className={`w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none ${theme.focusBorder} transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40`}
                             />
                           </div>
                           <div>
-                            <label className="block text-xs font-bold text-gestlife-grey-60 uppercase tracking-wide mb-1.5">ტელეფონის ნომერი</label>
+                            <label className="block text-xs font-bold text-gestlife-grey-60 uppercase tracking-wide mb-1.5">{t("quiz.form.phone")}</label>
                             <input
                               type="tel"
-                              placeholder="+995 5XX XXX XXX"
+                              placeholder={t("quiz.form.phonePlaceholder")}
                               value={formData.phone}
                               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                               className={`w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none ${theme.focusBorder} transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40`}
                             />
                           </div>
                           <div>
-                            <label className="block text-xs font-bold text-gestlife-grey-60 uppercase tracking-wide mb-1.5">პაროლი</label>
+                            <label className="block text-xs font-bold text-gestlife-grey-60 uppercase tracking-wide mb-1.5">{t("quiz.form.password")}</label>
                             <input
                               type="password"
-                              placeholder="მინ. 8 სიმბოლო"
+                              placeholder={t("quiz.form.passwordPlaceholder")}
                               value={formData.password}
                               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                               className={`w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none ${theme.focusBorder} transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40`}
@@ -816,27 +920,27 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                           disabled={!formData.name || !formData.phone || !formData.password}
                           className={`w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg ${theme.gradient} hover:scale-102 active:scale-98 disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed transition-all cursor-pointer mt-4`}
                         >
-                          ანგარიშის შექმნა და შესვლა →
+                          {t("quiz.form.submit")}
                         </button>
                         
                         <p className="text-[10px] text-gestlife-grey-40 font-semibold leading-relaxed text-center">
-                          🔒 მონაცემები დაცულია GDPR-ის შესაბამისად • ⚖️ რეგისტრაციით ეთანხმებით წესებს
+                          {t("quiz.form.secure")}
                         </p>
                       </>
                     ) : (
                       <div className="text-center space-y-6 py-4">
                         <div className="text-6xl animate-bounce">🎊</div>
                         <div>
-                          <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">მოგესალმებით, {formData.name.split(" ")[0]}!</h3>
+                          <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">{t("quiz.form.welcome", { name: formData.name.split(" ")[0] })}</h3>
                           <p className="text-gestlife-grey-60 font-medium text-sm mt-1">
-                            თქვენი ანგარიში წარმატებით გააქტიურდა.
+                            {t("quiz.form.activated")}
                           </p>
                         </div>
                         <button
                           onClick={() => onEnterDashboard({ name: formData.name, program: data.id })}
                           className={`w-full py-4 rounded-2xl text-white font-bold text-base shadow-xl ${theme.gradient} hover:scale-102 transition-all cursor-pointer`}
                         >
-                          🚀 Dashboard-ზე გადასვლა
+                          {t("quiz.form.goDashboard")}
                         </button>
                       </div>
                     )}
@@ -857,30 +961,30 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                 <img src="/logo_white.png" alt="Gestlife Logo" className="h-9 w-auto" />
               </div>
               <p className="text-sm font-medium text-gestlife-grey-40 leading-relaxed">
-                FemTech პლატფორმა — საერთაშორისო სამედიცინო და იურიდიული მხარდაჭერა სუროგაციის მიმართულებით. INVESTMEDICAL-ის წევრი ჯგუფი.
+                {t("footer.desc")}
               </p>
             </div>
             <div className="space-y-3">
-              <div className="text-white font-bold text-sm uppercase tracking-wider">სამართლებრივი</div>
+              <div className="text-white font-bold text-sm uppercase tracking-wider">{t("footer.legal")}</div>
               <ul className="text-sm font-medium text-gestlife-grey-40 space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">კონფიდენციალურობის პოლიტიკა</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">გამოყენების წესები</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">GDPR დაცვა</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">{t("footer.privacy")}</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">{t("footer.terms")}</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">{t("footer.gdpr")}</a></li>
               </ul>
             </div>
             <div className="space-y-3">
-              <div className="text-white font-bold text-sm uppercase tracking-wider">კონტაქტი</div>
+              <div className="text-white font-bold text-sm uppercase tracking-wider">{t("footer.contact")}</div>
               <ul className="text-sm font-medium text-gestlife-grey-40 space-y-2">
                 <li>📧 info@gestlife.com</li>
                 <li>📞 +995 32 2XX XXXX</li>
-                <li>🏥 თბილისი / ათენი / მადრიდი</li>
+                <li>🏥 {t("footer.cities")}</li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-gestlife-grey-60/20 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-xs font-semibold text-gestlife-grey-40">
-              © {new Date().getFullYear()} Gestlife. All rights reserved.
+              {t("footer.copyright", { year: new Date().getFullYear() })}
             </div>
             <div className="flex gap-4">
               {/* Soft visual circles representing colors */}
@@ -899,6 +1003,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
 // PHASE 2 — SURROGATE PORTAL DASHBOARD
 // ════════════════════════════════════════════════════
 function SurrogateDashboard({ user, onLogout }) {
+  const { t } = useTranslation();
   const [dashTab, setDashTab] = useState("overview");
   const theme = getTheme(user?.program || "georgia");
   
@@ -936,7 +1041,7 @@ function SurrogateDashboard({ user, onLogout }) {
 
     setTimeout(() => {
       setChatTyping(false);
-      const resp = AUTO_RESPONSES[Math.floor(Math.random() * AUTO_RESPONSES.length)];
+      const resp = localizedResponses[Math.floor(Math.random() * localizedResponses.length)];
       setChatMessages((prev) => [
         ...prev,
         {
@@ -952,13 +1057,66 @@ function SurrogateDashboard({ user, onLogout }) {
   const displayName = user?.name || SURROGATE.name;
   const displayFirst = displayName.split(" ")[0];
 
+  const localizedStages = [
+    { labelKey: "dashboard.stages.s0", icon: "🔍", done: true },
+    { labelKey: "dashboard.stages.s1", icon: "📄", done: true },
+    { labelKey: "dashboard.stages.s2", icon: "💉", done: true },
+    { labelKey: "dashboard.stages.s3", icon: "🌱", done: false, active: true },
+    { labelKey: "dashboard.stages.s4", icon: "🤰", done: false },
+    { labelKey: "dashboard.stages.s5", icon: "👶", done: false },
+    { labelKey: "dashboard.stages.s6", icon: "🏥", done: false },
+  ].map((stage) => ({
+    ...stage,
+    label: t(stage.labelKey),
+  }));
+
+  const activeStage = localizedStages.find((s) => s.active) || localizedStages[3];
+  const surrogateStageLabel = activeStage.label;
+
+  const localizedMedicalResults = MEDICAL_RESULTS.map((r, i) => ({
+    date: t(`dashboard.medicalTab.results.${i}.date`),
+    test: t(`dashboard.medicalTab.results.${i}.test`),
+    result: t(`dashboard.medicalTab.results.${i}.res`),
+    value: r.value,
+  }));
+
+  const localizedFinances = FINANCES.map((f, i) => ({
+    month: t(`dashboard.financeTab.trans.${i}.month`),
+    type: t(`dashboard.financeTab.trans.${i}.type`),
+    amount: f.amount,
+    status: t(`dashboard.financeTab.trans.${i}.status`),
+    icon: f.icon,
+  }));
+
+  const localizedScheduleItems = scheduleItems.map((s, i) => ({
+    ...s,
+    title: t(`dashboard.scheduleTab.items.${i}.title`),
+    location: t(`dashboard.scheduleTab.items.${i}.loc`),
+    date: t(`dashboard.scheduleTab.items.${i}.date`),
+    time: t(`dashboard.scheduleTab.items.${i}.time`),
+  }));
+
+  const localizedChat = chatMessages.map((m, i) => {
+    if (i < INITIAL_CHAT.length) {
+      return {
+        ...m,
+        text: t(`dashboard.supportTab.chat.${i}`),
+      };
+    }
+    return m;
+  });
+
+  const localizedResponses = AUTO_RESPONSES.map((resp, i) => 
+    t(`dashboard.supportTab.responses.${i}`)
+  );
+
   const DASH_TABS_CONFIG = [
-    { id: "overview", label: "მიმოხილვა", icon: <HomeIcon /> },
-    { id: "profile", label: "პროფილი", icon: <UserIcon /> },
-    { id: "medical", label: "სამედ. შედეგები", icon: <MedicalIcon /> },
-    { id: "finance", label: "ფინანსები", icon: <FinanceIcon /> },
-    { id: "schedule", label: "განრიგი", icon: <CalendarIcon /> },
-    { id: "support", label: "მხარდაჭერა", icon: <ChatIcon /> },
+    { id: "overview", label: t("dashboard.sidebar.overview"), icon: <HomeIcon /> },
+    { id: "profile", label: t("dashboard.sidebar.profile"), icon: <UserIcon /> },
+    { id: "medical", label: t("dashboard.sidebar.medical"), icon: <MedicalIcon /> },
+    { id: "finance", label: t("dashboard.sidebar.finance"), icon: <FinanceIcon /> },
+    { id: "schedule", label: t("dashboard.sidebar.schedule"), icon: <CalendarIcon /> },
+    { id: "support", label: t("dashboard.sidebar.support"), icon: <ChatIcon /> },
   ];
 
   return (
@@ -968,8 +1126,9 @@ function SurrogateDashboard({ user, onLogout }) {
       <aside className="w-64 bg-white border-r border-gestlife-grey-20/40 flex-col justify-between hidden md:flex shrink-0">
         <div>
           {/* Logo brand segment */}
-          <div className="p-5 border-b border-gestlife-grey-20/30 flex items-center justify-center">
-            <img src={user?.program === "greece" ? "/logo_blue.png" : "/logo_cropped.png"} alt="Gestlife Logo" className="h-8 w-auto hover:scale-[1.02] transition-transform" />
+          <div className="p-5 border-b border-gestlife-grey-20/30 flex items-center justify-between gap-2">
+            <img src={user?.program === "greece" ? "/logo_blue.png" : "/logo_cropped.png"} alt="Gestlife Logo" className="h-7 w-auto hover:scale-[1.02] transition-transform" />
+            <LanguageDropdown />
           </div>
 
           {/* Mini profile header */}
@@ -979,7 +1138,7 @@ function SurrogateDashboard({ user, onLogout }) {
             </div>
             <div className="font-bold text-sm text-gestlife-grey-80 leading-none">{displayName}</div>
             <div className="text-[10px] font-bold text-gestlife-grey-60 mt-1.5 bg-white py-1 px-2.5 rounded-full inline-block border border-gestlife-grey-20/40">
-              {user?.program === "greece" ? "🇬🇷 საბერძნეთი" : "🇬🇪 საქართველო"}
+              {user?.program === "greece" ? "🇬🇷 " + t("dashboard.greece") : "🇬🇪 " + t("dashboard.georgia")}
             </div>
           </div>
 
@@ -1008,7 +1167,7 @@ function SurrogateDashboard({ user, onLogout }) {
             onClick={onLogout}
             className="w-full py-3 rounded-xl border border-red-100 hover:border-red-200 bg-red-50/50 hover:bg-red-50 text-red-600 text-xs font-bold tracking-wider uppercase transition-all cursor-pointer"
           >
-            🚪 გამოსვლა
+            🚪 {t("nav.logout")}
           </button>
         </div>
       </aside>
@@ -1033,22 +1192,25 @@ function SurrogateDashboard({ user, onLogout }) {
       <main className="flex-1 p-5 sm:p-8 md:p-10 pb-24 md:pb-10 min-w-0 flex flex-col gap-6 relative overflow-hidden">
         
         {/* Mobile Header */}
-        <div className="md:hidden flex items-center justify-between bg-white p-4 rounded-2xl border border-gestlife-grey-20/30 shadow-sm">
-          <div className="flex items-center gap-2.5">
-            <div className={`w-8 h-8 rounded-full ${theme.gradient} flex items-center justify-center text-white text-xs font-bold`}>
+        <div className="md:hidden flex items-center justify-between bg-white p-4 rounded-2xl border border-gestlife-grey-20/30 shadow-sm gap-2">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className={`w-8 h-8 rounded-full ${theme.gradient} flex items-center justify-center text-white text-xs font-bold shrink-0`}>
               {SURROGATE.avatar}
             </div>
-            <div className="text-left">
-              <div className="font-bold text-xs text-gestlife-grey-80">{displayName}</div>
-              <div className="text-[9px] font-bold text-gestlife-grey-40 uppercase">პორტალი</div>
+            <div className="text-left min-w-0">
+              <div className="font-bold text-xs text-gestlife-grey-80 truncate">{displayName}</div>
+              <div className="text-[9px] font-bold text-gestlife-grey-40 uppercase truncate">Portal</div>
             </div>
           </div>
-          <button
-            onClick={onLogout}
-            className="text-xs font-bold text-red-500 bg-red-50 px-3 py-1.5 rounded-lg border border-red-100"
-          >
-            გამოსვლა
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            <LanguageDropdown />
+            <button
+              onClick={onLogout}
+              className="text-xs font-bold text-red-500 bg-red-50 px-3 py-1.5 rounded-lg border border-red-100 whitespace-nowrap"
+            >
+              {t("nav.logout")}
+            </button>
+          </div>
         </div>
 
         {/* ════ OVERVIEW TAB ════ */}
@@ -1063,21 +1225,21 @@ function SurrogateDashboard({ user, onLogout }) {
                 {user?.program === "greece" ? "🇬🇷" : "🇬🇪"}
               </div>
               <div className="relative z-10 max-w-lg">
-                <div className="text-[10px] font-extrabold uppercase tracking-widest text-white/80">პროგრამის პანელი</div>
+                <div className="text-[10px] font-extrabold uppercase tracking-widest text-white/80">{t("dashboard.overviewTab.panel")}</div>
                 <h1 className="text-xl sm:text-2xl lg:text-3xl font-montserrat font-extrabold mt-1.5 mb-2 leading-tight">
-                  მოგესალმებით, {displayFirst}! ✨
+                  {t("dashboard.overviewTab.welcome", { name: displayFirst })}
                 </h1>
                 <p className="text-xs sm:text-sm font-medium text-white/90 leading-relaxed">
-                  თქვენი ორსულობის მოგზაურობა აქტიურ რეჟიმშია. მიმდინარე ეტაპი: <strong className="underline decoration-wavy decoration-white/50">{SURROGATE.stage}</strong>. ყველა კლინიკური მაჩვენებელი იდეალურ ნორმაშია.
+                  {t("dashboard.overviewTab.statusText", { stage: surrogateStageLabel })}
                 </p>
               </div>
             </div>
 
             {/* Stages Horizontal Timeline track */}
             <div className="bg-white rounded-3xl p-6 shadow-sm border border-gestlife-grey-20/40">
-              <h2 className="text-xs font-bold text-gestlife-grey-80 uppercase tracking-widest mb-6">📍 პროგრამის მიმდინარე ეტაპები</h2>
+              <h2 className="text-xs font-bold text-gestlife-grey-80 uppercase tracking-widest mb-6">{t("dashboard.overviewTab.timelineTitle")}</h2>
               <div className="flex items-center overflow-x-auto pb-4 gap-0 scrollbar-thin">
-                {STAGES.map((stage, i) => (
+                {localizedStages.map((stage, i) => (
                   <div key={i} className="flex items-center shrink-0">
                     <div className="flex flex-col items-center gap-2">
                       <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm transition-all border ${
@@ -1095,7 +1257,7 @@ function SurrogateDashboard({ user, onLogout }) {
                         {stage.label}
                       </span>
                     </div>
-                    {i < STAGES.length - 1 && (
+                    {i < localizedStages.length - 1 && (
                       <div className={`w-8 h-0.5 mx-1 mb-5 rounded-full ${i < 3 ? "bg-emerald-500" : "bg-gestlife-grey-20/50"}`} />
                     )}
                   </div>
@@ -1110,27 +1272,27 @@ function SurrogateDashboard({ user, onLogout }) {
               <div className="bg-white rounded-3xl p-6 shadow-sm border border-gestlife-grey-20/40 flex flex-col justify-between">
                 <div>
                   <div className="text-[10px] font-extrabold uppercase tracking-widest text-gestlife-grey-40 mb-3.5 flex items-center gap-1.5">
-                    <span>📅</span> შემდეგი ვიზიტი
+                    <span>📅</span> {t("dashboard.overviewTab.nextAppt")}
                   </div>
-                  <h3 className="font-montserrat font-bold text-sm sm:text-base text-gestlife-grey-80 mb-2">{scheduleItems[0].title}</h3>
+                  <h3 className="font-montserrat font-bold text-sm sm:text-base text-gestlife-grey-80 mb-2">{localizedScheduleItems[0].title}</h3>
                   <div className="space-y-1 text-xs font-semibold text-gestlife-grey-60">
-                    <div>📆 თარიღი: {scheduleItems[0].date} — {scheduleItems[0].time}</div>
-                    <div>📍 მისამართი: {scheduleItems[0].location}</div>
+                    <div>{t("dashboard.overviewTab.apptDate", { date: localizedScheduleItems[0].date, time: localizedScheduleItems[0].time })}</div>
+                    <div>{t("dashboard.overviewTab.apptLoc", { location: localizedScheduleItems[0].location })}</div>
                   </div>
                 </div>
                 
                 <div className="mt-6 pt-4 border-t border-gestlife-grey-20/20 flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-gestlife-grey-40 uppercase">სტატუსი:</span>
-                  {scheduleItems[0].confirmed ? (
+                  <span className="text-[10px] font-bold text-gestlife-grey-40 uppercase">{t("dashboard.overviewTab.apptStatus")}</span>
+                  {localizedScheduleItems[0].confirmed ? (
                     <span className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-xl px-4.5 py-1.5 text-xs font-bold flex items-center gap-1">
-                      <span>✓</span> დადასტურებულია
+                      <span>✓</span> {t("dashboard.overviewTab.confirmed")}
                     </span>
                   ) : (
                     <button
                       onClick={() => confirmAppointment(0)}
                       className={`px-5 py-2 rounded-xl text-white text-xs font-bold shadow-md ${theme.gradient} hover:scale-102 active:scale-98 transition-all cursor-pointer`}
                     >
-                      ვიზიტის დადასტურება
+                      {t("dashboard.overviewTab.confirmBtn")}
                     </button>
                   )}
                 </div>
@@ -1140,7 +1302,7 @@ function SurrogateDashboard({ user, onLogout }) {
               <div className="bg-white rounded-3xl p-6 shadow-sm border border-gestlife-grey-20/40 flex flex-col justify-between gap-4">
                 <div>
                   <div className="text-[10px] font-extrabold uppercase tracking-widest text-gestlife-grey-40 mb-4 flex items-center gap-1.5">
-                    <span>💬</span> პირადი კოორდინატორი
+                    <span>💬</span> {t("dashboard.overviewTab.coordinatorTitle")}
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="relative shrink-0">
@@ -1152,9 +1314,9 @@ function SurrogateDashboard({ user, onLogout }) {
                     </div>
                     <div className="text-left">
                       <div className="font-bold text-sm sm:text-base text-gestlife-grey-80 leading-none">{SURROGATE.coordinator.name}</div>
-                      <div className="text-xs text-gestlife-grey-60 mt-1 font-semibold">{SURROGATE.coordinator.title}</div>
+                      <div className="text-xs text-gestlife-grey-60 mt-1 font-semibold">{t("dashboard.supportTab.coordinatorBadge")}</div>
                       <div className="text-[10px] text-emerald-500 font-extrabold mt-1 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> ონლაინ
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> {t("dashboard.overviewTab.online")}
                       </div>
                     </div>
                   </div>
@@ -1163,7 +1325,7 @@ function SurrogateDashboard({ user, onLogout }) {
                   onClick={() => setDashTab("support")}
                   className={`w-full py-2.5 rounded-xl border ${theme.accentBorder} ${theme.accent} ${theme.hoverBg10} text-xs font-bold tracking-wide transition-all cursor-pointer uppercase`}
                 >
-                  ჩატის გახსნა
+                  {t("dashboard.overviewTab.openChat")}
                 </button>
               </div>
             </div>
@@ -1171,9 +1333,9 @@ function SurrogateDashboard({ user, onLogout }) {
             {/* Quick Metrics stats widgets */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
-                { icon: "🧬", label: "ბოლო ანალიზი", value: "ნორმა", sub: "17 მაი 2025", border: "border-emerald-200/80 bg-emerald-50/10", valCls: "text-emerald-600" },
-                { icon: "💳", label: "ბოლო გადარიცხვა", value: "₾ 1,800", sub: "მაისი 2025", border: `${theme.accentBorderSub80} ${theme.subBg5}`, valCls: theme.accent },
-                { icon: "📅", label: "ვიზიტამდე დარჩა", value: "4 დღე", sub: "22 მაი 10:00", border: "border-blue-200/80 bg-blue-50/10", valCls: "text-gestlife-blue" },
+                { icon: "🧬", label: t("dashboard.overviewTab.lastAnalysis"), value: t("dashboard.overviewTab.lastAnalysisVal"), sub: t("dashboard.overviewTab.lastAnalysisDate"), border: "border-emerald-200/80 bg-emerald-50/10", valCls: "text-emerald-600" },
+                { icon: "💳", label: t("dashboard.overviewTab.lastPayout"), value: "₾ 1,800", sub: t("dashboard.overviewTab.lastPayoutDate"), border: `${theme.accentBorderSub80} ${theme.subBg5}`, valCls: theme.accent },
+                { icon: "📅", label: t("dashboard.overviewTab.payoutProgress"), value: t("dashboard.overviewTab.payoutProgressVal"), sub: t("dashboard.overviewTab.payoutProgressSub"), border: "border-blue-200/80 bg-blue-50/10", valCls: "text-gestlife-blue" },
               ].map((c, i) => (
                 <div key={i} className={`bg-white rounded-2xl p-5 shadow-sm border ${c.border}`}>
                   <div className="text-2xl mb-2.5">{c.icon}</div>
@@ -1201,9 +1363,11 @@ function SurrogateDashboard({ user, onLogout }) {
                   </div>
                   <div className="text-left">
                     <h1 className="text-xl sm:text-2xl font-montserrat font-extrabold leading-none">{displayName}</h1>
-                    <div className="text-xs text-white/80 font-bold mt-1.5 uppercase tracking-wider">სუროგატი დედა • {SURROGATE.program}</div>
+                    <div className="text-xs text-white/80 font-bold mt-1.5 uppercase tracking-wider">
+                      {t("dashboard.profileInfo", { program: user?.program === "greece" ? t("dashboard.greece") : t("dashboard.georgia") })}
+                    </div>
                     <div className="mt-3 inline-block bg-white/25 rounded-full px-3.5 py-1 text-white text-[10px] font-extrabold uppercase tracking-wide">
-                      🟢 ეტაპი: {SURROGATE.stage}
+                      {t("dashboard.stageLabel", { stage: surrogateStageLabel })}
                     </div>
                   </div>
                 </div>
@@ -1213,14 +1377,14 @@ function SurrogateDashboard({ user, onLogout }) {
               <div className="p-6 sm:p-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
-                    { label: "სრული სახელი", value: displayName, icon: "👤" },
-                    { label: "დაბადების თარიღი", value: "15 მარტი 1992 (33 წელი)", icon: "🎂" },
-                    { label: "ტელეფონის ნომერი", value: user?.phone || "+995 599 123 456", icon: "📱" },
-                    { label: "ელ-ფოსტა", value: "nino.gelashvili@email.com", icon: "📧" },
-                    { label: "ფაქტობრივი მისამართი", value: "თბილისი, ვაკე, ჭავჭავაძის გამზ. 12", icon: "🏠" },
-                    { label: "სამოქალაქო სტატუსი", value: "გათხოვილი", icon: "💍" },
-                    { label: "შვილები", value: "2 (7 და 10 წელი)", icon: "👨‍👩‍👧‍👦" },
-                    { label: "სისხლის ჯგუფი", value: "A(II) Rh+", icon: "🩸" },
+                    { label: t("dashboard.profileTab.fields.fullName"), value: displayName, icon: "👤" },
+                    { label: t("dashboard.profileTab.fields.dob"), value: t("dashboard.profileTab.fields.dobVal"), icon: "🎂" },
+                    { label: t("dashboard.profileTab.fields.phone"), value: user?.phone || "+995 599 123 456", icon: "📱" },
+                    { label: t("dashboard.profileTab.fields.email"), value: "nino.gelashvili@email.com", icon: "📧" },
+                    { label: t("dashboard.profileTab.fields.address"), value: t("dashboard.profileTab.fields.addressVal"), icon: "🏠" },
+                    { label: t("dashboard.profileTab.fields.civil"), value: t("dashboard.profileTab.fields.civilVal"), icon: "💍" },
+                    { label: t("dashboard.profileTab.fields.children"), value: t("dashboard.profileTab.fields.childrenVal"), icon: "👨‍👩‍👧‍👦" },
+                    { label: t("dashboard.profileTab.fields.blood"), value: t("dashboard.profileTab.fields.bloodVal"), icon: "🩸" },
                   ].map((field, i) => (
                     <div key={i} className="bg-gestlife-grey-20/10 rounded-xl p-4 border border-gestlife-grey-20/30 flex flex-col">
                       <span className="text-[10px] text-gestlife-grey-40 font-bold uppercase tracking-wider mb-1 flex items-center gap-1.5">
@@ -1233,13 +1397,13 @@ function SurrogateDashboard({ user, onLogout }) {
 
                 {/* Subcontract details card */}
                 <div className={`mt-6 ${theme.subBg10} border ${theme.accentBorderSub30} rounded-2xl p-5`}>
-                  <div className={`text-xs font-bold ${theme.accent} uppercase tracking-widest mb-3.5`}>📋 ხელშეკრულების მონაცემები</div>
+                  <div className={`text-xs font-bold ${theme.accent} uppercase tracking-widest mb-3.5`}>{t("dashboard.profileTab.contract.title")}</div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {[
-                      { label: "დოკუმენტის №", value: "ARG-2025-0472" },
-                      { label: "გაფორმების თარიღი", value: "12 მარტი 2025" },
-                      { label: "პროგრამის პაკეტი", value: "საქართველო — სრული" },
-                      { label: "სამედიცინო კლინიკა", value: "ReproMed, თბილისი" },
+                      { label: t("dashboard.profileTab.contract.docNo"), value: t("dashboard.profileTab.contract.docNoVal") },
+                      { label: t("dashboard.profileTab.contract.date"), value: t("dashboard.profileTab.contract.dateVal") },
+                      { label: t("dashboard.profileTab.contract.package"), value: user?.program === "greece" ? t("dashboard.profileTab.contract.packageValGreece") : t("dashboard.profileTab.contract.packageVal") },
+                      { label: t("dashboard.profileTab.contract.clinic"), value: user?.program === "greece" ? t("dashboard.profileTab.contract.clinicValGreece") : t("dashboard.profileTab.contract.clinicVal") },
                     ].map((item, i) => (
                       <div key={i}>
                         <div className="text-[9px] text-gestlife-grey-40 font-bold uppercase tracking-wider">{item.label}</div>
@@ -1260,14 +1424,14 @@ function SurrogateDashboard({ user, onLogout }) {
             <BrandWatermark program={user?.program} rotation={0} className="bottom-12 left-12 opacity-[0.12]" />
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-                <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">🧬 სამედიცინო შეფასებები & კვლევები</h2>
+                <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">{t("dashboard.medicalTab.title")}</h2>
                 <div className="bg-emerald-50 border border-emerald-100 rounded-full px-4.5 py-1.5 text-xs font-bold text-emerald-600">
-                  ✅ {MEDICAL_RESULTS.length} ჩანაწერი — ნორმის ფარგლებში
+                  {t("dashboard.medicalTab.badge", { count: MEDICAL_RESULTS.length })}
                 </div>
               </div>
 
               <div className="space-y-3">
-                {MEDICAL_RESULTS.map((r, i) => (
+                {localizedMedicalResults.map((r, i) => (
                   <div
                     key={i}
                     className={`flex items-center gap-4 p-4 bg-gestlife-grey-20/10 rounded-xl border border-gestlife-grey-20/20 ${theme.hoverBorder30} ${theme.hoverBg5} transition-all`}
@@ -1290,17 +1454,17 @@ function SurrogateDashboard({ user, onLogout }) {
 
             {/* Custom SVG Bar chart for Endometrium growth */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
-              <h3 className="text-xs font-bold text-gestlife-grey-80 uppercase tracking-widest mb-6">📊 ენდომეტრიუმის დინამიკა (მმ)</h3>
+              <h3 className="text-xs font-bold text-gestlife-grey-80 uppercase tracking-widest mb-6">{t("dashboard.medicalTab.chartTitle")}</h3>
               
               <div className="flex items-end justify-between gap-4 h-28 max-w-sm pt-4 border-b border-gestlife-grey-20/30 pb-1.5">
                 {[
-                  { val: 7.2, date: "28 მარ", active: false },
-                  { val: 8.5, date: "12 აპრ", active: false },
-                  { val: 9.1, date: "28 აპრ", active: false },
-                  { val: 10.2, date: "14 მაი", active: true },
+                  { val: 7.2, date: t("dashboard.medicalTab.results.5.date").substring(0, 6), active: false },
+                  { val: 8.5, date: t("dashboard.medicalTab.results.1.date").substring(0, 6), active: false },
+                  { val: 9.1, date: t("dashboard.medicalTab.results.4.date").substring(0, 6), active: false },
+                  { val: 10.2, date: t("dashboard.medicalTab.results.1.date").substring(0, 6), active: true },
                 ].map((bar, i) => (
                   <div key={i} className="flex flex-col items-center gap-2 flex-1">
-                    <span className={`text-[10px] font-black ${bar.active ? theme.accent : "text-gestlife-grey-60"}`}>{bar.val} მმ</span>
+                    <span className={`text-[10px] font-black ${bar.active ? theme.accent : "text-gestlife-grey-60"}`}>{bar.val} mm</span>
                     <div
                       className={`w-full rounded-t-lg transition-all duration-500 ${
                         bar.active 
@@ -1314,7 +1478,7 @@ function SurrogateDashboard({ user, onLogout }) {
                 ))}
               </div>
               <div className="mt-4 bg-emerald-50/50 border border-emerald-100 rounded-xl px-4.5 py-3 text-xs text-emerald-700 font-semibold leading-relaxed max-w-md">
-                🎉 <strong>10.2 მმ</strong> წარმოადგენს იდეალურ სამედიცინო სისქეს ემბრიონის გადატანისთვის (კლინიკური დიაპაზონი: 8–14 მმ).
+                {t("dashboard.medicalTab.chartSub")}
               </div>
             </div>
           </div>
@@ -1329,25 +1493,25 @@ function SurrogateDashboard({ user, onLogout }) {
             {/* Total Balance Card indicator */}
             <div className="bg-[#1C1D26] rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-md">
               <div className="absolute right-6 top-[-20px] text-[100px] opacity-[0.03] select-none pointer-events-none font-bold">₾</div>
-              <div className="text-[10px] font-extrabold uppercase tracking-widest text-white/70">კომპენსაციის ჯამური მოცულობა</div>
+              <div className="text-[10px] font-extrabold uppercase tracking-widest text-white/70">{t("dashboard.financeTab.totalComp")}</div>
               <div className="text-3xl sm:text-4xl font-montserrat font-black mt-2 tracking-tight">₾ 28,500</div>
               
               <div className="text-xs font-semibold text-white/70 mt-3 flex flex-wrap gap-x-4 gap-y-1">
-                <span>გადახდილია: <strong className="text-emerald-400 font-bold">₾ 5,420</strong></span>
-                <span>მომლოდინე: <strong className="text-amber-400 font-bold">₾ 1,950</strong></span>
+                <span>{t("dashboard.financeTab.paid")}: <strong className="text-emerald-400 font-bold">₾ 5,420</strong></span>
+                <span>{t("dashboard.financeTab.pending")}: <strong className="text-amber-400 font-bold">₾ 1,950</strong></span>
               </div>
               
               <div className="mt-5.5 h-1.5 bg-white/10 rounded-full overflow-hidden">
                 <div className={`h-full w-[19%] ${theme.gradient} rounded-full`} />
               </div>
-              <div className="text-[9px] font-bold text-white/45 mt-2 uppercase tracking-wide">პროგრესი: 19% დასრულებული</div>
+              <div className="text-[9px] font-bold text-white/45 mt-2 uppercase tracking-wide">{t("dashboard.financeTab.progress", { percent: 19 })}</div>
             </div>
 
             {/* List of Transactions */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
-              <h2 className="text-xs font-bold text-gestlife-grey-80 uppercase tracking-widest mb-5">📋 ტრანზაქციების რეესტრი</h2>
+              <h2 className="text-xs font-bold text-gestlife-grey-80 uppercase tracking-widest mb-5">{t("dashboard.financeTab.title")}</h2>
               <div className="space-y-3">
-                {FINANCES.map((f, i) => (
+                {localizedFinances.map((f, i) => (
                   <div key={i} className="flex items-center gap-3.5 p-4 bg-gestlife-grey-20/10 rounded-xl border border-gestlife-grey-20/20">
                     <div className="text-xl shrink-0 leading-none">{f.icon}</div>
                     <div className="flex-1 min-w-0">
@@ -1357,7 +1521,7 @@ function SurrogateDashboard({ user, onLogout }) {
                     <div className="text-right shrink-0">
                       <div className="font-extrabold text-sm sm:text-base text-gestlife-grey-80">{f.amount}</div>
                       <div className={`text-[10px] font-extrabold uppercase mt-0.5 ${
-                        f.status === "გადარიცხული" ? "text-emerald-500" : f.status === "მომლოდინე" ? "text-amber-500" : "text-gestlife-grey-40"
+                        f.status === t("dashboard.financeTab.trans.0.status") ? "text-emerald-500" : f.status === t("dashboard.financeTab.trans.3.status") ? "text-amber-500" : "text-gestlife-grey-40"
                       }`}>
                         {f.status}
                       </div>
@@ -1376,14 +1540,14 @@ function SurrogateDashboard({ user, onLogout }) {
             <BrandWatermark program={user?.program} rotation={0} className="bottom-12 right-12 opacity-[0.12]" />
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-                <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">📅 კლინიკური და საკონსულტაციო ვიზიტები</h2>
+                <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">{t("dashboard.scheduleTab.title")}</h2>
                 <div className={`${theme.subBg30} border ${theme.accentBorder20} rounded-full px-4 py-1 text-xs font-bold ${theme.accent}`}>
-                  {scheduleItems.length} დაგეგმილი ღონისძიება
+                  {t("dashboard.scheduleTab.badge", { count: localizedScheduleItems.length })}
                 </div>
               </div>
 
               <div className="space-y-4">
-                {scheduleItems.map((s, i) => (
+                {localizedScheduleItems.map((s, i) => (
                   <div
                     key={i}
                     className={`flex gap-4 p-5 rounded-2xl relative overflow-hidden border transition-all ${
@@ -1428,14 +1592,14 @@ function SurrogateDashboard({ user, onLogout }) {
                     <div className="shrink-0 self-center">
                       {s.confirmed ? (
                         <span className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-xl px-3 py-1.5 text-[10px] font-bold whitespace-nowrap block">
-                          ✓ დადასტურდა
+                          ✓ {t("dashboard.scheduleTab.confirmed")}
                         </span>
                       ) : (
                         <button
                           onClick={() => confirmAppointment(i)}
                           className={`px-3 py-2 rounded-xl text-white text-[10px] font-bold shadow-md ${theme.gradient} hover:scale-102 transition-all cursor-pointer whitespace-nowrap`}
                         >
-                          დადასტურება
+                          {t("dashboard.scheduleTab.confirmBtn")}
                         </button>
                       )}
                     </div>
@@ -1463,16 +1627,16 @@ function SurrogateDashboard({ user, onLogout }) {
                 </div>
                 <div>
                   <div className="font-bold text-sm text-gestlife-grey-80 leading-none">{SURROGATE.coordinator.name}</div>
-                  <div className="text-[10px] text-emerald-600 font-extrabold tracking-wide mt-1">● ონლაინ • პასუხობს 30 წთ-ში</div>
+                  <div className="text-[10px] text-emerald-600 font-extrabold tracking-wide mt-1">{t("dashboard.supportTab.onlineText")}</div>
                 </div>
                 <div className={`ml-auto text-[10px] font-bold ${theme.accent} bg-white px-3 py-1 rounded-full border ${theme.accentBorderSub30} uppercase tracking-widest`}>
-                  პირადი კოორდინატორი
+                  {t("dashboard.supportTab.coordinatorBadge")}
                 </div>
               </div>
 
               {/* Chat messages Area */}
               <div className="flex-1 overflow-y-auto p-5 space-y-3.5 bg-[#FBFBFF]">
-                {chatMessages.map((msg) => (
+                {localizedChat.map((msg) => (
                   <div
                     key={msg.id}
                     className={`flex items-end gap-2.5 ${msg.from === "user" ? "flex-row-reverse" : "flex-row"}`}
@@ -1522,7 +1686,7 @@ function SurrogateDashboard({ user, onLogout }) {
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                  placeholder="ჩაწერეთ შეტყობინება..."
+                  placeholder={t("dashboard.supportTab.placeholder")}
                   className={`flex-1 px-4.5 py-2.5 rounded-full border border-gestlife-grey-20 text-xs sm:text-sm font-semibold text-gestlife-grey-80 focus:outline-none ${theme.focusBorder50} bg-[#FBFBFF] transition-colors`}
                 />
                 <button
@@ -1531,7 +1695,7 @@ function SurrogateDashboard({ user, onLogout }) {
                   className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-sm shrink-0 transition-all ${
                     chatInput.trim()
                       ? `${theme.gradient} shadow-md ${theme.shadow} hover:scale-105 active:scale-95 cursor-pointer`
-                      : "bg-gestlife-grey-20 text-gestlife-grey-40 cursor-default"
+                      : "bg-gestlife-grey-20 text-gestlife-grey-45 cursor-default"
                   }`}
                 >
                   ➤
@@ -1544,12 +1708,12 @@ function SurrogateDashboard({ user, onLogout }) {
               {/* Emergency info card */}
               <div className="bg-white rounded-3xl p-5 shadow-sm border border-gestlife-grey-20/40">
                 <div className="text-[10px] font-extrabold uppercase tracking-widest text-gestlife-grey-40 mb-3 flex items-center gap-1.5">
-                  <span>📞</span> კავშირი
+                  <span>📞</span> {t("dashboard.supportTab.emergency")}
                 </div>
                 {[
-                  { icon: "📱", label: "ტელეფონი", val: "+995 32 2XX XXXX" },
-                  { icon: "📧", label: "ელ-ფოსტა", val: "lile@gestlife.com" },
-                  { icon: "💬", label: "WhatsApp", val: "+995 577 XXX XXX" },
+                  { icon: "📱", label: t("dashboard.supportTab.contacts.phone"), val: "+995 32 2XX XXXX" },
+                  { icon: "📧", label: t("dashboard.supportTab.contacts.email"), val: "lile@gestlife.com" },
+                  { icon: "💬", label: t("dashboard.supportTab.contacts.whatsapp"), val: "+995 577 XXX XXX" },
                 ].map((c, i) => (
                   <div key={i} className="mb-3.5 last:mb-0">
                     <div className="text-[9px] font-bold text-gestlife-grey-45 uppercase tracking-wide mb-0.5">{c.icon} {c.label}</div>
@@ -1561,9 +1725,14 @@ function SurrogateDashboard({ user, onLogout }) {
               {/* copies copy request button lists */}
               <div className="bg-white rounded-3xl p-5 shadow-sm border border-gestlife-grey-20/40">
                 <div className="text-[10px] font-extrabold uppercase tracking-widest text-gestlife-grey-40 mb-3">
-                  ❓ სწრაფი მოთხოვნები
+                  ❓ {t("dashboard.supportTab.quickRequests")}
                 </div>
-                {["ხელშეკრულების ასლი", "სამედიცინო ცნობა", "ფინანსური ისტორია", "გადაუდებელი კონტაქტი"].map((item, i) => (
+                {[
+                  t("dashboard.supportTab.requests.contract"),
+                  t("dashboard.supportTab.requests.medical"),
+                  t("dashboard.supportTab.requests.finance"),
+                  t("dashboard.supportTab.requests.emergency"),
+                ].map((item, i) => (
                   <button
                     key={i}
                     className={`block w-full text-left px-3 py-2.5 mb-2 last:mb-0 rounded-xl border border-gestlife-grey-20 ${theme.hoverBorder} bg-gestlife-grey-20/5 ${theme.hoverBg5} text-xs font-bold text-gestlife-grey-60 ${theme.hoverText} transition-all cursor-pointer`}

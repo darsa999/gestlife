@@ -1,0 +1,372 @@
+{
+  "nav": {
+    "myths": "Myths",
+    "qualification": "Qualification",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "hero": {
+    "experience": "Years Experience",
+    "successRate": "Success Rate",
+    "happyFamilies": "Happy Families",
+    "startQuiz": "Start Test →",
+    "learnMore": "Learn More",
+    "legalInfo": "Legal Info:",
+    "legalText": "Civil Code - Surrogacy is fully legal. Intended parents are registered as the legal parents at birth.",
+    "videoLoading": "Loading Video...",
+    "videoDemoMode": "Demo Mode • Gestlife Media Embed",
+    "tagMedical": "Medical",
+    "tagLegal": "Legal",
+    "videoTitleGeorgia": "Georgia Program Overview",
+    "videoTitleGreece": "Greece Program Overview",
+    "videoSubtitleGeorgia": "3:45 min • Georgian subtitles",
+    "videoSubtitleGreece": "3:45 min • Greek subtitles"
+  },
+  "myths": {
+    "tag": "FACT CHECK",
+    "title": "Myths vs. Reality",
+    "subtitle": "Click on any card to discover the truth about surrogacy.",
+    "mythTag": "Myth",
+    "truthTag": "Reality"
+  },
+  "quiz": {
+    "duration": "⏱ 30 sec",
+    "title": "Qualification Test",
+    "intro": {
+      "title": "Are you ready for the test?",
+      "desc": "Answer 4 simple questions to evaluate your initial qualification for the surrogacy program.",
+      "item1": "Age limit check",
+      "item2": "Health index / BMI",
+      "item3": "Family status",
+      "item4": "Legal background",
+      "badge": "FOR INFORMATION PURPOSES • COMPLETELY FREE"
+    },
+    "form": {
+      "title": "Portal Activation",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "e.g., Nino Gelashvili",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+995 5XX XXX XXX",
+      "password": "Password",
+      "passwordPlaceholder": "Min. 8 characters",
+      "submit": "Create Account & Login →",
+      "secure": "🔒 Data secured in compliance with GDPR • ⚖️ By registering you agree to the terms",
+      "welcome": "Welcome, {{name}}! ✨",
+      "activated": "Your account has been successfully activated.",
+      "goDashboard": "🚀 Go to Dashboard"
+    },
+    "result": {
+      "title": "Test Result",
+      "qualified": "You are qualified! ✅",
+      "review": "Case under review 📋",
+      "fail": "Unable to proceed at this stage ❌",
+      "qualifiedText": "Congratulations! You meet our initial qualification criteria. Complete the registration form to activate your portal.",
+      "reviewText": "Your profile requires individual assessment. Please continue registration so our coordinator can contact you.",
+      "failText": "Unfortunately, you do not meet our primary criteria at this stage. Our specialists can contact you with more details.",
+      "continue": "Continue Registration →",
+      "retry": "Try Again"
+    },
+    "questionStep": "Question {{step}} of 4"
+  },
+  "programs": {
+    "georgia": {
+      "name": "Georgia Program",
+      "headline": "A Journey Started with Love",
+      "subheadline": "Georgia — World Leader in Surrogacy with a 20-Year Legal Framework",
+      "legalNote": "Georgia Civil Code, Article 143 — Surrogacy is fully legal. Intended parents are registered as the legal parents at birth.",
+      "quizIntro": "Take the 30-second qualification test for the Georgia program",
+      "stats": [
+        "20+ Years",
+        "98%",
+        "500+"
+      ],
+      "myths": [
+        {
+          "myth": "Surrogacy in Georgia is restricted",
+          "truth": "Completely false! Georgia offers one of the most liberal legal frameworks for surrogacy in the world. The Civil Code directly permits surrogacy."
+        },
+        {
+          "myth": "Surrogate mother can keep the child",
+          "truth": "By Georgian law, the surrogate mother has no legal rights to the child. The birth certificate is issued directly to the intended parents."
+        },
+        {
+          "myth": "The process is expensive and inaccessible",
+          "truth": "The Georgia program costs 40% of Western European rates, while the quality and legal protection are identical or even higher."
+        },
+        {
+          "myth": "Medical quality is questionable",
+          "truth": "Tbilisi's leading clinics are accredited to European standards. Our partner clinics are ISO certified."
+        }
+      ]
+    },
+    "greece": {
+      "name": "Greece Program",
+      "headline": "Family Dream at the Head of the Mediterranean",
+      "subheadline": "Greece — The only EU country where surrogacy is legal for foreigners",
+      "legalNote": "Greek Law 3305/2005 — Surrogacy is allowed with court permission. Optimal legal security for EU citizens.",
+      "quizIntro": "Take the 30-second qualification test for the Greece program",
+      "stats": [
+        "2005 Framework",
+        "EU Standards",
+        "300+ Families"
+      ],
+      "myths": [
+        {
+          "myth": "Greek court process is long",
+          "truth": "Court permission is issued in 3-4 months on average. Our legal team handles all paperwork without requiring your presence."
+        },
+        {
+          "myth": "Only Greek citizens can apply",
+          "truth": "Law 3305/2005 allows EU citizens and, under certain conditions, other foreign citizens as well. Our team will assess your qualification."
+        },
+        {
+          "myth": "Greece program is less structured",
+          "truth": "On the contrary — Greece has the most structured judicial oversight in Europe, protecting all parties involved."
+        },
+        {
+          "myth": "Clinics are less accessible",
+          "truth": "Athens clinics meet the highest EU standards. All medications are EMA (European Medicines Agency) certified."
+        }
+      ]
+    }
+  },
+  "dashboard": {
+    "sidebar": {
+      "overview": "Overview",
+      "profile": "Profile",
+      "medical": "Medical Results",
+      "finance": "Finances",
+      "schedule": "Schedule",
+      "support": "Support"
+    },
+    "profileInfo": "Surrogate Mother • {{program}}",
+    "stageLabel": "🟢 Stage: {{stage}}",
+    "overviewTab": {
+      "panel": "Program Panel",
+      "welcome": "Welcome, {{name}}! ✨",
+      "statusText": "Your pregnancy journey is active. Current stage: {{stage}}. All clinical metrics are in ideal normal ranges.",
+      "timelineTitle": "📍 Current Program Stages",
+      "nextAppt": "📅 Next Appointment",
+      "apptDate": "📆 Date: {{date}} — {{time}}",
+      "apptLoc": "📍 Location: {{location}}",
+      "apptStatus": "Status:",
+      "confirmed": "Confirmed",
+      "confirmBtn": "Confirm Visit",
+      "coordinatorTitle": "💬 Personal Coordinator",
+      "online": "Online",
+      "openChat": "Open Chat",
+      "lastAnalysis": "Last Analysis",
+      "lastAnalysisVal": "Normal",
+      "lastAnalysisDate": "May 17, 2025",
+      "lastPayout": "Last Payout",
+      "lastPayoutDate": "May 2025",
+      "payoutProgress": "Days Left",
+      "payoutProgressVal": "4 Days",
+      "payoutProgressSub": "May 22 10:00"
+    },
+    "stages": {
+      "s0": "Screening",
+      "s1": "Agreement",
+      "s2": "Sync",
+      "s3": "Embryo Transfer",
+      "s4": "Pregnancy Confirmation",
+      "s5": "Trimester I-III",
+      "s6": "Delivery"
+    },
+    "profileTab": {
+      "title": "Profile Details",
+      "fields": {
+        "fullName": "Full Name",
+        "dob": "Date of Birth",
+        "dobVal": "March 15, 1992 (33 years)",
+        "phone": "Phone Number",
+        "email": "Email",
+        "address": "Residential Address",
+        "addressVal": "Tbilisi, Vake, Chavchavadze Ave. 12",
+        "civil": "Civil Status",
+        "civilVal": "Married",
+        "children": "Children",
+        "childrenVal": "2 (7 and 10 years)",
+        "blood": "Blood Type",
+        "bloodVal": "A(II) Rh+"
+      },
+      "contract": {
+        "title": "📋 Contract Information",
+        "docNo": "Document №",
+        "date": "Date Signed",
+        "package": "Program Package",
+        "clinic": "Medical Clinic",
+        "docNoVal": "ARG-2025-0472",
+        "dateVal": "March 12, 2025",
+        "packageVal": "Georgia — Full",
+        "packageValGreece": "Greece — Standard EU",
+        "clinicVal": "ReproMed, Tbilisi",
+        "clinicValGreece": "Athens Repro, Athens"
+      }
+    },
+    "medicalTab": {
+      "title": "🧬 Medical Assessments & Studies",
+      "badge": "✅ {{count}} records — within normal range",
+      "chartTitle": "📊 Endometrium Dynamics (mm)",
+      "chartSub": "🎉 **10.2 mm** represents the ideal medical thickness for embryo transfer (clinical range: 8–14 mm).",
+      "results": [
+        {
+          "test": "Hormonal Panel",
+          "val": "E2: 245 pg/mL / P4: 1.2 ng/mL",
+          "res": "Normal",
+          "date": "May 17, 2025"
+        },
+        {
+          "test": "Uterine Ultrasound",
+          "val": "Endometrium: 10.2 mm (triphasic)",
+          "res": "Optimal",
+          "date": "May 14, 2025"
+        },
+        {
+          "test": "Complete Blood Count",
+          "val": "HGB: 13.4 d/dL / WBC: 6.2",
+          "res": "Normal",
+          "date": "May 10, 2025"
+        },
+        {
+          "test": "COVID / Infection Screening",
+          "val": "All markers negative",
+          "res": "Negative",
+          "date": "May 5, 2025"
+        },
+        {
+          "test": "Psychological Evaluation",
+          "val": "Beneficial evaluation - trust index: 98%",
+          "res": "Compliant",
+          "date": "Apr 28, 2025"
+        },
+        {
+          "test": "Cytology (PAP)",
+          "val": "NILM - no anomalies detected",
+          "res": "Negative",
+          "date": "Apr 20, 2025"
+        }
+      ]
+    },
+    "financeTab": {
+      "totalComp": "Total Compensation Volume",
+      "paid": "Paid",
+      "pending": "Pending",
+      "progress": "Progress: {{percent}}% Completed",
+      "title": "📋 Transaction Log",
+      "trans": [
+        {
+          "month": "March 2025",
+          "type": "Compensation",
+          "status": "Transferred"
+        },
+        {
+          "month": "April 2025",
+          "type": "Medical expenses reimbursement",
+          "status": "Transferred"
+        },
+        {
+          "month": "May 2025",
+          "type": "Compensation",
+          "status": "Transferred"
+        },
+        {
+          "month": "June 2025",
+          "type": "Compensation",
+          "status": "Pending"
+        },
+        {
+          "month": "June 2025",
+          "type": "Transport compensation",
+          "status": "Pending"
+        },
+        {
+          "month": "July 2025",
+          "type": "Bonus — Embryo transfer",
+          "status": "Scheduled"
+        }
+      ]
+    },
+    "scheduleTab": {
+      "title": "📅 Clinical & Consulting Visits",
+      "badge": "{{count}} scheduled events",
+      "confirmBtn": "Confirm",
+      "confirmed": "Confirmed",
+      "items": [
+        {
+          "title": "Final ultrasound check",
+          "loc": "IVF Clinic, Vera",
+          "date": "May 22, 2025",
+          "time": "10:00"
+        },
+        {
+          "title": "Embryo transfer procedure",
+          "loc": "IVF Clinic, Vera",
+          "date": "May 25, 2025",
+          "time": "09:30"
+        },
+        {
+          "title": "Post-transfer consultation",
+          "loc": "Video Call (Zoom)",
+          "date": "May 27, 2025",
+          "time": "14:00"
+        },
+        {
+          "title": "β-hCG (Pregnancy Test)",
+          "loc": "Synevo Laboratory",
+          "date": "Jun 4, 2025",
+          "time": "08:00"
+        },
+        {
+          "title": "Psychological support session",
+          "loc": "Video Call",
+          "date": "Jun 10, 2025",
+          "time": "11:00"
+        }
+      ]
+    },
+    "supportTab": {
+      "onlineText": "● Online • Replies in 30 mins",
+      "coordinatorBadge": "Personal Coordinator",
+      "typing": "LL is typing...",
+      "placeholder": "Type a message...",
+      "emergency": "Emergency Contacts",
+      "contacts": {
+        "phone": "Phone",
+        "email": "Email",
+        "whatsapp": "WhatsApp"
+      },
+      "quickRequests": "❓ Quick Requests",
+      "requests": {
+        "contract": "Contract Copy",
+        "medical": "Medical Certificate",
+        "finance": "Financial History",
+        "emergency": "Emergency Contact"
+      },
+      "chat": [
+        "Hello Nino! 🌸 How do you feel today? Yesterday's analysis results are excellent — endometrium is at ideal thickness!",
+        "Hello Lile! Very well. A bit nervous about the 25th 😊",
+        "That's completely natural! 💙 Remember — the whole team is with you. The protocol is followed exactly. You are doing great."
+      ],
+      "responses": [
+        "Understood! This is very important. I am reviewing it and will contact the clinic for additional information 🌟",
+        "So glad you shared! 💙 Remember — answers to any question will always come within 30 minutes.",
+        "Your health is most important. I'll notify the doctor — everything is under control ✅",
+        "Thank you for sharing! I have entered this in our database. I will write a formal reply soon 🌸",
+        "Excellent! 🎉 You are doing everything right. The team is very pleased with your progress."
+      ]
+    },
+    "georgia": "Georgia",
+    "greece": "Greece"
+  },
+  "footer": {
+    "desc": "FemTech Platform — International medical and legal support in surrogacy. Member of INVESTMEDICAL group.",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "gdpr": "GDPR Compliance",
+    "contact": "Contact",
+    "cities": "Tbilisi / Athens / Madrid",
+    "copyright": "© {{year}} Gestlife. All rights reserved."
+  }
+}

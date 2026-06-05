@@ -1,0 +1,372 @@
+{
+  "nav": {
+    "myths": "Mitos",
+    "qualification": "Calificación",
+    "login": "Ingresar",
+    "logout": "Salir"
+  },
+  "hero": {
+    "experience": "años de experiencia",
+    "successRate": "tasa de éxito",
+    "happyFamilies": "familias felices",
+    "startQuiz": "Iniciar prueba →",
+    "learnMore": "Saber más",
+    "legalInfo": "Información legal:",
+    "legalText": "Código Civil: la gestación subrogada es totalmente legal. Los padres de intención se registran como padres legales desde el nacimiento.",
+    "videoLoading": "Cargando video...",
+    "videoDemoMode": "Modo de demostración • Gestlife Media Embed",
+    "tagMedical": "Médico",
+    "tagLegal": "Legal",
+    "videoTitleGeorgia": "Descripción del programa de Georgia",
+    "videoTitleGreece": "Descripción del programa de Grecia",
+    "videoSubtitleGeorgia": "3:45 min • Subtítulos en georgiano",
+    "videoSubtitleGreece": "3:45 min • Subtítulos en griego"
+  },
+  "myths": {
+    "tag": "FACT CHECK",
+    "title": "Mitos vs. Realidad",
+    "subtitle": "Haga clic en cualquier tarjeta para descubrir la verdad sobre la gestación subrogada.",
+    "mythTag": "Mito",
+    "truthTag": "Realidad"
+  },
+  "quiz": {
+    "duration": "⏱ 30 seg",
+    "title": "Prueba de calificación",
+    "intro": {
+      "title": "¿Está listo para la prueba?",
+      "desc": "Responda 4 preguntas sencillas para evaluar su calificación inicial para el programa de gestación subrogada.",
+      "item1": "Verificación de edad",
+      "item2": "Índice de salud / IMC",
+      "item3": "Estado familiar",
+      "item4": "Antecedentes legales",
+      "badge": "CON FINES INFORMATIVOS • COMPLETAMENTE GRATIS"
+    },
+    "form": {
+      "title": "Activación del portal",
+      "fullName": "Nombre completo",
+      "fullNamePlaceholder": "ej., Nino Gelashvili",
+      "phone": "Número de teléfono",
+      "phonePlaceholder": "+995 5XX XXX XXX",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Mín. 8 caracteres",
+      "submit": "Crear cuenta e iniciar sesión →",
+      "secure": "🔒 Datos protegidos según el GDPR • ⚖️ Al registrarse, acepta los términos",
+      "welcome": "¡Bienvenido, {{name}}! ✨",
+      "activated": "Su cuenta ha sido activada con éxito.",
+      "goDashboard": "🚀 Ir al panel de control"
+    },
+    "result": {
+      "title": "Resultado de la prueba",
+      "qualified": "¡Está calificado! ✅",
+      "review": "Caso bajo revisión 📋",
+      "fail": "No es posible continuar en esta etapa ❌",
+      "qualifiedText": "¡Felicidades! Cumple con nuestros criterios iniciales de calificación. Complete el formulario de registro para activar su portal.",
+      "reviewText": "Su perfil requiere una evaluación individual. Continúe con el registro para que nuestro coordinador se ponga en contacto con usted.",
+      "failText": "Desafortunadamente, no cumple con nuestros criterios principales en esta etapa. Nuestros especialistas pueden contactarle para brindarle más detalles.",
+      "continue": "Continuar con el registro →",
+      "retry": "Intentar de nuevo"
+    },
+    "questionStep": "Pregunta {{step}} de 4"
+  },
+  "programs": {
+    "georgia": {
+      "name": "Programa Georgia",
+      "headline": "Un viaje que comienza con amor",
+      "subheadline": "Georgia: líder mundial en gestación subrogada con un marco legal de 20 años",
+      "legalNote": "Código Civil de Georgia, Artículo 143: la gestación subrogada es totalmente legal. Los padres de intención se registran como padres legales al nacer.",
+      "quizIntro": "Realice la prueba de calificación de 30 segundos para el programa de Georgia",
+      "stats": [
+        "20+ Años",
+        "98%",
+        "500+"
+      ],
+      "myths": [
+        {
+          "myth": "La subrogación en Georgia está restringida",
+          "truth": "¡Completamente falso! Georgia ofrece uno de los marcos legales más liberales para la subrogación en el mundo. El Código Civil permite directamente la subrogación."
+        },
+        {
+          "myth": "La gestante puede quedarse con el bebé",
+          "truth": "Por la ley georgiana, la gestante no tiene ningún derecho legal sobre el bebé. El certificado de nacimiento se expide directamente a nombre de los padres de intención."
+        },
+        {
+          "myth": "El proceso es costoso e inaccesible",
+          "truth": "El costo en Georgia es solo el 40% de las tarifas de Europa Occidental, mientras que la calidad y la protección legal son idénticas o superiores."
+        },
+        {
+          "myth": "La calidad médica es cuestionable",
+          "truth": "Las principales clínicas de Tiflis están acreditadas según estándares europeos. Nuestras clínicas asociadas cuentan con certificación ISO."
+        }
+      ]
+    },
+    "greece": {
+      "name": "Programa Grecia",
+      "headline": "El sueño familiar a la cabeza del Mediterráneo",
+      "subheadline": "Grecia: el único país de la UE donde la gestación subrogada es legal para extranjeros",
+      "legalNote": "Ley griega 3305/2005: se permite la gestación subrogada con autorización judicial. Seguridad jurídica óptima para los ciudadanos de la UE.",
+      "quizIntro": "Realice la prueba de calificación de 30 segundos para el programa de Grecia",
+      "stats": [
+        "Marco 2005",
+        "Estándares UE",
+        "300+ Familias"
+      ],
+      "myths": [
+        {
+          "myth": "El proceso judicial en Grecia es largo",
+          "truth": "El permiso judicial se emite en un promedio de 3 a 4 meses. Nuestro equipo legal se encarga de todo el papeleo sin necesidad de su presencia física."
+        },
+        {
+          "myth": "Solo los ciudadanos griegos pueden aplicar",
+          "truth": "La ley 3305/2005 permite a ciudadanos de la UE y, bajo ciertas condiciones, de otros países. Nuestro equipo evaluará su calificación."
+        },
+        {
+          "myth": "El programa de Grecia es menos estructurado",
+          "truth": "Al contrario: Grecia cuenta con la supervisión judicial más estructurada de Europa, protegiendo a todas las partes implicadas."
+        },
+        {
+          "myth": "Las clínicas son menos accesibles",
+          "truth": "Las clínicas de Atenas cumplen con los más altos estándares de la UE. Todos los medicamentos están certificados por la EMA (Agencia Europea de Medicamentos)."
+        }
+      ]
+    }
+  },
+  "dashboard": {
+    "sidebar": {
+      "overview": "Resumen",
+      "profile": "Perfil",
+      "medical": "Resultados",
+      "finance": "Finanzas",
+      "schedule": "Calendario",
+      "support": "Soporte"
+    },
+    "profileInfo": "Madre subrogada • {{program}}",
+    "stageLabel": "🟢 Etapa: {{stage}}",
+    "overviewTab": {
+      "panel": "Panel del programa",
+      "welcome": "¡Bienvenido, {{name}}! ✨",
+      "statusText": "Su viaje está activo. Etapa actual: {{stage}}. Todos los valores clínicos se encuentran dentro del rango normal ideal.",
+      "timelineTitle": "📍 Etapas actuales del programa",
+      "nextAppt": "📅 Próxima cita",
+      "apptDate": "📆 Fecha: {{date}} — {{time}}",
+      "apptLoc": "📍 Ubicación: {{location}}",
+      "apptStatus": "Estado:",
+      "confirmed": "Confirmado",
+      "confirmBtn": "Confirmar visita",
+      "coordinatorTitle": "💬 Coordinador personal",
+      "online": "En línea",
+      "openChat": "Abrir chat",
+      "lastAnalysis": "Último análisis",
+      "lastAnalysisVal": "Normal",
+      "lastAnalysisDate": "17 de mayo de 2025",
+      "lastPayout": "Último pago",
+      "lastPayoutDate": "Mayo de 2025",
+      "payoutProgress": "Días restantes",
+      "payoutProgressVal": "4 días",
+      "payoutProgressSub": "22 may 10:00"
+    },
+    "stages": {
+      "s0": "Cribado",
+      "s1": "Acuerdo",
+      "s2": "Sincronización",
+      "s3": "Transferencia embrionaria",
+      "s4": "Confirmación de embarazo",
+      "s5": "Trimestre I-III",
+      "s6": "Parto"
+    },
+    "profileTab": {
+      "title": "Detalles del perfil",
+      "fields": {
+        "fullName": "Nombre completo",
+        "dob": "Fecha de nacimiento",
+        "dobVal": "15 de marzo de 1992 (33 años)",
+        "phone": "Número de teléfono",
+        "email": "Correo electrónico",
+        "address": "Dirección residencial",
+        "addressVal": "Tiflis, Vake, Av. Chavchavadze 12",
+        "civil": "Estado civil",
+        "civilVal": "Casado/a",
+        "children": "Hijos",
+        "childrenVal": "2 (7 y 10 años)",
+        "blood": "Grupo sanguíneo",
+        "bloodVal": "A(II) Rh+"
+      },
+      "contract": {
+        "title": "📋 Información del contrato",
+        "docNo": "Nº de documento",
+        "date": "Fecha de firma",
+        "package": "Paquete del programa",
+        "clinic": "Clínica médica",
+        "docNoVal": "ARG-2025-0472",
+        "dateVal": "12 de marzo de 2025",
+        "packageVal": "Georgia — Completo",
+        "packageValGreece": "Grecia — Estándar UE",
+        "clinicVal": "ReproMed, Tiflis",
+        "clinicValGreece": "Athens Repro, Atenas"
+      }
+    },
+    "medicalTab": {
+      "title": "🧬 Evaluaciones y estudios médicos",
+      "badge": "✅ {{count}} registros — dentro del rango normal",
+      "chartTitle": "📊 Dinámica del endometrio (mm)",
+      "chartSub": "🎉 **10.2 mm** representa el grosor médico ideal para la transferencia embrionaria (rango clínico: 8–14 mm).",
+      "results": [
+        {
+          "test": "Panel Hormonal",
+          "val": "E2: 245 pg/mL / P4: 1.2 ng/mL",
+          "res": "Normal",
+          "date": "17 de mayo de 2025"
+        },
+        {
+          "test": "Ecografía Uterina",
+          "val": "Endometrio: 10.2 mm (trifásico)",
+          "res": "Óptimo",
+          "date": "14 de mayo de 2025"
+        },
+        {
+          "test": "Hemograma Completo",
+          "val": "HGB: 13.4 d/dL / WBC: 6.2",
+          "res": "Normal",
+          "date": "10 de mayo de 2025"
+        },
+        {
+          "test": "Cribado de COVID / Infecciones",
+          "val": "Todos los marcadores negativos",
+          "res": "Negativo",
+          "date": "5 de mayo de 2025"
+        },
+        {
+          "test": "Evaluación Psicológica",
+          "val": "Evaluación favorable — índice de confianza: 98%",
+          "res": "Conforme",
+          "date": "28 de abr de 2025"
+        },
+        {
+          "test": "Citología (PAP)",
+          "val": "NILM — no se detectaron anomalías",
+          "res": "Negativo",
+          "date": "20 de abr de 2025"
+        }
+      ]
+    },
+    "financeTab": {
+      "totalComp": "Volumen de compensación total",
+      "paid": "Pagado",
+      "pending": "Pendiente",
+      "progress": "Progreso: {{percent}}% completado",
+      "title": "📋 Registro de transacciones",
+      "trans": [
+        {
+          "month": "Marzo 2025",
+          "type": "Compensación",
+          "status": "Pagado"
+        },
+        {
+          "month": "Abril 2025",
+          "type": "Reembolso de gastos médicos",
+          "status": "Pagado"
+        },
+        {
+          "month": "Mayo 2025",
+          "type": "Compensación",
+          "status": "Pagado"
+        },
+        {
+          "month": "Junio 2025",
+          "type": "Compensación",
+          "status": "Pendiente"
+        },
+        {
+          "month": "Junio 2025",
+          "type": "Reembolso de transporte",
+          "status": "Pendiente"
+        },
+        {
+          "month": "Julio 2025",
+          "type": "Bonificación — Transferencia",
+          "status": "Programado"
+        }
+      ]
+    },
+    "scheduleTab": {
+      "title": "📅 Visitas clínicas y de consultoría",
+      "badge": "{{count}} eventos programados",
+      "confirmBtn": "Confirmar",
+      "confirmed": "Confirmado",
+      "items": [
+        {
+          "title": "Ecografía final del endometrio",
+          "loc": "Clínica IVF, Vera",
+          "date": "22 de mayo de 2025",
+          "time": "10:00"
+        },
+        {
+          "title": "Procedimiento de transferencia",
+          "loc": "Clínica IVF, Vera",
+          "date": "25 de mayo de 2025",
+          "time": "09:30"
+        },
+        {
+          "title": "Consulta post-transferencia",
+          "loc": "Videollamada (Zoom)",
+          "date": "27 de mayo de 2025",
+          "time": "14:00"
+        },
+        {
+          "title": "β-hCG (Prueba de embarazo)",
+          "loc": "Laboratorio Synevo",
+          "date": "4 de junio de 2025",
+          "time": "08:00"
+        },
+        {
+          "title": "Sesión de apoyo psicológico",
+          "loc": "Videollamada",
+          "date": "10 de junio de 2025",
+          "time": "11:00"
+        }
+      ]
+    },
+    "supportTab": {
+      "onlineText": "● En línea • Responde en 30 min",
+      "coordinatorBadge": "Coordinador personal",
+      "typing": "LL está escribiendo...",
+      "placeholder": "Escriba un mensaje...",
+      "emergency": "Contactos de emergencia",
+      "contacts": {
+        "phone": "Teléfono",
+        "email": "Correo electrónico",
+        "whatsapp": "WhatsApp"
+      },
+      "quickRequests": "❓ Solicitudes rápidas",
+      "requests": {
+        "contract": "Copia del contrato",
+        "medical": "Certificado médico",
+        "finance": "Historial de pagos",
+        "emergency": "Contacto de emergencia"
+      },
+      "chat": [
+        "¡Hola Nino! 🌸 ¿Cómo te sientes hoy? Los resultados del análisis de ayer son excelentes: ¡el endometrio tiene el grosor ideal!",
+        "¡Hola Lile! Muy bien. Un poco nerviosa por el día 25 😊",
+        "¡Es completamente natural! 💙 Recuerda: todo el equipo está contigo. El protocolo se sigue al pie de la letra. Lo estás haciendo genial."
+      ],
+      "responses": [
+        "¡Entendido! Esto es muy importante. Lo estoy revisando y me comunicaré con la clínica 🌟",
+        "¡Me alegro de que lo hayas compartido! 💙 Recuerda: las respuestas a cualquier pregunta llegarán siempre en menos de 30 minutos.",
+        "Tu salud es lo más importante. Se lo notificaré al médico: todo está bajo control ✅",
+        "¡Gracias por compartirlo! He registrado esto en nuestra base de datos. Escribiré una respuesta formal pronto 🌸",
+        "¡Excelente! 🎉 Lo estás haciendo todo bien. El equipo está muy satisfecho con tu progreso."
+      ]
+    },
+    "georgia": "Georgia",
+    "greece": "Grecia"
+  },
+  "footer": {
+    "desc": "Plataforma FemTech — Apoyo médico y legal internacional en gestación subrogada. Miembro del grupo INVESTMEDICAL.",
+    "legal": "Información legal",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de uso",
+    "gdpr": "Cumplimiento de GDPR",
+    "contact": "Contacto",
+    "cities": "Tiflis / Atenas / Madrid",
+    "copyright": "© {{year}} Gestlife. Todos los derechos reservados."
+  }
+}
