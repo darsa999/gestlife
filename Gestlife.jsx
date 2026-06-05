@@ -1,12 +1,12 @@
 // ════════════════════════════════════════════════════════════════
-// ARIA FemTech Surrogacy — Unified Application
-// Fully converted to inline styles — no Tailwind dependency
+// Gestlife — Brand-Aligned FemTech Surrogacy Portal (2025 Guidelines)
+// Refactored with Tailwind CSS v4 & Brand Gradients
 // ════════════════════════════════════════════════════════════════
 
 import { useState, useEffect, useRef } from "react";
 
 // ════════════════════════════════════════════════════
-// SHARED DATA — Country Programs (Homepage)
+// SHARED DATA — Country Programs (Refactored visual accents)
 // ════════════════════════════════════════════════════
 const PROGRAMS = {
   georgia: {
@@ -14,15 +14,10 @@ const PROGRAMS = {
     name: "საქართველოს პროგრამა",
     nameEn: "Georgia Program",
     flag: "🇬🇪",
-    color: "#C8102E",
-    accent: "#E8B84B",
-    heroGradient: "linear-gradient(135deg, #fff1f2 0%, #fffbeb 50%, #fce7e7 100%)",
-    headline: "სიყვარულით დაწყებული მოგზაურობა",
-    subheadline: "საქართველო — სუროგაციის მსოფლიო ლიდერი 20 წლიანი სამართლებრივი ჩარჩოთი",
-    legalNote: "საქართველოს სამოქალაქო კოდექსი, მუხლი 143-ე — სუროგაცია სრულად ლეგალურია. განზრახული მშობლები იბადება ბავშვის სამართლებრივ მშობლებად.",
-    legalBg: "#fff1f2",
-    legalBorder: "#fecaca",
-    legalText: "#9b1c1c",
+    // Brand book aligned theme configurations
+    accentBg: "bg-red-50/50 border-red-100/80 text-red-800",
+    accentBorder: "border-red-200",
+    accentText: "text-red-600",
     stats: [
       { value: "20+", label: "წელი გამოცდილება" },
       { value: "98%", label: "წარმატების მაჩვენებელი" },
@@ -34,23 +29,19 @@ const PROGRAMS = {
       { myth: "პროცესი ძვირი და მიუწვდომელია", truth: "საქართველოს პროგრამა შეადგენს დასავლეთ ევროპის ღირებულების 40%-ს, ხოლო ხარისხი და სამართლებრივი დაცვა იდენტურია ან მაღალიც კი.", icon: "💰" },
       { myth: "სამედიცინო ხარისხი ეჭვქვეშ დგება", truth: "თბილისის წამყვანი კლინიკები ევროპული სტანდარტებით არის აკრედიტებული. ჩვენი პარტნიორი კლინიკები ISO სერტიფიცირებულია.", icon: "🏥" },
     ],
+    headline: "სიყვარულით დაწყებული მოგზაურობა",
+    subheadline: "საქართველო — სუროგაციის მსოფლიო ლიდერი 20 წლიანი სამართლებრივი ჩარჩოთი",
+    legalNote: "საქართველოს სამოქალაქო კოდექსი, მუხლი 143-ე — სუროგაცია სრულად ლეგალურია. განზრახული მშობლები იბადება ბავშვის სამართლებრივ მშობლებად.",
     quizIntro: "გაიარეთ 30-წამიანი კვალიფიკაციის ტესტი საქართველოს პროგრამისთვის",
-    gradientDark: "#8B0000",
   },
   greece: {
     id: "greece",
     name: "საბერძნეთის პროგრამა",
     nameEn: "Greece Program",
     flag: "🇬🇷",
-    color: "#0D5EAF",
-    accent: "#FFFFFF",
-    heroGradient: "linear-gradient(135deg, #eff6ff 0%, #f0f9ff 50%, #dbeafe 100%)",
-    headline: "ოჯახის ოცნება ხმელთაშუა ზღვის სათავეში",
-    subheadline: "საბერძნეთი — ევროკავშირის ერთადერთი ქვეყანა, სადაც სუროგაცია ლეგალურია",
-    legalNote: "ბერძნული კანონი 3305/2005 — სუროგაცია ნებადართულია სასამართლო ნებართვით. ევროკავშირის მოქალაქეებისთვის ოპტიმალური სამართლებრივი უსაფრთხოება.",
-    legalBg: "#eff6ff",
-    legalBorder: "#bfdbfe",
-    legalText: "#1e3a8a",
+    accentBg: "bg-blue-50/50 border-blue-100/80 text-blue-800",
+    accentBorder: "border-blue-200",
+    accentText: "text-blue-600",
     stats: [
       { value: "2005", label: "სამართლებრივი ჩარჩო" },
       { value: "EU", label: "სტანდარტები" },
@@ -62,8 +53,10 @@ const PROGRAMS = {
       { myth: "ბერძნული პროგრამა ნაკლებად სტრუქტურირებულია", truth: "პირიქით — საბერძნეთს ყველაზე სტრუქტურირებული სასამართლო ზედამხედველობა აქვს ევროპაში, რაც ყველა მხარეს იცავს.", icon: "🏛️" },
       { myth: "მედიკამენტები და კლინიკები ნაკლებად ხელმისაწვდომია", truth: "ათენის კლინიკები ევროკავშირის ყველაზე მაღალი სტანდარტების მქონეა. ყველა მედიკამენტი EMA (ევროპული სამედიცინო სააგენტო) სერტიფიცირებულია.", icon: "💊" },
     ],
+    headline: "ოჯახის ოცნება ხმელთაშუა ზღვის სათავეში",
+    subheadline: "საბერძნეთი — ევროკავშირის ერთადერთი ქვეყანა, სადაც სუროგაცია ლეგალურია",
+    legalNote: "ბერძნული კანონი 3305/2005 — სუროგაცია ნებადართულია სასამართლო ნებართვით. ევროკავშირის მოქალაქეებისთვის ოპტიმალური სამართლებრივი უსაფრთხოება.",
     quizIntro: "გაიარეთ 30-წამიანი კვალიფიკაციის ტესტი საბერძნეთის პროგრამისთვის",
-    gradientDark: "#003580",
   },
 };
 
@@ -108,15 +101,14 @@ const QUIZ_QUESTIONS = [
 ];
 
 // ════════════════════════════════════════════════════
-// DASHBOARD DATA
+// DASHBOARD STATIC DATA
 // ════════════════════════════════════════════════════
 const SURROGATE = {
   name: "ნინო გელაშვილი",
   avatar: "NG",
   program: "საქართველო 🇬🇪",
   stage: "ემბრიონის გადატანის მომზადება",
-  stageIndex: 3,
-  coordinator: { name: "ლილე მამულაშვილი", avatar: "LL", status: "online", title: "პირადი კოორდინატორი" },
+  coordinator: { name: "ლილე მამულაშვილი", avatar: "LL", title: "პირადი კოორდინატორი" },
   notifications: [
     { id: 1, text: "ანალიზის შედეგები მზადაა — 17 მაი", type: "medical", read: false },
     { id: 2, text: "ოპო: ვიზიტი 22 მაისს 10:00 — დადასტურება საჭიროა", type: "schedule", read: false },
@@ -135,12 +127,12 @@ const STAGES = [
 ];
 
 const MEDICAL_RESULTS = [
-  { date: "17 მაი 2025", test: "ჰორმონული პანელი", result: "ნორმა", value: "E2: 245 pg/mL / P4: 1.2 ng/mL", status: "ok" },
-  { date: "14 მაი 2025", test: "საშვილოსნოს ულტრაბგერა", result: "ოპტიმალური", value: "ენდომეტრიუმი: 10.2 მმ (ტრიფაზური)", status: "ok" },
-  { date: "10 მაი 2025", test: "სისხლის საერთო ანალიზი", result: "ნორმა", value: "HGB: 13.4 g/dL / WBC: 6.2", status: "ok" },
-  { date: "5 მაი 2025", test: "COVID / ინფექციური სკრინინგი", result: "უარყოფითი", value: "ყველა მარკერი უარყოფითი", status: "ok" },
-  { date: "28 აპრ 2025", test: "ფსიქოლოგიური შეფასება", result: "კომპლიანსი", value: "სასარგებლო შეფასება — ნდობის ინდექსი: 98%", status: "ok" },
-  { date: "20 აპრ 2025", test: "ციტოლოგია (PAP)", result: "ნეგატიური", value: "NILM — ანომალია არ გამოვლენილა", status: "ok" },
+  { date: "17 მაი 2025", test: "ჰორმონული პანელი", result: "ნორმა", value: "E2: 245 pg/mL / P4: 1.2 ng/mL" },
+  { date: "14 მაი 2025", test: "საშვილოსნოს ულტრაბგერა", result: "ოპტიმალური", value: "ენდომეტრიუმი: 10.2 მმ (ტრიფაზური)" },
+  { date: "10 მაი 2025", test: "სისხლის საერთო ანალიზი", result: "ნორმა", value: "HGB: 13.4 g/dL / WBC: 6.2" },
+  { date: "5 მაი 2025", test: "COVID / ინფექციური სკრინინგი", result: "უარყოფითი", value: "ყველა მარკერი უარყოფითი" },
+  { date: "28 აპრ 2025", test: "ფსიქოლოგიური შეფასება", result: "კომპლიანსი", value: "სასარგებლო შეფასება — ნდობის ინდექსი: 98%" },
+  { date: "20 აპრ 2025", test: "ციტოლოგია (PAP)", result: "ნეგატიური", value: "NILM — ანომალია არ გამოვლენილა" },
 ];
 
 const FINANCES = [
@@ -163,47 +155,148 @@ const SCHEDULE_DATA = [
 const INITIAL_CHAT = [
   { id: 1, from: "coordinator", text: "გამარჯობა ნინო! 🌸 როგორ გრძნობ თავს დღეს? გუშინდელი ანალიზების შედეგები შესანიშნავია — ენდომეტრიუმი იდეალური სისქისაა!", time: "09:15" },
   { id: 2, from: "user", text: "გამარჯობა ლილე! ძალიან კარგად. ოდნავ ნერვიულობა მაქვს 25-ის გამო 😊", time: "09:22" },
-  { id: 3, from: "coordinator", text: "ეს სრულიად ბუნებრივია! 💙 გახსოვდე — მთელი გუნდი შენთანაა. პროტოკოლი ზუსტად მიჰყვება. შენ ბრწყინვალედ კეთდები ყველაფერს.", time: "09:24" },
+  { id: 3, from: "coordinator", text: "ეს სრულიად ბუნებრივია! 💙 გახსოვდე — მთელი გუნდი შენთანაა. პროტოკოლი ზუსტად მიჰყვება. შენ ბრწყინვალედ აკეთებ ყველაფერს.", time: "09:24" },
 ];
 
 const AUTO_RESPONSES = [
-  "გესმის! ეს ძალიან მნიშვნელოვანია. ვუყურებ და დავიკავშირები კლინიკასთან დამატებითი ინფორმაციისთვის 🌟",
-  "რა კარგია, რომ გამოიხატე! 💙 გახსოვდე — ნებისმიერ კითხვაზე პასუხი ყოველთვის 30 წუთში მოვა.",
+  "გესმის! ეს ძალიან მნიშვნელოვანია. ვუყურებ და დავუკავშირდები კლინიკასთან დამატებითი ინფორმაციისთვის 🌟",
+  "რა კარგია, რომ გაგვიზიარე! 💙 გახსოვდეს — ნებისმიერ კითხვაზე პასუხი ყოველთვის 30 წუთში მოვა.",
   "შენი ჯანმრთელობა ყველაზე მნიშვნელოვანია. ექიმს ვამცნობ ამის შესახებ — ყველაფერი კონტროლირებადია ✅",
-  "გმადლობ, რომ გამიზიარე! ეს ინფორმაცია ვქვებ ჩვენი გუნდის ჩატში. 30 წუთში ოფიციალური პასუხი გეყოლება 🌸",
+  "გმადლობ, რომ გამიზიარე! ეს ინფორმაცია შევიყვანე ჩვენი გუნდის ბაზაში. მალე მოგწერთ ოფიციალურ პასუხს 🌸",
   "ბრწყინვალეა! 🎉 შენ ყველაფერს სწორად აკეთებ. გუნდი ძალიან კმაყოფილია შენი პროგრესით.",
 ];
 
-const DASH_TABS = [
-  { id: "overview", label: "მიმოხილვა", icon: "🏠" },
-  { id: "profile", label: "პროფილი", icon: "👤" },
-  { id: "medical", label: "სამედ. შედეგები", icon: "🧬" },
-  { id: "finance", label: "ფინანსები", icon: "💳" },
-  { id: "schedule", label: "განრიგი", icon: "📅" },
-  { id: "support", label: "მხარდაჭერა", icon: "💬" },
-];
-
 // ════════════════════════════════════════════════════
-// ROOT COMPONENT
+// SVG UNIFORM ICONS (Brand guidelines: centered, 1.5pt equivalent strokes)
 // ════════════════════════════════════════════════════
-export default function ARIASurrogacyApp() {
-  const [currentView, setCurrentView] = useState("homepage");
-  const [registeredUser, setRegisteredUser] = useState(null);
+function HomeIcon({ className = "w-[18px] h-[18px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  );
+}
 
-  const handleRegistrationComplete = (userData) => {
-    setRegisteredUser(userData);
-    setCurrentView("dashboard");
-  };
+function UserIcon({ className = "w-[18px] h-[18px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  );
+}
 
-  if (currentView === "dashboard") {
-    return <SurrogateDashboard user={registeredUser} onLogout={() => setCurrentView("homepage")} />;
-  }
+function MedicalIcon({ className = "w-[18px] h-[18px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+      <path d="M12 6v12M6 12h12" />
+    </svg>
+  );
+}
 
-  return <SurrogacyHomepage onEnterDashboard={handleRegistrationComplete} />;
+function FinanceIcon({ className = "w-[18px] h-[18px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="14" x="2" y="5" rx="2" />
+      <line x1="2" x2="22" y1="10" y2="10" />
+      <path d="M6 15h2" />
+    </svg>
+  );
+}
+
+function CalendarIcon({ className = "w-[18px] h-[18px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" />
+      <line x1="16" x2="16" y1="2" y2="6" />
+      <line x1="8" x2="8" y1="2" y2="6" />
+      <line x1="3" x2="21" y1="10" y2="10" />
+    </svg>
+  );
+}
+
+function ChatIcon({ className = "w-[18px] h-[18px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  );
+}
+
+function HeartIcon({ className = "w-5 h-5", fill = "none" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+    </svg>
+  );
 }
 
 // ════════════════════════════════════════════════════
-// PHASE 1: PUBLIC HOMEPAGE
+// BRAND GEOMETRIC RESOURCE — The Pregnancy-Profile Wave
+// ════════════════════════════════════════════════════
+function BellyWaveBottom({ className = "" }) {
+  return (
+    <div className={`relative w-full overflow-hidden leading-none ${className}`}>
+      <svg className="relative block w-full h-[80px] sm:h-[120px] md:h-[160px]" viewBox="0 0 1440 160" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        {/* Layer 1 (Subtone Blue) */}
+        <path d="M0,96 C240,144 480,168 720,112 C960,56 1200,32 1440,80 L1440,160 L0,160 Z" fill="#79B0F5" opacity="0.15" />
+        {/* Layer 2 (Subtone Pink) */}
+        <path d="M0,128 C280,168 560,128 840,96 C1120,64 1280,112 1440,128 L1440,160 L0,160 Z" fill="#F26BC1" opacity="0.2" />
+        {/* Layer 3 (Primary Gradient 40deg) */}
+        <path d="M0,135 C320,165 640,110 960,135 C1120,150 1280,135 1440,140 L1440,160 L0,160 Z" fill="url(#brand-gradient-element)" />
+      </svg>
+    </div>
+  );
+}
+
+function BellyWaveTop({ className = "" }) {
+  return (
+    <div className={`relative w-full overflow-hidden leading-none rotate-180 ${className}`}>
+      <svg className="relative block w-full h-[50px] sm:h-[80px]" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,60 C320,110 640,110 960,60 C1120,35 1280,15 1440,30 L1440,120 L0,120 Z" fill="url(#brand-gradient-element)" />
+      </svg>
+    </div>
+  );
+}
+
+// ════════════════════════════════════════════════════
+// ROOT ROUTER
+// ════════════════════════════════════════════════════
+export default function GestlifeApp() {
+  const [currentView, setCurrentView] = useState("homepage");
+  const [registeredUser, setRegisteredUser] = useState(null);
+
+  // Load gradient assets globally
+  return (
+    <div className="min-h-screen flex flex-col font-opensans bg-[#FCFBFE] text-gestlife-grey-80 select-none">
+      {/* Brand Gradient Definition */}
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <linearGradient id="brand-gradient-element" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#F26BC1" />
+            <stop offset="100%" stopColor="#79B0F5" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {currentView === "dashboard" ? (
+        <SurrogateDashboard
+          user={registeredUser}
+          onLogout={() => { setRegisteredUser(null); setCurrentView("homepage"); }}
+        />
+      ) : (
+        <SurrogacyHomepage
+          onEnterDashboard={(userData) => { setRegisteredUser(userData); setCurrentView("dashboard"); }}
+        />
+      )}
+    </div>
+  );
+}
+
+// ════════════════════════════════════════════════════
+// PHASE 1 — PUBLIC BRANDED HOMEPAGE
 // ════════════════════════════════════════════════════
 function SurrogacyHomepage({ onEnterDashboard }) {
   const [program, setProgram] = useState("georgia");
@@ -219,30 +312,24 @@ function SurrogacyHomepage({ onEnterDashboard }) {
 
   const data = PROGRAMS[program];
 
-  const switchProgram = (newProgram) => {
-    if (newProgram === program) return;
+  const switchProgram = (newProg) => {
+    if (newProg === program) return;
     setTransitioning(true);
     setTimeout(() => {
-      setProgram(newProgram);
+      setProgram(newProg);
       setOpenMyth(null);
       setQuizStep(0);
       setQuizAnswers([]);
       setQuizScore(0);
       setFormSubmitted(false);
       setTransitioning(false);
-    }, 350);
+    }, 250);
   };
 
   const handleAnswer = (option) => {
-    const newAnswers = [...quizAnswers, option];
-    const newScore = quizScore + option.score;
-    setQuizAnswers(newAnswers);
-    setQuizScore(newScore);
-    if (quizStep < 4) {
-      setQuizStep(quizStep + 1);
-    } else {
-      setQuizStep(5);
-    }
+    setQuizAnswers((prev) => [...prev, option]);
+    setQuizScore((prev) => prev + option.score);
+    setQuizStep((prev) => (prev < 4 ? prev + 1 : 5));
   };
 
   const handleFormSubmit = () => {
@@ -252,541 +339,471 @@ function SurrogacyHomepage({ onEnterDashboard }) {
   };
 
   const getQualification = () => {
-    if (quizScore >= 3) return { status: "qualified", label: "კვალიფიცირებული ხართ! ✅", bg: "#f0fdf4", border: "#bbf7d0", color: "#065f46" };
-    if (quizScore >= 1) return { status: "review", label: "განსახილველი შემთხვევა 📋", bg: "#fffbeb", border: "#fde68a", color: "#92400e" };
-    return { status: "fail", label: "ამ ეტაპზე ვერ ვაგრძელებთ ❌", bg: "#fef2f2", border: "#fecaca", color: "#991b1b" };
+    if (quizScore >= 3) return { status: "qualified", label: "კვალიფიცირებული ხართ! ✅", cls: "text-emerald-700 bg-emerald-50 border-emerald-200" };
+    if (quizScore >= 1) return { status: "review", label: "განსახილველი შემთხვევა 📋", cls: "text-amber-700 bg-amber-50 border-amber-200" };
+    return { status: "fail", label: "ამ ეტაპზე ვერ ვაგრძელებთ ❌", cls: "text-red-700 bg-red-50 border-red-200" };
   };
 
   const currentQuestion = QUIZ_QUESTIONS[quizStep - 1];
   const qualification = quizStep === 5 ? getQualification() : null;
-  const gradDark = data.gradientDark;
-
-  const baseFont = "'Georgia', 'Times New Roman', serif";
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      fontFamily: baseFont,
-      opacity: transitioning ? 0 : 1,
-      transform: transitioning ? "scale(0.97)" : "scale(1)",
-      transition: "opacity 0.35s ease, transform 0.35s ease",
-    }}>
-      <style>{`
-        @keyframes ariaPulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-        @keyframes ariaBounce {
-          0%, 80%, 100% { transform: translateY(0); }
-          40% { transform: translateY(-6px); }
-        }
-        @keyframes ariaBounceSlow {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
-        .aria-myth-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important; }
-        .aria-quiz-opt:hover { transform: translateX(4px); }
-        .aria-cta-primary:hover { transform: scale(1.04); box-shadow: 0 12px 40px rgba(0,0,0,0.22) !important; }
-        .aria-cta-secondary:hover { background: white !important; box-shadow: 0 4px 16px rgba(0,0,0,0.1) !important; }
-        .aria-prog-btn:hover { background: rgba(255,255,255,0.5) !important; }
-      `}</style>
-
-      {/* ════ HEADER ════ */}
-      <header style={{
-        position: "sticky", top: 0, zIndex: 50,
-        background: "rgba(255,255,255,0.96)",
-        backdropFilter: "blur(12px)",
-        boxShadow: "0 1px 16px rgba(0,0,0,0.07)",
-        borderBottom: "1px solid #f1f5f9",
-      }}>
-        <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 20px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-
-          {/* Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
-            <div style={{
-              width: 40, height: 40, borderRadius: "50%",
-              background: `linear-gradient(135deg, ${data.color}, ${gradDark})`,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              color: "white", fontWeight: 800, fontSize: 18,
-              boxShadow: `0 4px 14px ${data.color}55`,
-              transition: "all 0.3s",
-            }}>♥</div>
+    <div className="flex-1 flex flex-col">
+      {/* ── HEADER (Glassmorphic) ── */}
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gestlife-grey-20/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+          
+          {/* Logo Symbol & Text */}
+          <div className="flex items-center gap-3 shrink-0 cursor-pointer" onClick={() => switchProgram("georgia")}>
+            <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md bg-brand-gradient hover:scale-105 transition-transform">
+              <HeartIcon fill="white" className="w-[18px] h-[18px] text-white" />
+            </div>
             <div>
-              <div style={{ fontWeight: 800, color: "#1a1a2e", fontSize: 16, lineHeight: 1.2 }}>ARIA Surrogacy</div>
-              <div style={{ fontSize: 10, color: "#9ca3af", letterSpacing: "0.08em" }}>FemTech Platform</div>
+              <div className="font-montserrat font-extrabold text-gestlife-grey-80 text-xl leading-none">Gestlife</div>
+              <div className="text-[10px] text-gestlife-grey-60 font-semibold tracking-wider uppercase mt-0.5">FemTech Surrogacy</div>
             </div>
           </div>
 
-          {/* Program Selector */}
-          <div style={{ display: "flex", alignItems: "center", gap: 4, background: "#f3f4f6", borderRadius: 40, padding: "4px", boxShadow: "inset 0 1px 4px rgba(0,0,0,0.08)" }}>
+          {/* Program Segmented Control Selector */}
+          <div className="flex bg-gestlife-grey-20/50 rounded-full p-1 border border-gestlife-grey-20/30 shadow-inner">
             {Object.values(PROGRAMS).map((prog) => (
               <button
                 key={prog.id}
                 onClick={() => switchProgram(prog.id)}
-                className="aria-prog-btn"
-                style={{
-                  display: "flex", alignItems: "center", gap: 8,
-                  padding: "8px 18px", borderRadius: 36,
-                  border: "none", cursor: "pointer",
-                  fontFamily: baseFont,
-                  fontSize: 13, fontWeight: program === prog.id ? 700 : 500,
-                  background: program === prog.id ? "white" : "transparent",
-                  color: program === prog.id ? "#1a1a2e" : "#6b7280",
-                  boxShadow: program === prog.id ? "0 2px 10px rgba(0,0,0,0.12)" : "none",
-                  transform: program === prog.id ? "scale(1.03)" : "scale(1)",
-                  transition: "all 0.25s",
-                }}
+                className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 ${
+                  program === prog.id
+                    ? "bg-white shadow-md text-gestlife-grey-80 scale-105"
+                    : "text-gestlife-grey-60 hover:text-gestlife-grey-80"
+                }`}
               >
-                <span style={{ fontSize: 18 }}>{prog.flag}</span>
-                <span>{prog.nameEn}</span>
+                <span className="text-base">{prog.flag}</span>
+                <span className="hidden sm:inline font-montserrat">{prog.nameEn}</span>
               </button>
             ))}
           </div>
 
-          {/* Nav */}
-          <nav style={{ display: "flex", alignItems: "center", gap: 24 }}>
-            <a href="#myths" style={{ fontSize: 13, color: "#6b7280", textDecoration: "none", fontWeight: 500, transition: "color 0.2s" }}
-              onMouseEnter={e => e.target.style.color = "#1a1a2e"}
-              onMouseLeave={e => e.target.style.color = "#6b7280"}>მითები</a>
-            <a href="#quiz" style={{ fontSize: 13, color: "#6b7280", textDecoration: "none", fontWeight: 500, transition: "color 0.2s" }}
-              onMouseEnter={e => e.target.style.color = "#1a1a2e"}
-              onMouseLeave={e => e.target.style.color = "#6b7280"}>კვალიფიკაცია</a>
+          {/* Navigation Links */}
+          <nav className="flex items-center gap-5 sm:gap-7 shrink-0">
+            <a href="#myths" className="hidden md:inline text-sm font-semibold text-gestlife-grey-60 hover:text-gestlife-grey-80 transition-colors">მითები</a>
+            <a href="#quiz" className="hidden md:inline text-sm font-semibold text-gestlife-grey-60 hover:text-gestlife-grey-80 transition-colors">კვალიფიკაცია</a>
             <button
-              onClick={() => quizRef.current?.scrollIntoView({ behavior: "smooth" })}
-              style={{
-                padding: "9px 20px", borderRadius: 40, border: "none",
-                background: `linear-gradient(135deg, ${data.color}, ${gradDark})`,
-                color: "white", fontSize: 13, fontWeight: 600,
-                cursor: "pointer", fontFamily: baseFont,
-                boxShadow: `0 4px 16px ${data.color}44`,
-                transition: "all 0.2s",
-              }}
-              onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.05)"; e.currentTarget.style.boxShadow = `0 6px 24px ${data.color}55`; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = `0 4px 16px ${data.color}44`; }}
-            >შესვლა</button>
+              onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(6); }}
+              className="px-5 py-2.5 rounded-full text-white text-xs font-bold shadow-md bg-brand-gradient hover:shadow-lg hover:scale-105 transition-all cursor-pointer"
+            >
+              შესვლა
+            </button>
           </nav>
         </div>
       </header>
 
-      {/* ════ HERO ════ */}
-      <section style={{ background: data.heroGradient, padding: "80px 20px 90px", position: "relative", overflow: "hidden" }}>
-        {/* Background decorations */}
-        <div style={{ position: "absolute", top: 20, right: 40, fontSize: 160, opacity: 0.05, userSelect: "none", pointerEvents: "none", lineHeight: 1 }}>{data.flag}</div>
-        <div style={{ position: "absolute", bottom: 30, left: 40, fontSize: 80, opacity: 0.08, userSelect: "none", pointerEvents: "none" }}>♥</div>
+      {/* Main content wrapper with transitions */}
+      <main className={`flex-1 transition-all duration-300 ${transitioning ? "opacity-0 scale-[0.98]" : "opacity-100 scale-100"}`}>
+        
+        {/* ── HERO SECTION ── */}
+        <section className="relative bg-gradient-to-b from-[#FCFBFE] to-[#F5F5FA] pt-14 pb-20 overflow-hidden">
+          {/* Pregnancy Belly Wave watermark in background */}
+          <div className="absolute right-[-100px] top-[-50px] opacity-[0.04] select-none pointer-events-none w-[600px] h-[800px] text-gestlife-pink rotate-45">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-current">
+              <path d="M30,10 Q65,40 55,70 T85,90 L30,90 Z" />
+            </svg>
+          </div>
 
-        <div style={{ maxWidth: 1152, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+            <div className="space-y-7 text-left">
+              {/* Program Badge */}
+              <div className={`inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border text-xs font-bold tracking-wide shadow-sm bg-white ${data.accentBg}`}>
+                <span className="text-xl leading-none">{data.flag}</span>
+                <span className="font-montserrat font-bold">{data.nameEn.toUpperCase()}</span>
+                <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+              </div>
 
-          {/* Left Column */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              {/* Title and subtext */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-montserrat font-extrabold text-gestlife-grey-80 leading-tight">
+                {data.headline}
+              </h1>
+              <p className="text-base sm:text-lg text-gestlife-grey-60 font-medium leading-relaxed max-w-xl">
+                {data.subheadline}
+              </p>
 
-            {/* Badge */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "8px 18px", borderRadius: 40, background: `linear-gradient(135deg, ${data.color}dd, ${data.color})`, color: "white", fontSize: 13, fontWeight: 600, boxShadow: `0 4px 20px ${data.color}44`, width: "fit-content" }}>
-              <span style={{ fontSize: 22 }}>{data.flag}</span>
-              <span>{data.name}</span>
-              <span style={{ width: 8, height: 8, background: "#86efac", borderRadius: "50%", animation: "ariaPulse 2s infinite" }} />
+              {/* Grid of Key Numbers */}
+              <div className="grid grid-cols-3 gap-4 border-t border-b border-gestlife-grey-20/30 py-6 max-w-md">
+                {data.stats.map((s, i) => (
+                  <div key={i} className="text-left">
+                    <div className="text-2xl sm:text-3xl font-montserrat font-black text-brand-gradient">{s.value}</div>
+                    <div className="text-[10px] sm:text-xs font-semibold text-gestlife-grey-60 mt-1 uppercase tracking-wide leading-tight">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4 pt-2">
+                <button
+                  onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(1); }}
+                  className="px-7 py-3.5 rounded-full text-white font-bold text-sm tracking-wide shadow-xl bg-brand-gradient hover:shadow-2xl hover:scale-105 active:scale-98 transition-all cursor-pointer"
+                >
+                  ტესტის დაწყება →
+                </button>
+                <button 
+                  onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(0); }}
+                  className="px-7 py-3.5 rounded-full border-2 border-gestlife-grey-20 text-gestlife-grey-80 font-bold text-sm hover:bg-white hover:border-gestlife-pink/40 hover:shadow-sm transition-all cursor-pointer"
+                >
+                  გაიგეთ მეტი
+                </button>
+              </div>
+
+              {/* Legal Notice */}
+              <div className={`border rounded-xl p-4 text-xs font-medium leading-relaxed bg-white/60 backdrop-blur-sm shadow-sm border-l-4 border-l-[#F26BC1] max-w-xl`}>
+                <span className="font-bold text-gestlife-grey-80">⚖️ სამართლებრივი ინფო:</span> {data.legalNote}
+              </div>
             </div>
 
-            {/* Headline — fixed overlap with explicit block display and line-height */}
-            <div style={{ display: "block" }}>
-              <h1 style={{
-                margin: 0,
-                fontSize: 46,
-                fontWeight: 800,
-                color: "#1a1a2e",
-                lineHeight: 1.25,
-                letterSpacing: "-0.01em",
-                display: "block",
-                wordBreak: "break-word",
-              }}>{data.headline}</h1>
+            {/* Video Preview Column */}
+            <div className="relative">
+              {/* Outer frame wave accent */}
+              <div className="absolute -inset-1.5 rounded-3xl bg-brand-gradient opacity-20 blur-lg -z-10 animate-pulse" />
+              
+              <div
+                className="rounded-3xl overflow-hidden shadow-2xl aspect-video bg-gestlife-grey-80 flex items-center justify-center cursor-pointer group relative"
+                onClick={() => setVideoPlaying(!videoPlaying)}
+              >
+                {/* Visual cover gradient overlay */}
+                <div className="absolute inset-0 opacity-40 bg-gradient-to-tr from-[#F26BC1] to-[#79B0F5] transition-opacity group-hover:opacity-30 z-0" />
+                
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 p-6">
+                  {videoPlaying ? (
+                    <div className="text-center space-y-4">
+                      <div className="text-5xl animate-bounce">🎬</div>
+                      <div className="text-xs font-bold tracking-widest uppercase bg-black/40 rounded-full px-4 py-1.5">ვიდეო იტვირთება...</div>
+                      <div className="text-[11px] text-white/70">დემო რეჟიმი • Gestlife Media Embed</div>
+                    </div>
+                  ) : (
+                    <div className="text-center space-y-4 flex flex-col items-center">
+                      <div className="w-16 h-16 rounded-full flex items-center justify-center text-white shadow-lg bg-brand-gradient opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-all">
+                        <span className="translate-x-0.5 text-xl">▶</span>
+                      </div>
+                      <div>
+                        <div className="font-bold text-sm sm:text-base leading-snug">
+                          {program === "georgia" ? "საქართველოს პროგრამის მიმოხილვა" : "საბერძნეთის პროგრამის მიმოხილვა"}
+                        </div>
+                        <div className="text-[10px] text-white/70 mt-1 uppercase tracking-wide">3:45 წთ • ქართული სუბტიტრები</div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="absolute bottom-4 left-4 flex gap-2 z-10">
+                  <span className="bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">⚕️ სამედიცინო</span>
+                  <span className="bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">⚖️ სამართლებრივი</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Transition wave at the bottom */}
+          <BellyWaveBottom className="absolute bottom-0 left-0" />
+        </section>
+
+        {/* ── MYTHS VS TRUTHS SECTION (White background space) ── */}
+        <section id="myths" className="py-20 px-4 bg-white relative">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 space-y-3.5">
+              <div className="inline-block px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-gestlife-pink-sub/30 text-gestlife-grey-80 border border-gestlife-pink-sub/20">
+                {data.flag} FACT CHECK
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-montserrat font-extrabold text-gestlife-grey-80">მითები vs. სინამდვილე</h2>
+              <p className="text-gestlife-grey-60 font-medium max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+                ბარათზე დაწკაპუნებით გაიგებთ სიმართლეს {program === "georgia" ? "საქართველოს" : "საბერძნეთის"} სუროგაციის შესახებ
+              </p>
             </div>
 
-            {/* Subheadline */}
-            <p style={{ margin: 0, fontSize: 17, color: "#4b5563", lineHeight: 1.7, display: "block" }}>
-              {data.subheadline}
-            </p>
-
-            {/* Stats */}
-            <div style={{ display: "flex", gap: 32, paddingTop: 4 }}>
-              {data.stats.map((s, i) => (
-                <div key={i} style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 28, fontWeight: 800, color: data.color, lineHeight: 1.1, display: "block" }}>{s.value}</div>
-                  <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 4, display: "block" }}>{s.label}</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {data.myths.map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`rounded-2xl border cursor-pointer transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md ${
+                    openMyth === idx ? "border-gestlife-pink/60 bg-gestlife-pink-sub/5" : "border-gestlife-grey-20/60 hover:border-gestlife-grey-40/60"
+                  }`}
+                  onClick={() => setOpenMyth(openMyth === idx ? null : idx)}
+                >
+                  <div className="p-6 flex items-start gap-4">
+                    <div className="text-3xl mt-1 shrink-0">{item.icon}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <div className="text-[10px] font-extrabold uppercase tracking-wider text-gestlife-grey-40 mb-1">❌ მითი</div>
+                          <h3 className="font-montserrat font-bold text-gestlife-grey-80 text-base leading-snug">"{item.myth}"</h3>
+                        </div>
+                        <div className={`w-7 h-7 rounded-full flex items-center justify-center text-white text-xs shrink-0 transition-transform duration-300 bg-brand-gradient ${openMyth === idx ? "rotate-180" : ""}`}>
+                          ▼
+                        </div>
+                      </div>
+                      {openMyth === idx && (
+                        <div className="mt-4 pt-3 border-t border-gestlife-grey-20/30 space-y-2">
+                          <div className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600">✅ სინამდვილე</div>
+                          <p className="text-gestlife-grey-80 leading-relaxed text-sm font-medium pl-3 border-l-2 border-emerald-500">
+                            {item.truth}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
-
-            {/* CTA Buttons */}
-            <div style={{ display: "flex", gap: 16, paddingTop: 4, flexWrap: "wrap" }}>
-              <button
-                className="aria-cta-primary"
-                onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(1); }}
-                style={{
-                  padding: "16px 32px", borderRadius: 40, border: "none",
-                  background: `linear-gradient(135deg, ${data.color}, ${gradDark})`,
-                  color: "white", fontWeight: 700, fontSize: 16,
-                  cursor: "pointer", fontFamily: baseFont,
-                  boxShadow: `0 8px 28px ${data.color}44`,
-                  transition: "all 0.25s",
-                }}
-              >დაიწყეთ მოგზაურობა →</button>
-              <button
-                className="aria-cta-secondary"
-                style={{
-                  padding: "16px 32px", borderRadius: 40,
-                  border: `2px solid ${data.color}55`,
-                  background: "transparent", color: "#374151",
-                  fontWeight: 600, fontSize: 16,
-                  cursor: "pointer", fontFamily: baseFont,
-                  transition: "all 0.25s",
-                }}
-              >გაიგეთ მეტი</button>
-            </div>
-
-            {/* Legal Note */}
-            <div style={{
-              background: data.legalBg,
-              border: `1px solid ${data.legalBorder}`,
-              borderRadius: 14, padding: "14px 18px",
-              fontSize: 12, lineHeight: 1.6,
-              color: data.legalText,
-              display: "block",
-            }}>
-              <strong>⚖️ სამართლებრივი ინფო:</strong> {data.legalNote}
-            </div>
           </div>
+        </section>
 
-          {/* Right Column — Video */}
-          <div style={{ position: "relative" }}>
-            <div
-              onClick={() => setVideoPlaying(!videoPlaying)}
-              style={{
-                borderRadius: 28, overflow: "hidden",
-                boxShadow: "0 24px 60px rgba(0,0,0,0.2)",
-                aspectRatio: "16/9", background: "#1e293b",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                cursor: "pointer", position: "relative",
-              }}
-            >
-              <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg, ${data.color}44 0%, ${gradDark}44 100%)`, opacity: 0.7 }} />
-              <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "white", zIndex: 2 }}>
-                {videoPlaying ? (
-                  <div style={{ textAlign: "center", padding: "0 32px" }}>
-                    <div style={{ fontSize: 48, animation: "ariaBounceSlow 1.5s infinite" }}>▶️</div>
-                    <div style={{ marginTop: 16, fontSize: 13, opacity: 0.85, background: "rgba(0,0,0,0.3)", borderRadius: 10, padding: "8px 16px" }}>📹 ვიდეო იტვირთება... (Demo)</div>
-                    <div style={{ marginTop: 6, fontSize: 11, opacity: 0.6 }}>რეალურ გარემოში: YouTube / Vimeo embed</div>
-                  </div>
-                ) : (
-                  <div style={{ textAlign: "center" }}>
-                    <div style={{
-                      width: 72, height: 72, borderRadius: "50%",
-                      background: `${data.color}cc`,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 28, margin: "0 auto 14px",
-                      boxShadow: "0 8px 28px rgba(0,0,0,0.3)",
-                      transition: "transform 0.25s",
-                    }}>▶</div>
-                    <div style={{ fontSize: 14, fontWeight: 600 }}>
-                      {program === "georgia" ? "საქართველოს პროგრამის მიმოხილვა" : "საბერძნეთის პროგრამის მიმოხილვა"}
+        {/* ── INTERACTIVE QUALIFICATION QUIZ SECTION ── */}
+        <section id="quiz" ref={quizRef} className="relative py-20 px-4 bg-gradient-to-b from-[#F5F5FA] to-[#FCFBFE] overflow-hidden">
+          {/* Top wave spacer */}
+          <BellyWaveTop className="absolute top-0 left-0" />
+
+          <div className="max-w-2xl mx-auto px-4 relative z-10 mt-8">
+            <div className="text-center mb-10 space-y-3">
+              <div className="inline-block px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-brand-gradient text-white">
+                ⏱ 30 წამი
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-montserrat font-extrabold text-gestlife-grey-80">კვალიფიკაციის ტესტი</h2>
+              <p className="text-gestlife-grey-60 font-medium text-sm sm:text-base">{data.quizIntro}</p>
+            </div>
+
+            {/* Quiz Card */}
+            <div className="bg-white rounded-3xl shadow-xl border border-gestlife-grey-20/40 overflow-hidden transition-all duration-300">
+              {/* Progress bar */}
+              {quizStep >= 1 && quizStep <= 4 && (
+                <div className="h-1.5 bg-gestlife-grey-20/30">
+                  <div
+                    className="h-full bg-brand-gradient transition-all duration-500 rounded-r-full"
+                    style={{ width: `${(quizStep / 4) * 100}%` }}
+                  />
+                </div>
+              )}
+
+              <div className="p-7 sm:p-10">
+                {/* Step 0: Intro */}
+                {quizStep === 0 && (
+                  <div className="text-center space-y-6">
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center bg-brand-gradient text-white text-3xl mx-auto shadow-md">
+                      ✨
                     </div>
-                    <div style={{ fontSize: 12, opacity: 0.7, marginTop: 4 }}>3:45 წთ • ქართული სუბტიტრები</div>
+                    <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">მზად ხართ ტესტისთვის?</h3>
+                    <p className="text-gestlife-grey-60 font-medium text-sm leading-relaxed max-w-sm mx-auto">
+                      გაიარეთ 4 მარტივი კითხვა, რათა შეაფასოთ თქვენი პირველადი კვალიფიკაცია {program === "georgia" ? "საქართველოს" : "საბერძნეთის"} სუროგაციის პროგრამისთვის
+                    </p>
+                    <ul className="text-left space-y-3.5 max-w-xs mx-auto py-2 font-medium text-sm text-gestlife-grey-80">
+                      {["ასაკობრივი ზღვარი", "ჯანმრთელობის ინდექსი / BMI", "ოჯახური მდგომარეობა", "სამართლებრივი ფონი"].map((item, i) => (
+                        <li key={i} className="flex items-center gap-3">
+                          <span className="w-5.5 h-5.5 rounded-full text-white text-[10px] flex items-center justify-center font-bold bg-brand-gradient shrink-0">
+                            {i + 1}
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      onClick={() => setQuizStep(1)}
+                      className="w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg hover:shadow-xl hover:scale-102 active:scale-98 transition-all bg-brand-gradient cursor-pointer"
+                    >
+                      ტესტის დაწყება →
+                    </button>
+                    <p className="text-[10px] text-gestlife-grey-40 font-semibold uppercase tracking-wide">⚕️ საინფორმაციო მიზნებისთვის • სრულიად უფასო</p>
                   </div>
                 )}
-              </div>
-              <div style={{ position: "absolute", bottom: 14, left: 14, display: "flex", gap: 8, zIndex: 3 }}>
-                <span style={{ background: "rgba(0,0,0,0.5)", color: "white", fontSize: 11, padding: "4px 10px", borderRadius: 20 }}>⚕️ სამედიცინო</span>
-                <span style={{ background: "rgba(0,0,0,0.5)", color: "white", fontSize: 11, padding: "4px 10px", borderRadius: 20 }}>⚖️ სამართლებრივი</span>
-              </div>
-            </div>
-            <div style={{ position: "absolute", bottom: -12, right: -12, width: "100%", height: "100%", borderRadius: 28, background: `${data.color}18`, zIndex: -1 }} />
-          </div>
-        </div>
-      </section>
 
-      {/* ════ MYTHS SECTION ════ */}
-      <section id="myths" style={{ padding: "80px 20px", background: "white" }}>
-        <div style={{ maxWidth: 1152, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 52 }}>
-            <div style={{ display: "inline-block", padding: "8px 20px", borderRadius: 40, background: data.color, color: "white", fontSize: 13, fontWeight: 600, marginBottom: 16 }}>
-              {data.flag} {data.name}
-            </div>
-            <h2 style={{ margin: "0 0 12px", fontSize: 36, fontWeight: 800, color: "#1a1a2e", lineHeight: 1.2 }}>მითები vs. სინამდვილე</h2>
-            <p style={{ margin: 0, color: "#6b7280", maxWidth: 520, marginLeft: "auto", marginRight: "auto", fontSize: 15, lineHeight: 1.6 }}>
-              ბარათზე დაჭერით გაიგებთ სიმართლეს — {program === "georgia" ? "საქართველოს" : "საბერძნეთის"} სუროგაციის შესახებ ყველაზე გავრცელებული მცდარი წარმოდგენები
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-            {data.myths.map((item, idx) => (
-              <div
-                key={idx}
-                className="aria-myth-card"
-                onClick={() => setOpenMyth(openMyth === idx ? null : idx)}
-                style={{
-                  borderRadius: 20,
-                  border: `2px solid ${openMyth === idx ? data.color + "55" : "#f1f5f9"}`,
-                  cursor: "pointer",
-                  transition: "all 0.3s",
-                  overflow: "hidden",
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.04)",
-                }}
-              >
-                <div style={{ padding: "22px 24px", background: openMyth === idx ? `${data.color}07` : "white", display: "flex", gap: 16, alignItems: "flex-start" }}>
-                  <div style={{ fontSize: 30, lineHeight: 1, marginTop: 2, flexShrink: 0 }}>{item.icon}</div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9ca3af", marginBottom: 6 }}>❌ მითი</div>
-                        <h3 style={{ margin: 0, fontWeight: 700, color: "#1a1a2e", fontSize: 16, lineHeight: 1.4 }}>"{item.myth}"</h3>
-                      </div>
-                      <div style={{
-                        width: 30, height: 30, borderRadius: "50%",
-                        background: data.color, color: "white",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        fontSize: 12, flexShrink: 0,
-                        transform: openMyth === idx ? "rotate(180deg)" : "rotate(0)",
-                        transition: "transform 0.3s",
-                      }}>▼</div>
+                {/* Step 1-4: Questions */}
+                {quizStep >= 1 && quizStep <= 4 && currentQuestion && (
+                  <div className="space-y-6">
+                    <div className="flex items-center justify-between text-xs font-bold text-gestlife-grey-40 uppercase tracking-widest">
+                      <span>კითხვა {quizStep} / 4</span>
+                      <span>{data.flag} {data.nameEn}</span>
                     </div>
-                    {openMyth === idx && (
-                      <div style={{ marginTop: 16 }}>
-                        <div style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#059669", marginBottom: 8 }}>✅ სინამდვილე</div>
-                        <p style={{ margin: 0, color: "#374151", fontSize: 14, lineHeight: 1.7, borderLeft: `4px solid ${data.color}`, paddingLeft: 14 }}>{item.truth}</p>
+                    <div className="text-center space-y-3">
+                      <div className="text-5xl">{currentQuestion.icon}</div>
+                      <h3 className="text-lg sm:text-xl font-montserrat font-bold text-gestlife-grey-80 leading-snug">{currentQuestion.question}</h3>
+                    </div>
+                    <div className="space-y-3 pt-2">
+                      {currentQuestion.options.map((opt, i) => (
+                        <button
+                          key={i}
+                          onClick={() => handleAnswer(opt)}
+                          className="w-full text-left px-5 py-4 rounded-xl border border-gestlife-grey-20 hover:bg-gestlife-pink-sub/5 hover:border-gestlife-pink/50 transition-all text-gestlife-grey-80 font-bold text-sm cursor-pointer flex items-center justify-between"
+                        >
+                          <span>{opt.label}</span>
+                          <span className="w-5 h-5 rounded-full border border-gestlife-grey-20 flex items-center justify-center">
+                            <span className="w-2.5 h-2.5 rounded-full bg-transparent" />
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 5: Score Result */}
+                {quizStep === 5 && qualification && (
+                  <div className="text-center space-y-6">
+                    <div className="text-6xl animate-bounce">
+                      {qualification.status === "qualified" ? "🎉" : qualification.status === "review" ? "📋" : "💙"}
+                    </div>
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80 mb-3">ტესტის შედეგი</h3>
+                      <div className={`inline-block px-6 py-2.5 rounded-full border font-bold text-base uppercase tracking-wide ${qualification.cls}`}>
+                        {qualification.label}
+                      </div>
+                    </div>
+                    {qualification.status !== "fail" ? (
+                      <div className="space-y-5">
+                        <p className="text-gestlife-grey-60 font-medium text-sm leading-relaxed max-w-sm mx-auto">
+                          {qualification.status === "qualified"
+                            ? "გილოცავთ! თქვენ პირველადი კვალიფიკაციის კრიტერიუმებს აკმაყოფილებთ. შეავსეთ სარეგისტრაციო ფორმა თქვენი პორტალის გასააქტიურებლად."
+                            : "თქვენი მონაცემები საჭიროებს ინდივიდუალურ შეფასებას. გთხოვთ გააგრძელოთ რეგისტრაცია, რათა ჩვენი კოორდინატორი დაგიკავშირდეთ."}
+                        </p>
+                        <button
+                          onClick={() => setQuizStep(6)}
+                          className="w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg bg-brand-gradient hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                        >
+                          რეგისტრაციის გაგრძელება →
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="space-y-5">
+                        <p className="text-gestlife-grey-60 font-medium text-sm leading-relaxed max-w-sm mx-auto">
+                          სამწუხაროდ, პირველადი კრიტერიუმებით ვერ ვაგრძელებთ პროცესს, თუმცა ჩვენს სპეციალისტებს შეუძლიათ მოგაწოდონ დამატებითი დეტალები.
+                        </p>
+                        <button
+                          className="w-full py-3.5 rounded-2xl border-2 border-gestlife-grey-20 text-gestlife-grey-80 font-bold hover:bg-gestlife-grey-20/10 transition-all cursor-pointer"
+                          onClick={() => { setQuizStep(0); setQuizAnswers([]); setQuizScore(0); }}
+                        >
+                          ხელახლა ცდა
+                        </button>
                       </div>
                     )}
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+                )}
 
-      {/* ════ QUIZ SECTION ════ */}
-      <section id="quiz" ref={quizRef} style={{ padding: "80px 20px", background: data.heroGradient }}>
-        <div style={{ maxWidth: 600, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <div style={{ display: "inline-block", padding: "8px 20px", borderRadius: 40, background: data.color, color: "white", fontSize: 13, fontWeight: 600, marginBottom: 16 }}>⏱ 30 წამი</div>
-            <h2 style={{ margin: "0 0 10px", fontSize: 30, fontWeight: 800, color: "#1a1a2e", lineHeight: 1.2 }}>კვალიფიკაციის ტესტი</h2>
-            <p style={{ margin: 0, color: "#6b7280", fontSize: 15 }}>{data.quizIntro}</p>
-          </div>
-
-          <div style={{ background: "white", borderRadius: 28, boxShadow: "0 20px 60px rgba(0,0,0,0.1)", overflow: "hidden" }}>
-            {/* Progress bar */}
-            {quizStep >= 1 && quizStep <= 4 && (
-              <div style={{ height: 4, background: "#f1f5f9" }}>
-                <div style={{ height: "100%", width: `${(quizStep / 4) * 100}%`, background: data.color, transition: "width 0.5s ease", borderRadius: "0 2px 2px 0" }} />
-              </div>
-            )}
-
-            <div style={{ padding: 36 }}>
-              {/* Intro */}
-              {quizStep === 0 && (
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 56, marginBottom: 20 }}>🌟</div>
-                  <h3 style={{ margin: "0 0 12px", fontSize: 24, fontWeight: 800, color: "#1a1a2e" }}>მზად ხართ?</h3>
-                  <p style={{ margin: "0 0 28px", color: "#6b7280", fontSize: 15, lineHeight: 1.6 }}>
-                    4 მარტივი კითხვა • 30 წამი • სასუროგაციო პროგრამის {program === "georgia" ? "საქართველო" : "საბერძნეთი"} კვალიფიკაცია
-                  </p>
-                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 32px", textAlign: "left", display: "flex", flexDirection: "column", gap: 12 }}>
-                    {["ასაკი", "ჯანმრთელობის სტატუსი / BMI", "შვილები", "სამართლებრივი ფონი"].map((item, i) => (
-                      <li key={i} style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 14, color: "#4b5563" }}>
-                        <span style={{ width: 26, height: 26, borderRadius: "50%", background: data.color, color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{i + 1}</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <button
-                    onClick={() => setQuizStep(1)}
-                    style={{ width: "100%", padding: "16px", borderRadius: 20, border: "none", background: `linear-gradient(135deg, ${data.color}, ${gradDark})`, color: "white", fontWeight: 700, fontSize: 17, cursor: "pointer", fontFamily: baseFont, boxShadow: `0 8px 24px ${data.color}44`, transition: "all 0.2s" }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.02)"; e.currentTarget.style.boxShadow = `0 12px 32px ${data.color}55`; }}
-                    onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = `0 8px 24px ${data.color}44`; }}
-                  >ტესტის დაწყება →</button>
-                  <p style={{ margin: "16px 0 0", fontSize: 11, color: "#9ca3af" }}>⚕️ ეს ტესტი ინფორმაციული მიზნებისთვისაა. სამედიცინო კონსულტაცია სავალდებულოა.</p>
-                </div>
-              )}
-
-              {/* Questions */}
-              {quizStep >= 1 && quizStep <= 4 && currentQuestion && (
-                <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 28, fontSize: 13, color: "#9ca3af" }}>
-                    <span>კითხვა {quizStep} / 4</span>
-                    <span style={{ fontSize: 20 }}>{data.flag}</span>
-                  </div>
-                  <div style={{ textAlign: "center", marginBottom: 28 }}>
-                    <div style={{ fontSize: 40, marginBottom: 12 }}>{currentQuestion.icon}</div>
-                    <h3 style={{ margin: 0, fontSize: 20, fontWeight: 800, color: "#1a1a2e", lineHeight: 1.3 }}>{currentQuestion.question}</h3>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                    {currentQuestion.options.map((opt, i) => (
-                      <button
-                        key={i}
-                        className="aria-quiz-opt"
-                        onClick={() => handleAnswer(opt)}
-                        style={{
-                          width: "100%", textAlign: "left",
-                          padding: "14px 22px", borderRadius: 14,
-                          border: `2px solid #f1f5f9`,
-                          background: "white", color: "#374151",
-                          fontSize: 14, fontWeight: 500,
-                          cursor: "pointer", fontFamily: baseFont,
-                          transition: "all 0.2s", display: "flex", alignItems: "center", gap: 12,
-                        }}
-                        onMouseEnter={e => { e.currentTarget.style.borderColor = data.color + "77"; e.currentTarget.style.background = data.color + "08"; e.currentTarget.style.color = "#1a1a2e"; }}
-                        onMouseLeave={e => { e.currentTarget.style.borderColor = "#f1f5f9"; e.currentTarget.style.background = "white"; e.currentTarget.style.color = "#374151"; }}
-                      >
-                        <span style={{ width: 22, height: 22, borderRadius: "50%", border: `2px solid ${data.color}55`, display: "inline-block", flexShrink: 0 }} />
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Result */}
-              {quizStep === 5 && qualification && (
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 52, marginBottom: 24 }}>
-                    {qualification.status === "qualified" ? "🎉" : qualification.status === "review" ? "📋" : "💙"}
-                  </div>
-                  <h3 style={{ margin: "0 0 16px", fontSize: 24, fontWeight: 800, color: "#1a1a2e" }}>ტესტის შედეგი</h3>
-                  <div style={{ display: "inline-block", padding: "10px 26px", borderRadius: 40, border: `2px solid ${qualification.border}`, background: qualification.bg, color: qualification.color, fontWeight: 700, fontSize: 16, marginBottom: 24 }}>
-                    {qualification.label}
-                  </div>
-                  {qualification.status !== "fail" ? (
-                    <div>
-                      <p style={{ margin: "0 0 20px", color: "#6b7280", fontSize: 14, lineHeight: 1.6 }}>
-                        {qualification.status === "qualified"
-                          ? "შესანიშნავი! თქვენ პირველადი კვალიფიკაციის კრიტერიუმებს აკმაყოფილებთ. შეავსეთ სარეგისტრაციო ფორმა."
-                          : "თქვენი განაცხადი დამატებით განხილვას საჭიროებს. ჩვენი სპეციალისტი დაგიკავშირდებათ."}
-                      </p>
-                      <button
-                        onClick={() => setQuizStep(6)}
-                        style={{ width: "100%", padding: "16px", borderRadius: 20, border: "none", background: `linear-gradient(135deg, ${data.color}, ${gradDark})`, color: "white", fontWeight: 700, fontSize: 17, cursor: "pointer", fontFamily: baseFont, boxShadow: `0 8px 24px ${data.color}44`, transition: "all 0.2s" }}
-                        onMouseEnter={e => e.currentTarget.style.transform = "scale(1.02)"}
-                        onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
-                      >რეგისტრაციის გაგრძელება →</button>
-                    </div>
-                  ) : (
-                    <div>
-                      <p style={{ margin: "0 0 20px", color: "#6b7280", fontSize: 14, lineHeight: 1.6 }}>
-                        ამ ეტაპზე ვერ ვაგრძელებთ, მაგრამ ჩვენი კონსულტანტი შეძლებს უფრო ზუსტი ინფორმაციის მოწოდებას.
-                      </p>
-                      <button
-                        onClick={() => { setQuizStep(0); setQuizAnswers([]); setQuizScore(0); }}
-                        style={{ width: "100%", padding: "16px", borderRadius: 20, border: `2px solid ${data.color}`, background: "white", color: data.color, fontWeight: 700, fontSize: 17, cursor: "pointer", fontFamily: baseFont, transition: "all 0.2s" }}
-                        onMouseEnter={e => e.currentTarget.style.background = "#f9fafb"}
-                        onMouseLeave={e => e.currentTarget.style.background = "white"}
-                      >ხელახლა ცდა</button>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Registration Form */}
-              {quizStep === 6 && (
-                <div>
-                  {!formSubmitted ? (
-                    <div>
-                      <div style={{ textAlign: "center", marginBottom: 28 }}>
-                        <div style={{ fontSize: 40, marginBottom: 12 }}>📝</div>
-                        <h3 style={{ margin: "0 0 8px", fontSize: 24, fontWeight: 800, color: "#1a1a2e" }}>სარეგისტრაციო ფორმა</h3>
-                        <p style={{ margin: 0, color: "#9ca3af", fontSize: 13 }}>{data.flag} {data.name} — პირველი ნაბიჯი</p>
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 24 }}>
-                        {[
-                          { label: "სრული სახელი", key: "name", type: "text", placeholder: "მაგ: ნინო გელაშვილი" },
-                          { label: "ტელეფონის ნომერი", key: "phone", type: "tel", placeholder: "+995 5XX XXX XXX" },
-                          { label: "პაროლი", key: "password", type: "password", placeholder: "მინ. 8 სიმბოლო" },
-                        ].map(field => (
-                          <div key={field.key}>
-                            <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 8 }}>{field.label}</label>
+                {/* Step 6: Registration Form */}
+                {quizStep === 6 && (
+                  <div className="space-y-6">
+                    {!formSubmitted ? (
+                      <>
+                        <div className="text-center space-y-2">
+                          <div className="text-4xl">📝</div>
+                          <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">პორტალის აქტივაცია</h3>
+                          <p className="text-gestlife-grey-60 text-xs font-semibold uppercase tracking-wider">{data.flag} {data.nameEn} — რეგისტრაცია</p>
+                        </div>
+                        
+                        <div className="space-y-4 text-left">
+                          <div>
+                            <label className="block text-xs font-bold text-gestlife-grey-60 uppercase tracking-wide mb-1.5">სრული სახელი</label>
                             <input
-                              type={field.type}
-                              placeholder={field.placeholder}
-                              value={formData[field.key]}
-                              onChange={e => setFormData({ ...formData, [field.key]: e.target.value })}
-                              style={{ width: "100%", padding: "12px 16px", borderRadius: 14, border: "2px solid #f1f5f9", fontSize: 14, color: "#1a1a2e", background: "white", outline: "none", fontFamily: baseFont, boxSizing: "border-box", transition: "border-color 0.2s" }}
-                              onFocus={e => e.target.style.borderColor = data.color + "88"}
-                              onBlur={e => e.target.style.borderColor = "#f1f5f9"}
+                              type="text"
+                              placeholder="მაგ: ნინო გელაშვილი"
+                              value={formData.name}
+                              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                              className="w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none focus:border-gestlife-pink transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40"
                             />
                           </div>
-                        ))}
-                      </div>
-                      <button
-                        onClick={handleFormSubmit}
-                        disabled={!formData.name || !formData.phone || !formData.password}
-                        style={{ width: "100%", padding: "16px", borderRadius: 20, border: "none", background: (formData.name && formData.phone && formData.password) ? `linear-gradient(135deg, ${data.color}, ${gradDark})` : "#e5e7eb", color: (formData.name && formData.phone && formData.password) ? "white" : "#9ca3af", fontWeight: 700, fontSize: 17, cursor: (formData.name && formData.phone && formData.password) ? "pointer" : "not-allowed", fontFamily: baseFont, transition: "all 0.2s", boxShadow: (formData.name && formData.phone && formData.password) ? `0 8px 24px ${data.color}44` : "none" }}
-                      >გააქტიურება და Dashboard-ზე გადასვლა →</button>
-                      <p style={{ margin: "16px 0 0", fontSize: 11, color: "#9ca3af", textAlign: "center" }}>
-                        ⚕️ პირადი მონაცემები GDPR-ის შესაბამისად დაცულია • ⚖️ პლატფორმის გამოყენება ნიშნავს წესებზე თანხმობას
-                      </p>
-                    </div>
-                  ) : (
-                    <div style={{ textAlign: "center", padding: "24px 0" }}>
-                      <div style={{ fontSize: 60, marginBottom: 24 }}>🎊</div>
-                      <h3 style={{ margin: "0 0 12px", fontSize: 24, fontWeight: 800, color: "#1a1a2e" }}>მოგესალმებით, {formData.name.split(" ")[0]}!</h3>
-                      <p style={{ margin: "0 0 28px", color: "#6b7280", fontSize: 15, lineHeight: 1.6 }}>
-                        თქვენი ანგარიში შეიქმნა. {data.flag} {data.name}-ის Dashboard-ი მზადაა.
-                      </p>
-                      <button
-                        onClick={() => onEnterDashboard({ name: formData.name, program: data.id })}
-                        style={{ width: "100%", padding: "18px", borderRadius: 20, border: "none", background: `linear-gradient(135deg, ${data.color}, ${gradDark})`, color: "white", fontWeight: 800, fontSize: 19, cursor: "pointer", fontFamily: baseFont, boxShadow: `0 10px 32px ${data.color}55`, transition: "all 0.2s" }}
-                        onMouseEnter={e => e.currentTarget.style.transform = "scale(1.02)"}
-                        onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
-                      >🚀 Dashboard-ზე გადასვლა</button>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+                          <div>
+                            <label className="block text-xs font-bold text-gestlife-grey-60 uppercase tracking-wide mb-1.5">ტელეფონის ნომერი</label>
+                            <input
+                              type="tel"
+                              placeholder="+995 5XX XXX XXX"
+                              value={formData.phone}
+                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                              className="w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none focus:border-gestlife-pink transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-bold text-gestlife-grey-60 uppercase tracking-wide mb-1.5">პაროლი</label>
+                            <input
+                              type="password"
+                              placeholder="მინ. 8 სიმბოლო"
+                              value={formData.password}
+                              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                              className="w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none focus:border-gestlife-pink transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40"
+                            />
+                          </div>
+                        </div>
 
-      {/* ════ FOOTER ════ */}
-      <footer style={{ background: "#111827", color: "#9ca3af", padding: "52px 20px 32px" }}>
-        <div style={{ maxWidth: 1152, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 40, marginBottom: 40 }}>
-            <div>
-              <div style={{ color: "white", fontWeight: 700, fontSize: 16, marginBottom: 12 }}>ARIA Surrogacy Platform</div>
-              <p style={{ margin: 0, fontSize: 13, lineHeight: 1.7 }}>FemTech პლატფორმა — სუროგაციის მსოფლიო სტანდარტი {data.flag}</p>
+                        <button
+                          onClick={handleFormSubmit}
+                          disabled={!formData.name || !formData.phone || !formData.password}
+                          className="w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg bg-brand-gradient hover:scale-102 active:scale-98 disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed transition-all cursor-pointer mt-4"
+                        >
+                          ანგარიშის შექმნა და შესვლა →
+                        </button>
+                        
+                        <p className="text-[10px] text-gestlife-grey-40 font-semibold leading-relaxed text-center">
+                          🔒 მონაცემები დაცულია GDPR-ის შესაბამისად • ⚖️ რეგისტრაციით ეთანხმებით წესებს
+                        </p>
+                      </>
+                    ) : (
+                      <div className="text-center space-y-6 py-4">
+                        <div className="text-6xl animate-bounce">🎊</div>
+                        <div>
+                          <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">მოგესალმებით, {formData.name.split(" ")[0]}!</h3>
+                          <p className="text-gestlife-grey-60 font-medium text-sm mt-1">
+                            თქვენი ანგარიში წარმატებით გააქტიურდა.
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => onEnterDashboard({ name: formData.name, program: data.id })}
+                          className="w-full py-4 rounded-2xl text-white font-bold text-base shadow-xl bg-brand-gradient hover:scale-102 transition-all cursor-pointer"
+                        >
+                          🚀 Dashboard-ზე გადასვლა
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
-            <div>
-              <div style={{ color: "white", fontWeight: 600, marginBottom: 12 }}>სამართლებრივი</div>
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 6, fontSize: 13 }}>
-                <li>კონფიდენციალობა</li>
-                <li>გამოყენების წესები</li>
-                <li>GDPR პოლიტიკა</li>
+          </div>
+        </section>
+      </main>
+
+      {/* ── BRANDED FOOTER ── */}
+      <footer className="bg-gestlife-grey-80 text-gestlife-grey-20 py-14 px-4 border-t border-gestlife-grey-80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-10 text-left">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-white font-montserrat font-extrabold text-lg">
+                <span className="w-6.5 h-6.5 rounded-full flex items-center justify-center bg-brand-gradient text-white text-xs">
+                  ♥
+                </span>
+                <span>Gestlife Platform</span>
+              </div>
+              <p className="text-sm font-medium text-gestlife-grey-40 leading-relaxed">
+                FemTech პლატფორმა — საერთაშორისო სამედიცინო და იურიდიული მხარდაჭერა სუროგაციის მიმართულებით. INVESTMEDICAL-ის წევრი ჯგუფი.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <div className="text-white font-bold text-sm uppercase tracking-wider">სამართლებრივი</div>
+              <ul className="text-sm font-medium text-gestlife-grey-40 space-y-2">
+                <li><a href="#" className="hover:text-white transition-colors">კონფიდენციალურობის პოლიტიკა</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">გამოყენების წესები</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">GDPR დაცვა</a></li>
               </ul>
             </div>
-            <div>
-              <div style={{ color: "white", fontWeight: 600, marginBottom: 12 }}>კონტაქტი</div>
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 6, fontSize: 13 }}>
-                <li>📧 info@aria-surrogacy.com</li>
+            <div className="space-y-3">
+              <div className="text-white font-bold text-sm uppercase tracking-wider">კონტაქტი</div>
+              <ul className="text-sm font-medium text-gestlife-grey-40 space-y-2">
+                <li>📧 info@gestlife.com</li>
                 <li>📞 +995 32 2XX XXXX</li>
-                <li>🏥 თბილისი / ათენი</li>
+                <li>🏥 თბილისი / ათენი / მადრიდი</li>
               </ul>
             </div>
           </div>
-          <div style={{ borderTop: "1px solid #1f2937", paddingTop: 28 }}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
-              {[
-                { icon: "⚕️", title: "სამედიცინო კონტენტი", sub: "ლიცენზირებული სპეციალისტების მიერ დამოწმებული" },
-                { icon: "⚖️", title: "სამართლებრივი კონტენტი", sub: program === "georgia" ? "საქართველოს კანონმდებლობის შესაბამისი" : "ბერძნული კანონი 3305/2005-ის შესაბამისი" },
-                { icon: "🔒", title: "GDPR დაცვა", sub: "ევროპული სტანდარტი" },
-              ].map((badge, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, background: "#1f2937", borderRadius: 40, padding: "8px 18px" }}>
-                  <span style={{ fontSize: 18 }}>{badge.icon}</span>
-                  <div>
-                    <div style={{ color: "white", fontSize: 11, fontWeight: 600 }}>{badge.title}</div>
-                    <div style={{ fontSize: 10, color: "#6b7280" }}>{badge.sub}</div>
-                  </div>
-                </div>
-              ))}
+          
+          <div className="border-t border-gestlife-grey-60/20 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-xs font-semibold text-gestlife-grey-40">
+              © {new Date().getFullYear()} Gestlife. All rights reserved.
             </div>
-            <p style={{ margin: 0, fontSize: 11, color: "#4b5563" }}>
-              © 2025 ARIA Surrogacy Platform. ყველა უფლება დაცულია. ეს პლატფორმა ინფორმაციული მიზნებისთვისაა და არ ცვლის სამედიცინო ან სამართლებრივ კონსულტაციას.
-            </p>
+            <div className="flex gap-4">
+              {/* Soft visual circles representing colors */}
+              <span className="w-3.5 h-3.5 rounded-full bg-[#F26BC1]" title="Pink Gestlife" />
+              <span className="w-3.5 h-3.5 rounded-full bg-[#79B0F5]" title="Blue Gestlife" />
+              <span className="w-3.5 h-3.5 rounded-full bg-[#4D4F59]" title="Grey 80%" />
+            </div>
           </div>
         </div>
       </footer>
@@ -795,523 +812,676 @@ function SurrogacyHomepage({ onEnterDashboard }) {
 }
 
 // ════════════════════════════════════════════════════
-// PHASE 2: SURROGATE DASHBOARD
+// PHASE 2 — SURROGATE PORTAL DASHBOARD
 // ════════════════════════════════════════════════════
 function SurrogateDashboard({ user, onLogout }) {
   const [dashTab, setDashTab] = useState("overview");
-  const [notifOpen, setNotifOpen] = useState(false);
-  const [notifications, setNotifications] = useState(SURROGATE.notifications);
+  
+  // App State management
+  const [scheduleItems, setScheduleItems] = useState(SCHEDULE_DATA);
   const [chatMessages, setChatMessages] = useState(INITIAL_CHAT);
   const [chatInput, setChatInput] = useState("");
   const [chatTyping, setChatTyping] = useState(false);
-  const [scheduleItems, setScheduleItems] = useState(SCHEDULE_DATA);
-  const [confirmedToast, setConfirmedToast] = useState(null);
-  const chatEndRef = useRef(null);
+
   const chatInputRef = useRef(null);
+  const chatEndRef = useRef(null);
 
-  const unreadCount = notifications.filter((n) => !n.read).length;
-
+  // Auto-scroll chat
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatMessages, chatTyping]);
 
+  const confirmAppointment = (idx) => {
+    setScheduleItems((prev) =>
+      prev.map((item, i) => (i === idx ? { ...item, confirmed: true } : item))
+    );
+  };
+
   const sendMessage = () => {
-    const text = chatInput.trim();
-    if (!text) return;
-    const now = new Date();
-    const time = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
-    setChatMessages((prev) => [...prev, { id: Date.now(), from: "user", text, time }]);
+    if (!chatInput.trim()) return;
+    const newMsg = {
+      id: Date.now(),
+      from: "user",
+      text: chatInput,
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    };
+    setChatMessages((prev) => [...prev, newMsg]);
     setChatInput("");
     setChatTyping(true);
+
     setTimeout(() => {
       setChatTyping(false);
-      const reply = AUTO_RESPONSES[Math.floor(Math.random() * AUTO_RESPONSES.length)];
-      const replyTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes() + 1).padStart(2, "0")}`;
-      setChatMessages((prev) => [...prev, { id: Date.now() + 1, from: "coordinator", text: reply, time: replyTime }]);
-    }, 1800);
+      const resp = AUTO_RESPONSES[Math.floor(Math.random() * AUTO_RESPONSES.length)];
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          from: "coordinator",
+          text: resp,
+          time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        },
+      ]);
+    }, 1200);
   };
-
-  const confirmAppointment = (idx) => {
-    setScheduleItems((prev) => prev.map((s, i) => (i === idx ? { ...s, confirmed: true } : s)));
-    setConfirmedToast("ვიზიტი დადასტურებულია ✅");
-    setTimeout(() => setConfirmedToast(null), 2500);
-  };
-
-  const markAllRead = () => setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
 
   const displayName = user?.name || SURROGATE.name;
-  const displayFirstName = displayName.split(" ")[0];
+  const displayFirst = displayName.split(" ")[0];
+
+  const DASH_TABS_CONFIG = [
+    { id: "overview", label: "მიმოხილვა", icon: <HomeIcon /> },
+    { id: "profile", label: "პროფილი", icon: <UserIcon /> },
+    { id: "medical", label: "სამედ. შედეგები", icon: <MedicalIcon /> },
+    { id: "finance", label: "ფინანსები", icon: <FinanceIcon /> },
+    { id: "schedule", label: "განრიგი", icon: <CalendarIcon /> },
+    { id: "support", label: "მხარდაჭერა", icon: <ChatIcon /> },
+  ];
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #fdf6f0 0%, #fef9f5 40%, #f0f4ff 100%)", fontFamily: "'Georgia', 'Palatino Linotype', serif" }}>
+    <div className="flex-1 flex flex-col md:flex-row min-h-screen bg-[#F8F9FD]">
+      
+      {/* ── SIDEBAR (Desktop) ── */}
+      <aside className="w-64 bg-white border-r border-gestlife-grey-20/40 flex-col justify-between hidden md:flex shrink-0">
+        <div>
+          {/* Logo brand segment */}
+          <div className="p-6 border-b border-gestlife-grey-20/30 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white bg-brand-gradient">
+              <HeartIcon fill="white" className="w-[14px] h-[14px]" />
+            </div>
+            <span className="font-montserrat font-bold text-gestlife-grey-80 text-lg">Gestlife Portal</span>
+          </div>
 
-      {/* Toast */}
-      {confirmedToast && (
-        <div style={{ position: "fixed", bottom: 32, left: "50%", transform: "translateX(-50%)", background: "#10b981", color: "white", padding: "12px 28px", borderRadius: 40, fontWeight: 700, zIndex: 9999, boxShadow: "0 8px 32px rgba(16,185,129,0.4)", fontSize: 15, letterSpacing: "0.02em" }}>
-          {confirmedToast}
-        </div>
-      )}
-
-      {/* Topbar */}
-      <header style={{ position: "sticky", top: 0, zIndex: 100, background: "rgba(255,255,255,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(200,16,46,0.08)", boxShadow: "0 2px 24px rgba(0,0,0,0.05)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-
-          {/* Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{ width: 38, height: 38, borderRadius: "50%", background: "linear-gradient(135deg, #C8102E, #8B0000)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 900, fontSize: 18, boxShadow: "0 4px 14px rgba(200,16,46,0.35)" }}>♥</div>
-            <div>
-              <div style={{ fontWeight: 800, color: "#1a1a2e", fontSize: 15, lineHeight: 1.2 }}>ARIA Surrogacy</div>
-              <div style={{ fontSize: 11, color: "#9ca3af", letterSpacing: "0.06em" }}>SURROGATE PORTAL</div>
+          {/* Mini profile header */}
+          <div className="p-5 bg-gestlife-pink-sub/10 border-b border-gestlife-grey-20/20 text-center">
+            <div className="w-12 h-12 rounded-full bg-brand-gradient flex items-center justify-center text-white font-extrabold text-base mx-auto mb-2.5 border-2 border-white shadow-sm">
+              {displayName[0] + (displayName.split(" ")[1]?.[0] || "")}
+            </div>
+            <div className="font-bold text-sm text-gestlife-grey-80 leading-none">{displayName}</div>
+            <div className="text-[10px] font-bold text-gestlife-grey-60 mt-1.5 bg-white py-1 px-2.5 rounded-full inline-block border border-gestlife-grey-20/40">
+              {user?.program === "greece" ? "🇬🇷 საბერძნეთი" : "🇬🇪 საქართველო"}
             </div>
           </div>
 
-          {/* Stage Badge */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10, background: "linear-gradient(135deg, #fff1f2, #fef3c7)", border: "1.5px solid #fca5a5", borderRadius: 40, padding: "6px 18px", flex: 1, maxWidth: 460 }}>
-            <span style={{ fontSize: 16 }}>🌱</span>
-            <div>
-              <div style={{ fontSize: 10, color: "#6b7280", letterSpacing: "0.08em", fontWeight: 600 }}>მიმდინარე ეტაპი</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#C8102E" }}>{SURROGATE.stage}</div>
-            </div>
-            <div style={{ marginLeft: "auto", width: 8, height: 8, borderRadius: "50%", background: "#10b981", boxShadow: "0 0 0 3px rgba(16,185,129,0.2)", animation: "ariaPulse 2s infinite" }} />
-          </div>
-
-          {/* Right side */}
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <div style={{ position: "relative" }}>
-              <button
-                onClick={() => setNotifOpen(!notifOpen)}
-                style={{ width: 40, height: 40, borderRadius: "50%", border: "none", background: notifOpen ? "#fef2f2" : "#f9fafb", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, position: "relative", transition: "all 0.2s" }}
-              >🔔
-                {unreadCount > 0 && (
-                  <span style={{ position: "absolute", top: 2, right: 2, width: 18, height: 18, borderRadius: "50%", background: "#C8102E", color: "white", fontSize: 10, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid white" }}>{unreadCount}</span>
-                )}
-              </button>
-              {notifOpen && (
-                <div style={{ position: "absolute", top: 50, right: 0, width: 340, background: "white", borderRadius: 16, boxShadow: "0 20px 60px rgba(0,0,0,0.15)", border: "1px solid #f1f5f9", overflow: "hidden", zIndex: 200 }}>
-                  <div style={{ padding: "14px 18px", borderBottom: "1px solid #f1f5f9", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span style={{ fontWeight: 700, fontSize: 14, color: "#1a1a2e" }}>შეტყობინებები</span>
-                    <button onClick={markAllRead} style={{ fontSize: 11, color: "#C8102E", background: "none", border: "none", cursor: "pointer", fontWeight: 600 }}>ყველა წაკითხულია</button>
-                  </div>
-                  {notifications.map((n) => (
-                    <div key={n.id} style={{ padding: "12px 18px", background: n.read ? "white" : "#fef9f5", borderBottom: "1px solid #f8fafc", display: "flex", gap: 10, alignItems: "flex-start" }}>
-                      <span style={{ fontSize: 16 }}>{n.type === "medical" ? "🧬" : n.type === "schedule" ? "📅" : "💳"}</span>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: 13, color: "#374151", lineHeight: 1.5 }}>{n.text}</div>
-                      </div>
-                      {!n.read && <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#C8102E", flexShrink: 0, marginTop: 5 }} />}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
-              <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #C8102E, #E8B84B)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 800, fontSize: 13, boxShadow: "0 3px 12px rgba(200,16,46,0.3)" }}>{SURROGATE.avatar}</div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Sidebar + Content */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "24px", display: "flex", gap: 24, alignItems: "flex-start" }}>
-
-        {/* Sidebar */}
-        <aside style={{ width: 220, flexShrink: 0, background: "white", borderRadius: 20, boxShadow: "0 4px 24px rgba(0,0,0,0.06)", border: "1px solid rgba(200,16,46,0.06)", overflow: "hidden", position: "sticky", top: 88 }}>
-          <div style={{ padding: "20px 16px", background: "linear-gradient(135deg, #C8102E, #8B0000)", textAlign: "center" }}>
-            <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(255,255,255,0.25)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 900, fontSize: 20, margin: "0 auto 10px", border: "3px solid rgba(255,255,255,0.4)" }}>{SURROGATE.avatar}</div>
-            <div style={{ color: "white", fontWeight: 700, fontSize: 14 }}>{displayName}</div>
-            <div style={{ color: "rgba(255,255,255,0.75)", fontSize: 11, marginTop: 3 }}>{SURROGATE.program}</div>
-          </div>
-          <nav style={{ padding: "8px 0" }}>
-            {DASH_TABS.map((tab) => (
+          {/* Navigation Links */}
+          <nav className="py-4 px-3 space-y-1">
+            {DASH_TABS_CONFIG.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setDashTab(tab.id)}
-                style={{ width: "100%", display: "flex", alignItems: "center", gap: 10, padding: "11px 18px", border: "none", background: dashTab === tab.id ? "linear-gradient(135deg, #fff1f2, #fef3c7)" : "transparent", cursor: "pointer", borderLeft: dashTab === tab.id ? "3px solid #C8102E" : "3px solid transparent", transition: "all 0.2s", textAlign: "left", fontFamily: "'Georgia', serif" }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-bold text-xs tracking-wider uppercase transition-all cursor-pointer ${
+                  dashTab === tab.id
+                    ? "bg-brand-gradient text-white shadow-md shadow-gestlife-pink/20"
+                    : "text-gestlife-grey-60 hover:bg-gestlife-grey-20/20 hover:text-gestlife-grey-80"
+                }`}
               >
-                <span style={{ fontSize: 16 }}>{tab.icon}</span>
-                <span style={{ fontSize: 13, fontWeight: dashTab === tab.id ? 700 : 500, color: dashTab === tab.id ? "#C8102E" : "#6b7280" }}>{tab.label}</span>
+                <span className="shrink-0">{tab.icon}</span>
+                <span>{tab.label}</span>
               </button>
             ))}
           </nav>
-          <div style={{ padding: "8px 16px 16px" }}>
-            <button
-              onClick={onLogout}
-              style={{ width: "100%", padding: "10px", borderRadius: 12, border: "1.5px solid #fee2e2", background: "#fff5f5", color: "#C8102E", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "'Georgia', serif" }}
-            >🚪 გამოსვლა</button>
+        </div>
+
+        {/* Sidebar Footer Logout */}
+        <div className="p-4 border-t border-gestlife-grey-20/30">
+          <button
+            onClick={onLogout}
+            className="w-full py-3 rounded-xl border border-red-100 hover:border-red-200 bg-red-50/50 hover:bg-red-50 text-red-600 text-xs font-bold tracking-wider uppercase transition-all cursor-pointer"
+          >
+            🚪 გამოსვლა
+          </button>
+        </div>
+      </aside>
+
+      {/* ── MOBILE TAB BAR ── */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gestlife-grey-20/40 flex overflow-x-auto shadow-lg justify-around">
+        {DASH_TABS_CONFIG.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setDashTab(tab.id)}
+            className={`flex-1 min-w-[56px] flex flex-col items-center py-2.5 gap-1 text-[9px] font-bold tracking-wider transition-all cursor-pointer ${
+              dashTab === tab.id ? "text-gestlife-pink" : "text-gestlife-grey-40"
+            }`}
+          >
+            <span className="text-base">{tab.icon}</span>
+            <span className="truncate max-w-[64px] text-center">{tab.label}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* ── MAIN CONTENT CONTAINER ── */}
+      <main className="flex-1 p-5 sm:p-8 md:p-10 pb-24 md:pb-10 min-w-0 flex flex-col gap-6">
+        
+        {/* Mobile Header */}
+        <div className="md:hidden flex items-center justify-between bg-white p-4 rounded-2xl border border-gestlife-grey-20/30 shadow-sm">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-brand-gradient flex items-center justify-center text-white text-xs font-bold">
+              {SURROGATE.avatar}
+            </div>
+            <div className="text-left">
+              <div className="font-bold text-xs text-gestlife-grey-80">{displayName}</div>
+              <div className="text-[9px] font-bold text-gestlife-grey-40 uppercase">პორტალი</div>
+            </div>
           </div>
-        </aside>
+          <button
+            onClick={onLogout}
+            className="text-xs font-bold text-red-500 bg-red-50 px-3 py-1.5 rounded-lg border border-red-100"
+          >
+            გამოსვლა
+          </button>
+        </div>
 
-        {/* Main Content */}
-        <main style={{ flex: 1, minWidth: 0 }}>
-
-          {/* ════ OVERVIEW ════ */}
-          {dashTab === "overview" && (
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ background: "linear-gradient(135deg, #C8102E 0%, #8B0000 50%, #4a0010 100%)", borderRadius: 20, padding: "28px 32px", color: "white", position: "relative", overflow: "hidden" }}>
-                <div style={{ position: "absolute", right: -20, top: -20, fontSize: 140, opacity: 0.07, lineHeight: 1, userSelect: "none" }}>🇬🇪</div>
-                <div style={{ position: "relative", zIndex: 1 }}>
-                  <div style={{ fontSize: 13, opacity: 0.8, marginBottom: 6, letterSpacing: "0.06em" }}>გამარჯობა, {displayFirstName}!</div>
-                  <h1 style={{ fontSize: 26, fontWeight: 800, margin: "0 0 8px", lineHeight: 1.3 }}>შენი მოგზაურობა მიმდინარეობს ✨</h1>
-                  <p style={{ fontSize: 14, opacity: 0.85, margin: 0 }}>მიმდინარე ეტაპი: <strong>{SURROGATE.stage}</strong> — ყველა მაჩვენებელი ნორმაშია</p>
-                </div>
+        {/* ════ OVERVIEW TAB ════ */}
+        {dashTab === "overview" && (
+          <div className="flex flex-col gap-6 text-left">
+            {/* Welcome Dashboard Banner card */}
+            <div className="bg-brand-gradient rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg">
+              {/* Flag backdrop indicator */}
+              <div className="absolute right-[-20px] bottom-[-20px] text-[120px] sm:text-[160px] opacity-[0.08] select-none pointer-events-none leading-none rotate-12">
+                {user?.program === "greece" ? "🇬🇷" : "🇬🇪"}
               </div>
+              <div className="relative z-10 max-w-lg">
+                <div className="text-[10px] font-extrabold uppercase tracking-widest text-white/80">პროგრამის პანელი</div>
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-montserrat font-extrabold mt-1.5 mb-2 leading-tight">
+                  მოგესალმებით, {displayFirst}! ✨
+                </h1>
+                <p className="text-xs sm:text-sm font-medium text-white/90 leading-relaxed">
+                  თქვენი ორსულობის მოგზაურობა აქტიურ რეჟიმშია. მიმდინარე ეტაპი: <strong className="underline decoration-wavy decoration-white/50">{SURROGATE.stage}</strong>. ყველა კლინიკური მაჩვენებელი იდეალურ ნორმაშია.
+                </p>
+              </div>
+            </div>
 
-              {/* Stage Timeline */}
-              <div style={{ background: "white", borderRadius: 20, padding: "24px 28px", boxShadow: "0 4px 24px rgba(0,0,0,0.05)", border: "1px solid rgba(200,16,46,0.06)" }}>
-                <h2 style={{ margin: "0 0 20px", fontSize: 16, fontWeight: 700, color: "#1a1a2e" }}>📍 პროგრამის ეტაპები</h2>
-                <div style={{ display: "flex", gap: 0, alignItems: "center", overflowX: "auto", paddingBottom: 4 }}>
-                  {STAGES.map((stage, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-                        <div style={{ width: 44, height: 44, borderRadius: "50%", background: stage.done ? "linear-gradient(135deg, #10b981, #059669)" : stage.active ? "linear-gradient(135deg, #C8102E, #8B0000)" : "#f1f5f9", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, boxShadow: stage.active ? "0 0 0 4px rgba(200,16,46,0.2), 0 4px 16px rgba(200,16,46,0.3)" : stage.done ? "0 3px 10px rgba(16,185,129,0.3)" : "none", border: stage.active ? "2px solid #C8102E" : "2px solid transparent", transition: "all 0.3s" }}>
-                          {stage.done ? "✓" : stage.icon}
-                        </div>
-                        <span style={{ fontSize: 10, fontWeight: stage.active ? 700 : 500, color: stage.active ? "#C8102E" : stage.done ? "#10b981" : "#9ca3af", textAlign: "center", maxWidth: 70, lineHeight: 1.3 }}>{stage.label}</span>
+            {/* Stages Horizontal Timeline track */}
+            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gestlife-grey-20/40">
+              <h2 className="text-xs font-bold text-gestlife-grey-80 uppercase tracking-widest mb-6">📍 პროგრამის მიმდინარე ეტაპები</h2>
+              <div className="flex items-center overflow-x-auto pb-4 gap-0 scrollbar-thin">
+                {STAGES.map((stage, i) => (
+                  <div key={i} className="flex items-center shrink-0">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm transition-all border ${
+                        stage.done
+                          ? "bg-emerald-500 border-emerald-500 text-white shadow-sm"
+                          : stage.active
+                          ? "bg-brand-gradient border-transparent text-white ring-4 ring-gestlife-pink/20 shadow-md animate-pulse"
+                          : "bg-gestlife-grey-20/40 border-transparent text-gestlife-grey-45"
+                      }`}>
+                        {stage.done ? "✓" : stage.icon}
                       </div>
-                      {i < STAGES.length - 1 && (
-                        <div style={{ width: 32, height: 2, background: i < 3 ? "#10b981" : "#e5e7eb", margin: "0 2px", marginBottom: 20, borderRadius: 2 }} />
-                      )}
+                      <span className={`text-[9px] font-bold text-center max-w-[64px] leading-tight ${
+                        stage.active ? "text-gestlife-pink" : stage.done ? "text-emerald-600" : "text-gestlife-grey-40"
+                      }`}>
+                        {stage.label}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Bottom Cards */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-                <div style={{ background: "white", borderRadius: 20, padding: "22px 24px", boxShadow: "0 4px 24px rgba(0,0,0,0.05)", border: "1.5px solid rgba(200,16,46,0.1)" }}>
-                  <div style={{ fontSize: 12, color: "#9ca3af", fontWeight: 600, letterSpacing: "0.06em", marginBottom: 12 }}>📅 შემდეგი ვიზიტი</div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "#1a1a2e", marginBottom: 6 }}>{SCHEDULE_DATA[0].title}</div>
-                  <div style={{ fontSize: 13, color: "#6b7280", marginBottom: 4 }}>📆 {SCHEDULE_DATA[0].date} — {SCHEDULE_DATA[0].time}</div>
-                  <div style={{ fontSize: 13, color: "#6b7280", marginBottom: 16 }}>📍 {SCHEDULE_DATA[0].location}</div>
-                  <button
-                    onClick={() => confirmAppointment(0)}
-                    style={{ padding: "9px 18px", borderRadius: 12, border: "none", background: scheduleItems[0].confirmed ? "linear-gradient(135deg, #10b981, #059669)" : "linear-gradient(135deg, #C8102E, #8B0000)", color: "white", fontSize: 12, fontWeight: 700, cursor: "pointer", transition: "all 0.2s", fontFamily: "'Georgia', serif" }}
-                  >{scheduleItems[0].confirmed ? "✅ დადასტურებულია" : "დადასტურება"}</button>
-                </div>
-
-                <div style={{ background: "white", borderRadius: 20, padding: "22px 24px", boxShadow: "0 4px 24px rgba(0,0,0,0.05)", border: "1.5px solid rgba(200,16,46,0.1)", display: "flex", flexDirection: "column", gap: 12 }}>
-                  <div style={{ fontSize: 12, color: "#9ca3af", fontWeight: 600, letterSpacing: "0.06em" }}>💬 პირადი კოორდინატორი</div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{ position: "relative" }}>
-                      <div style={{ width: 48, height: 48, borderRadius: "50%", background: "linear-gradient(135deg, #C8102E, #E8B84B)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 800, fontSize: 16, boxShadow: "0 4px 14px rgba(200,16,46,0.3)" }}>{SURROGATE.coordinator.avatar}</div>
-                      <div style={{ position: "absolute", bottom: 1, right: 1, width: 12, height: 12, borderRadius: "50%", background: "#10b981", border: "2px solid white" }} />
-                    </div>
-                    <div>
-                      <div style={{ fontWeight: 700, fontSize: 14, color: "#1a1a2e" }}>{SURROGATE.coordinator.name}</div>
-                      <div style={{ fontSize: 12, color: "#6b7280" }}>{SURROGATE.coordinator.title}</div>
-                      <div style={{ fontSize: 11, color: "#10b981", fontWeight: 600 }}>● ონლაინ</div>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setDashTab("support")}
-                    style={{ padding: "9px 18px", borderRadius: 12, border: "1.5px solid #C8102E", background: "transparent", color: "#C8102E", fontSize: 12, fontWeight: 700, cursor: "pointer", transition: "all 0.2s", fontFamily: "'Georgia', serif" }}
-                  >💬 ჩატის გახსნა</button>
-                </div>
-              </div>
-
-              {/* Quick Stats */}
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
-                {[
-                  { icon: "🧬", label: "ბოლო ანალიზი", value: "ნორმა", sub: "17 მაი 2025", color: "#10b981" },
-                  { icon: "💳", label: "ბოლო გადარიცხვა", value: "₾ 1,800", sub: "მაისი 2025", color: "#C8102E" },
-                  { icon: "📅", label: "ვიზიტამდე", value: "4 დღე", sub: "22 მაი 10:00", color: "#E8B84B" },
-                ].map((card, i) => (
-                  <div key={i} style={{ background: "white", borderRadius: 16, padding: "18px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.05)", border: `1.5px solid ${card.color}22` }}>
-                    <div style={{ fontSize: 22, marginBottom: 8 }}>{card.icon}</div>
-                    <div style={{ fontSize: 11, color: "#9ca3af", fontWeight: 600, marginBottom: 4, letterSpacing: "0.06em" }}>{card.label}</div>
-                    <div style={{ fontSize: 20, fontWeight: 800, color: card.color, marginBottom: 2 }}>{card.value}</div>
-                    <div style={{ fontSize: 11, color: "#9ca3af" }}>{card.sub}</div>
+                    {i < STAGES.length - 1 && (
+                      <div className={`w-8 h-0.5 mx-1 mb-5 rounded-full ${i < 3 ? "bg-emerald-500" : "bg-gestlife-grey-20/50"}`} />
+                    )}
                   </div>
                 ))}
               </div>
             </div>
-          )}
 
-          {/* ════ PROFILE ════ */}
-          {dashTab === "profile" && (
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ background: "white", borderRadius: 20, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.06)", border: "1px solid rgba(200,16,46,0.06)" }}>
-                <div style={{ background: "linear-gradient(135deg, #C8102E, #8B0000)", padding: "32px 32px 24px", position: "relative" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                    <div style={{ width: 72, height: 72, borderRadius: "50%", background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 900, fontSize: 26, border: "3px solid rgba(255,255,255,0.4)" }}>{SURROGATE.avatar}</div>
-                    <div>
-                      <h1 style={{ color: "white", margin: 0, fontSize: 22, fontWeight: 800 }}>{displayName}</h1>
-                      <div style={{ color: "rgba(255,255,255,0.8)", fontSize: 13, marginTop: 4 }}>სუროგატი • {SURROGATE.program}</div>
-                      <div style={{ marginTop: 8, display: "inline-block", background: "rgba(255,255,255,0.2)", borderRadius: 20, padding: "4px 12px", color: "white", fontSize: 11, fontWeight: 600 }}>🟢 ეტაპი: {SURROGATE.stage}</div>
+            {/* Bottom Overview grid cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              
+              {/* Next Appointment Card */}
+              <div className="bg-white rounded-3xl p-6 shadow-sm border border-gestlife-grey-20/40 flex flex-col justify-between">
+                <div>
+                  <div className="text-[10px] font-extrabold uppercase tracking-widest text-gestlife-grey-40 mb-3.5 flex items-center gap-1.5">
+                    <span>📅</span> შემდეგი ვიზიტი
+                  </div>
+                  <h3 className="font-montserrat font-bold text-sm sm:text-base text-gestlife-grey-80 mb-2">{scheduleItems[0].title}</h3>
+                  <div className="space-y-1 text-xs font-semibold text-gestlife-grey-60">
+                    <div>📆 თარიღი: {scheduleItems[0].date} — {scheduleItems[0].time}</div>
+                    <div>📍 მისამართი: {scheduleItems[0].location}</div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 pt-4 border-t border-gestlife-grey-20/20 flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-gestlife-grey-40 uppercase">სტატუსი:</span>
+                  {scheduleItems[0].confirmed ? (
+                    <span className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-xl px-4.5 py-1.5 text-xs font-bold flex items-center gap-1">
+                      <span>✓</span> დადასტურებულია
+                    </span>
+                  ) : (
+                    <button
+                      onClick={() => confirmAppointment(0)}
+                      className="px-5 py-2 rounded-xl text-white text-xs font-bold shadow-md bg-brand-gradient hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                    >
+                      ვიზიტის დადასტურება
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Personal Coordinator Card */}
+              <div className="bg-white rounded-3xl p-6 shadow-sm border border-gestlife-grey-20/40 flex flex-col justify-between gap-4">
+                <div>
+                  <div className="text-[10px] font-extrabold uppercase tracking-widest text-gestlife-grey-40 mb-4 flex items-center gap-1.5">
+                    <span>💬</span> პირადი კოორდინატორი
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="relative shrink-0">
+                      <div className="w-14 h-14 rounded-full bg-brand-gradient flex items-center justify-center text-white font-extrabold text-base border-2 border-white shadow-md">
+                        {SURROGATE.coordinator.avatar}
+                      </div>
+                      <div className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white animate-ping" />
+                      <div className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white" />
+                    </div>
+                    <div className="text-left">
+                      <div className="font-bold text-sm sm:text-base text-gestlife-grey-80 leading-none">{SURROGATE.coordinator.name}</div>
+                      <div className="text-xs text-gestlife-grey-60 mt-1 font-semibold">{SURROGATE.coordinator.title}</div>
+                      <div className="text-[10px] text-emerald-500 font-extrabold mt-1 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> ონლაინ
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div style={{ padding: "28px 32px" }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+                <button
+                  onClick={() => setDashTab("support")}
+                  className="w-full py-2.5 rounded-xl border border-gestlife-pink text-gestlife-pink hover:bg-gestlife-pink-sub/10 text-xs font-bold tracking-wide transition-all cursor-pointer uppercase"
+                >
+                  ჩატის გახსნა
+                </button>
+              </div>
+            </div>
+
+            {/* Quick Metrics stats widgets */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {[
+                { icon: "🧬", label: "ბოლო ანალიზი", value: "ნორმა", sub: "17 მაი 2025", border: "border-emerald-200/80 bg-emerald-50/10", valCls: "text-emerald-600" },
+                { icon: "💳", label: "ბოლო გადარიცხვა", value: "₾ 1,800", sub: "მაისი 2025", border: "border-gestlife-pink-sub/80 bg-gestlife-pink-sub/5", valCls: "text-gestlife-pink" },
+                { icon: "📅", label: "ვიზიტამდე დარჩა", value: "4 დღე", sub: "22 მაი 10:00", border: "border-blue-200/80 bg-blue-50/10", valCls: "text-gestlife-blue" },
+              ].map((c, i) => (
+                <div key={i} className={`bg-white rounded-2xl p-5 shadow-sm border ${c.border}`}>
+                  <div className="text-2xl mb-2.5">{c.icon}</div>
+                  <div className="text-[9px] text-gestlife-grey-40 font-bold uppercase tracking-wider mb-1">{c.label}</div>
+                  <div className={`text-xl font-extrabold mb-0.5 ${c.valCls}`}>{c.value}</div>
+                  <div className="text-[10px] text-gestlife-grey-60 font-semibold">{c.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ════ PROFILE TAB ════ */}
+        {dashTab === "profile" && (
+          <div className="flex flex-col gap-6 text-left">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gestlife-grey-20/40">
+              
+              {/* Profile Card Header banner */}
+              <div className="bg-brand-gradient p-6 sm:p-8 text-white relative">
+                <div className="flex items-center gap-5 flex-wrap">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 flex items-center justify-center text-white font-extrabold text-2xl border-4 border-white/30 shrink-0 shadow-md">
+                    {SURROGATE.avatar}
+                  </div>
+                  <div className="text-left">
+                    <h1 className="text-xl sm:text-2xl font-montserrat font-extrabold leading-none">{displayName}</h1>
+                    <div className="text-xs text-white/80 font-bold mt-1.5 uppercase tracking-wider">სუროგატი დედა • {SURROGATE.program}</div>
+                    <div className="mt-3 inline-block bg-white/25 rounded-full px-3.5 py-1 text-white text-[10px] font-extrabold uppercase tracking-wide">
+                      🟢 ეტაპი: {SURROGATE.stage}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Profile details grid fields */}
+              <div className="p-6 sm:p-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    { label: "სრული სახელი", value: displayName, icon: "👤" },
+                    { label: "დაბადების თარიღი", value: "15 მარტი 1992 (33 წელი)", icon: "🎂" },
+                    { label: "ტელეფონის ნომერი", value: user?.phone || "+995 599 123 456", icon: "📱" },
+                    { label: "ელ-ფოსტა", value: "nino.gelashvili@email.com", icon: "📧" },
+                    { label: "ფაქტობრივი მისამართი", value: "თბილისი, ვაკე, ჭავჭავაძის გამზ. 12", icon: "🏠" },
+                    { label: "სამოქალაქო სტატუსი", value: "გათხოვილი", icon: "💍" },
+                    { label: "შვილები", value: "2 (7 და 10 წელი)", icon: "👨‍👩‍👧‍👦" },
+                    { label: "სისხლის ჯგუფი", value: "A(II) Rh+", icon: "🩸" },
+                  ].map((field, i) => (
+                    <div key={i} className="bg-gestlife-grey-20/10 rounded-xl p-4 border border-gestlife-grey-20/30 flex flex-col">
+                      <span className="text-[10px] text-gestlife-grey-40 font-bold uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                        <span>{field.icon}</span> {field.label}
+                      </span>
+                      <span className="text-sm font-bold text-gestlife-grey-80">{field.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Subcontract details card */}
+                <div className="mt-6 bg-gestlife-pink-sub/10 border border-gestlife-pink-sub/30 rounded-2xl p-5">
+                  <div className="text-xs font-bold text-gestlife-pink uppercase tracking-widest mb-3.5">📋 ხელშეკრულების მონაცემები</div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {[
-                      { label: "სრული სახელი", value: displayName, icon: "👤" },
-                      { label: "დაბადების თარიღი", value: "15 მარტი 1992 (33 წელი)", icon: "🎂" },
-                      { label: "ტელეფონი", value: "+995 599 123 456", icon: "📱" },
-                      { label: "ელ-ფოსტა", value: "nino.gelashvili@email.com", icon: "📧" },
-                      { label: "მისამართი", value: "თბილისი, ვაკე, .... ქ. 12", icon: "🏠" },
-                      { label: "სამოქალაქო სტატუსი", value: "გათხოვილი", icon: "💍" },
-                      { label: "შვილების რაოდენობა", value: "2 (7 და 10 წელი)", icon: "👨‍👩‍👧‍👦" },
-                      { label: "სისხლის ჯგუფი", value: "A(II) Rh+", icon: "🩸" },
-                    ].map((field, i) => (
-                      <div key={i} style={{ background: "#f9fafb", borderRadius: 14, padding: "14px 18px", border: "1px solid #f1f5f9" }}>
-                        <div style={{ fontSize: 11, color: "#9ca3af", fontWeight: 600, letterSpacing: "0.06em", marginBottom: 5 }}>{field.icon} {field.label}</div>
-                        <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a2e" }}>{field.value}</div>
+                      { label: "დოკუმენტის №", value: "ARG-2025-0472" },
+                      { label: "გაფორმების თარიღი", value: "12 მარტი 2025" },
+                      { label: "პროგრამის პაკეტი", value: "საქართველო — სრული" },
+                      { label: "სამედიცინო კლინიკა", value: "ReproMed, თბილისი" },
+                    ].map((item, i) => (
+                      <div key={i}>
+                        <div className="text-[9px] text-gestlife-grey-40 font-bold uppercase tracking-wider">{item.label}</div>
+                        <div className="text-xs font-extrabold text-gestlife-grey-80 mt-0.5">{item.value}</div>
                       </div>
                     ))}
                   </div>
-                  <div style={{ marginTop: 20, background: "linear-gradient(135deg, #fff1f2, #fef9f5)", border: "1.5px solid #fca5a5", borderRadius: 16, padding: "16px 20px" }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: "#C8102E", marginBottom: 8 }}>📋 კონტრაქტის ინფო</div>
-                    <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-                      {[
-                        { label: "კონტრაქტის ნომერი", value: "ARG-2025-0472" },
-                        { label: "გაფორმების თარიღი", value: "12 მარტი 2025" },
-                        { label: "პროგრამა", value: "საქართველო — სრული" },
-                        { label: "IVF კლინიკა", value: "ReproMed, თბილისი" },
-                      ].map((item, i) => (
-                        <div key={i}>
-                          <div style={{ fontSize: 10, color: "#9ca3af", fontWeight: 600 }}>{item.label}</div>
-                          <div style={{ fontSize: 13, fontWeight: 700, color: "#1a1a2e" }}>{item.value}</div>
-                        </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ════ MEDICAL TAB ════ */}
+        {dashTab === "medical" && (
+          <div className="flex flex-col gap-6 text-left">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
+              <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+                <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">🧬 სამედიცინო შეფასებები & კვლევები</h2>
+                <div className="bg-emerald-50 border border-emerald-100 rounded-full px-4.5 py-1.5 text-xs font-bold text-emerald-600">
+                  ✅ {MEDICAL_RESULTS.length} ჩანაწერი — ნორმის ფარგლებში
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {MEDICAL_RESULTS.map((r, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 p-4 bg-gestlife-grey-20/10 rounded-xl border border-gestlife-grey-20/20 hover:border-gestlife-pink/30 hover:bg-gestlife-pink-sub/5 transition-all"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-base shrink-0 shadow-sm">
+                      ✓
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-bold text-xs sm:text-sm text-gestlife-grey-80 mb-0.5">{r.test}</div>
+                      <div className="text-[11px] font-semibold text-gestlife-grey-60 leading-none">{r.value}</div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="text-[10px] font-bold text-emerald-600 bg-emerald-50 rounded-lg px-2 py-0.5 border border-emerald-100 uppercase inline-block mb-1">{r.result}</div>
+                      <div className="text-[10px] font-bold text-gestlife-grey-40 block">{r.date}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Custom SVG Bar chart for Endometrium growth */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
+              <h3 className="text-xs font-bold text-gestlife-grey-80 uppercase tracking-widest mb-6">📊 ენდომეტრიუმის დინამიკა (მმ)</h3>
+              
+              <div className="flex items-end justify-between gap-4 h-28 max-w-sm pt-4 border-b border-gestlife-grey-20/30 pb-1.5">
+                {[
+                  { val: 7.2, date: "28 მარ", active: false },
+                  { val: 8.5, date: "12 აპრ", active: false },
+                  { val: 9.1, date: "28 აპრ", active: false },
+                  { val: 10.2, date: "14 მაი", active: true },
+                ].map((bar, i) => (
+                  <div key={i} className="flex flex-col items-center gap-2 flex-1">
+                    <span className={`text-[10px] font-black ${bar.active ? "text-gestlife-pink" : "text-gestlife-grey-60"}`}>{bar.val} მმ</span>
+                    <div
+                      className={`w-full rounded-t-lg transition-all duration-500 ${
+                        bar.active 
+                          ? "bg-brand-gradient shadow-md" 
+                          : "bg-gestlife-grey-20"
+                      }`}
+                      style={{ height: `${(bar.val / 12) * 85}px` }}
+                    />
+                    <span className="text-[10px] font-bold text-gestlife-grey-40 mt-1">{bar.date}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 bg-emerald-50/50 border border-emerald-100 rounded-xl px-4.5 py-3 text-xs text-emerald-700 font-semibold leading-relaxed max-w-md">
+                🎉 <strong>10.2 მმ</strong> წარმოადგენს იდეალურ სამედიცინო სისქეს ემბრიონის გადატანისთვის (კლინიკური დიაპაზონი: 8–14 მმ).
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ════ FINANCE TAB ════ */}
+        {dashTab === "finance" && (
+          <div className="flex flex-col gap-6 text-left">
+            
+            {/* Total Balance Card indicator */}
+            <div className="bg-[#1C1D26] rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-md">
+              <div className="absolute right-6 top-[-20px] text-[100px] opacity-[0.03] select-none pointer-events-none font-bold">₾</div>
+              <div className="text-[10px] font-extrabold uppercase tracking-widest text-white/70">კომპენსაციის ჯამური მოცულობა</div>
+              <div className="text-3xl sm:text-4xl font-montserrat font-black mt-2 tracking-tight">₾ 28,500</div>
+              
+              <div className="text-xs font-semibold text-white/70 mt-3 flex flex-wrap gap-x-4 gap-y-1">
+                <span>გადახდილია: <strong className="text-emerald-400 font-bold">₾ 5,420</strong></span>
+                <span>მომლოდინე: <strong className="text-amber-400 font-bold">₾ 1,950</strong></span>
+              </div>
+              
+              <div className="mt-5.5 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                <div className="h-full w-[19%] bg-brand-gradient rounded-full" />
+              </div>
+              <div className="text-[9px] font-bold text-white/45 mt-2 uppercase tracking-wide">პროგრესი: 19% დასრულებული</div>
+            </div>
+
+            {/* List of Transactions */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
+              <h2 className="text-xs font-bold text-gestlife-grey-80 uppercase tracking-widest mb-5">📋 ტრანზაქციების რეესტრი</h2>
+              <div className="space-y-3">
+                {FINANCES.map((f, i) => (
+                  <div key={i} className="flex items-center gap-3.5 p-4 bg-gestlife-grey-20/10 rounded-xl border border-gestlife-grey-20/20">
+                    <div className="text-xl shrink-0 leading-none">{f.icon}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-bold text-xs sm:text-sm text-gestlife-grey-80 truncate">{f.type}</div>
+                      <div className="text-[10px] font-semibold text-gestlife-grey-40 uppercase tracking-wide mt-0.5">{f.month}</div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="font-extrabold text-sm sm:text-base text-gestlife-grey-80">{f.amount}</div>
+                      <div className={`text-[10px] font-extrabold uppercase mt-0.5 ${
+                        f.status === "გადარიცხული" ? "text-emerald-500" : f.status === "მომლოდინე" ? "text-amber-500" : "text-gestlife-grey-40"
+                      }`}>
+                        {f.status}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ════ SCHEDULE TAB ════ */}
+        {dashTab === "schedule" && (
+          <div className="flex flex-col gap-6 text-left">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
+              <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+                <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">📅 კლინიკური და საკონსულტაციო ვიზიტები</h2>
+                <div className="bg-gestlife-pink-sub/30 border border-gestlife-pink-sub/20 rounded-full px-4 py-1 text-xs font-bold text-gestlife-pink">
+                  {scheduleItems.length} დაგეგმილი ღონისძიება
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {scheduleItems.map((s, i) => (
+                  <div
+                    key={i}
+                    className={`flex gap-4 p-5 rounded-2xl relative overflow-hidden border transition-all ${
+                      s.type === "procedure" 
+                        ? "border-red-100 bg-red-50/20" 
+                        : s.type === "virtual" 
+                        ? "border-blue-100 bg-blue-50/20" 
+                        : "border-gestlife-grey-20 bg-gestlife-grey-20/10"
+                    }`}
+                  >
+                    {/* Visual left bar border */}
+                    <div className={`absolute top-0 left-0 w-1 h-full ${
+                      s.type === "procedure" ? "bg-red-500" : s.type === "virtual" ? "bg-blue-500" : "bg-gestlife-grey-40"
+                    }`} />
+
+                    {/* Date Block widget */}
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex flex-col items-center justify-center shrink-0 text-white shadow-sm font-montserrat ${
+                      s.type === "procedure"
+                        ? "bg-gradient-to-br from-red-400 to-red-600"
+                        : s.type === "virtual"
+                        ? "bg-gradient-to-br from-blue-400 to-blue-600"
+                        : "bg-gestlife-grey-60"
+                    }`}>
+                      <span className="text-sm font-black leading-none">{s.date.split(" ")[0]}</span>
+                      <span className="text-[8px] uppercase font-bold mt-0.5 tracking-wider">{s.date.split(" ")[1]?.substring(0, 3)}</span>
+                    </div>
+
+                    {/* Event Detail text */}
+                    <div className="flex-1 min-w-0">
+                      <div className="font-bold text-xs sm:text-sm text-gestlife-grey-80 mb-1">{s.title}</div>
+                      <div className="text-[11px] font-semibold text-gestlife-grey-60 leading-relaxed mb-2">
+                        ⏰ {s.time} • 📍 {s.location}
+                      </div>
+                      <span className={`inline-block text-[9px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider ${
+                        s.type === "procedure" ? "bg-red-100 text-red-700" : s.type === "virtual" ? "bg-blue-100 text-blue-700" : "bg-gestlife-grey-20 text-gestlife-grey-80"
+                      }`}>
+                        {s.type === "procedure" ? "🌱 ემბრიო გადატანა" : s.type === "virtual" ? "💻 ვიდეო ზარი" : "🏥 ანალიზები"}
+                      </span>
+                    </div>
+
+                    {/* Confirmation state buttons */}
+                    <div className="shrink-0 self-center">
+                      {s.confirmed ? (
+                        <span className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-xl px-3 py-1.5 text-[10px] font-bold whitespace-nowrap block">
+                          ✓ დადასტურდა
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => confirmAppointment(i)}
+                          className="px-3 py-2 rounded-xl text-white text-[10px] font-bold shadow-md bg-brand-gradient hover:scale-102 transition-all cursor-pointer whitespace-nowrap"
+                        >
+                          დადასტურება
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ════ SUPPORT TAB ════ */}
+        {dashTab === "support" && (
+          <div className="flex flex-col lg:flex-row gap-6 text-left">
+            {/* Chat Box panel */}
+            <div className="flex-1 bg-white rounded-3xl shadow-sm border border-gestlife-grey-20/40 flex flex-col overflow-hidden" style={{ minHeight: "500px", height: "calc(100vh - 220px)" }}>
+              {/* Header profile segment */}
+              <div className="px-5 py-4 border-b border-gestlife-grey-20/30 flex items-center gap-3.5 bg-gestlife-pink-sub/10">
+                <div className="relative shrink-0">
+                  <div className="w-11 h-11 rounded-full bg-brand-gradient flex items-center justify-center text-white font-extrabold text-sm border-2 border-white shadow-sm">
+                    {SURROGATE.coordinator.avatar}
+                  </div>
+                  <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white" />
+                </div>
+                <div>
+                  <div className="font-bold text-sm text-gestlife-grey-80 leading-none">{SURROGATE.coordinator.name}</div>
+                  <div className="text-[10px] text-emerald-600 font-extrabold tracking-wide mt-1">● ონლაინ • პასუხობს 30 წთ-ში</div>
+                </div>
+                <div className="ml-auto text-[10px] font-bold text-gestlife-pink bg-white px-3 py-1 rounded-full border border-gestlife-pink-sub/30 uppercase tracking-widest">
+                  პირადი კოორდინატორი
+                </div>
+              </div>
+
+              {/* Chat messages Area */}
+              <div className="flex-1 overflow-y-auto p-5 space-y-3.5 bg-[#FBFBFF]">
+                {chatMessages.map((msg) => (
+                  <div
+                    key={msg.id}
+                    className={`flex items-end gap-2.5 ${msg.from === "user" ? "flex-row-reverse" : "flex-row"}`}
+                  >
+                    {msg.from === "coordinator" && (
+                      <div className="w-6.5 h-6.5 rounded-full bg-brand-gradient text-white flex items-center justify-center text-[10px] font-black shrink-0 shadow-sm border border-white">
+                        LL
+                      </div>
+                    )}
+                    <div className={`max-w-[70%] px-4.5 py-3 text-xs sm:text-sm leading-relaxed shadow-sm font-medium ${
+                      msg.from === "user"
+                        ? "bg-brand-gradient text-white rounded-[18px_18px_4px_18px]"
+                        : "bg-white text-gestlife-grey-80 rounded-[18px_18px_18px_4px] border border-gestlife-grey-20/40"
+                    }`}>
+                      <div>{msg.text}</div>
+                      <div className={`text-[9px] font-bold mt-1.5 opacity-60 ${msg.from === "user" ? "text-right" : "text-left"}`}>
+                        {msg.time}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {chatTyping && (
+                  <div className="flex items-end gap-2.5">
+                    <div className="w-6.5 h-6.5 rounded-full bg-brand-gradient text-white flex items-center justify-center text-[10px] font-black shrink-0">
+                      LL
+                    </div>
+                    <div className="bg-white rounded-[18px_18px_18px_4px] border border-gestlife-grey-20/40 shadow-sm px-4 py-3 flex gap-1 items-center">
+                      {[0, 1, 2].map((dot) => (
+                        <div
+                          key={dot}
+                          className="w-1.5 h-1.5 rounded-full bg-gestlife-pink animate-bounce"
+                          style={{ animationDelay: `${dot * 0.15}s` }}
+                        />
                       ))}
                     </div>
                   </div>
-                </div>
+                )}
+                <div ref={chatEndRef} />
+              </div>
+
+              {/* Chat Input panel */}
+              <div className="px-4 py-3 border-t border-gestlife-grey-20/30 flex gap-3 items-center bg-white">
+                <input
+                  ref={chatInputRef}
+                  type="text"
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                  placeholder="ჩაწერეთ შეტყობინება..."
+                  className="flex-1 px-4.5 py-2.5 rounded-full border border-gestlife-grey-20 text-xs sm:text-sm font-semibold text-gestlife-grey-80 focus:outline-none focus:border-gestlife-pink/50 bg-[#FBFBFF] transition-colors"
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={!chatInput.trim()}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-sm shrink-0 transition-all ${
+                    chatInput.trim()
+                      ? "bg-brand-gradient shadow-md shadow-gestlife-pink/20 hover:scale-105 active:scale-95 cursor-pointer"
+                      : "bg-gestlife-grey-20 text-gestlife-grey-40 cursor-default"
+                  }`}
+                >
+                  ➤
+                </button>
               </div>
             </div>
-          )}
 
-          {/* ════ MEDICAL ════ */}
-          {dashTab === "medical" && (
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ background: "white", borderRadius: 20, padding: "24px 28px", boxShadow: "0 4px 24px rgba(0,0,0,0.05)", border: "1px solid rgba(200,16,46,0.06)" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-                  <h2 style={{ margin: 0, fontSize: 18, fontWeight: 800, color: "#1a1a2e" }}>🧬 სამედიცინო შედეგები</h2>
-                  <div style={{ background: "#f0fdf4", border: "1.5px solid #bbf7d0", borderRadius: 20, padding: "6px 14px", fontSize: 12, fontWeight: 700, color: "#10b981" }}>✅ {MEDICAL_RESULTS.length} ჩანაწერი — ყველა ნორმა</div>
+            {/* Sidebar quick support contacts info */}
+            <div className="w-full lg:w-60 shrink-0 flex flex-col gap-4">
+              {/* Emergency info card */}
+              <div className="bg-white rounded-3xl p-5 shadow-sm border border-gestlife-grey-20/40">
+                <div className="text-[10px] font-extrabold uppercase tracking-widest text-gestlife-grey-40 mb-3 flex items-center gap-1.5">
+                  <span>📞</span> კავშირი
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                  {MEDICAL_RESULTS.map((r, i) => (
-                    <div
-                      key={i}
-                      style={{ display: "flex", alignItems: "center", gap: 16, padding: "16px 20px", background: "#f9fafb", borderRadius: 14, border: "1px solid #f1f5f9", transition: "all 0.2s" }}
-                      onMouseEnter={e => { e.currentTarget.style.background = "#fff1f2"; e.currentTarget.style.borderColor = "#fca5a5"; }}
-                      onMouseLeave={e => { e.currentTarget.style.background = "#f9fafb"; e.currentTarget.style.borderColor = "#f1f5f9"; }}
-                    >
-                      <div style={{ width: 42, height: 42, borderRadius: 12, background: "linear-gradient(135deg, #10b981, #059669)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: 18, flexShrink: 0 }}>✓</div>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 700, fontSize: 14, color: "#1a1a2e", marginBottom: 3 }}>{r.test}</div>
-                        <div style={{ fontSize: 12, color: "#6b7280" }}>{r.value}</div>
-                      </div>
-                      <div style={{ textAlign: "right" }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: "#10b981", background: "#f0fdf4", borderRadius: 8, padding: "3px 10px", marginBottom: 4 }}>{r.result}</div>
-                        <div style={{ fontSize: 11, color: "#9ca3af" }}>{r.date}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div style={{ background: "white", borderRadius: 20, padding: "24px 28px", boxShadow: "0 4px 24px rgba(0,0,0,0.05)", border: "1px solid rgba(200,16,46,0.06)" }}>
-                <h3 style={{ margin: "0 0 18px", fontSize: 15, fontWeight: 700, color: "#1a1a2e" }}>📊 ენდომეტრიუმის სისქე (მმ) — ბოლო 4 კვლევა</h3>
-                <div style={{ display: "flex", alignItems: "flex-end", gap: 12, height: 100 }}>
-                  {[
-                    { val: 7.2, date: "28 მარ" },
-                    { val: 8.5, date: "12 აპრ" },
-                    { val: 9.1, date: "28 აპრ" },
-                    { val: 10.2, date: "14 მაი", active: true },
-                  ].map((bar, i) => (
-                    <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, flex: 1 }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: bar.active ? "#C8102E" : "#6b7280" }}>{bar.val}</div>
-                      <div style={{ width: "100%", height: `${(bar.val / 12) * 80}px`, borderRadius: "8px 8px 0 0", background: bar.active ? "linear-gradient(180deg, #C8102E, #8B0000)" : "linear-gradient(180deg, #fca5a5, #fecaca)", transition: "all 0.5s" }} />
-                      <div style={{ fontSize: 10, color: "#9ca3af" }}>{bar.date}</div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ marginTop: 14, background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 10, padding: "10px 14px", fontSize: 12, color: "#059669", fontWeight: 600 }}>
-                  ✅ 10.2 მმ — ოპტიმალური სისქე ემბრიონის გადატანისთვის (8–14 მმ)
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* ════ FINANCE ════ */}
-          {dashTab === "finance" && (
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ background: "linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)", borderRadius: 20, padding: "28px 32px", color: "white", position: "relative", overflow: "hidden" }}>
-                <div style={{ position: "absolute", right: 30, top: -20, fontSize: 100, opacity: 0.05, userSelect: "none" }}>₾</div>
-                <div style={{ fontSize: 12, opacity: 0.7, letterSpacing: "0.1em", marginBottom: 8 }}>💳 საერთო კომპენსაცია (ხელშეკრულებით)</div>
-                <div style={{ fontSize: 40, fontWeight: 900, letterSpacing: "-0.02em" }}>₾ 28,500</div>
-                <div style={{ fontSize: 13, opacity: 0.7, marginTop: 6 }}>გადახდილია: <strong style={{ color: "#10b981" }}>₾ 5,420</strong> • მომლოდინე: <strong style={{ color: "#E8B84B" }}>₾ 1,950</strong></div>
-                <div style={{ marginTop: 16, height: 8, background: "rgba(255,255,255,0.1)", borderRadius: 4, overflow: "hidden" }}>
-                  <div style={{ height: "100%", width: "19%", background: "linear-gradient(90deg, #10b981, #059669)", borderRadius: 4 }} />
-                </div>
-                <div style={{ fontSize: 11, opacity: 0.6, marginTop: 6 }}>19% — ₾ 5,420 / ₾ 28,500</div>
-              </div>
-              <div style={{ background: "white", borderRadius: 20, padding: "24px 28px", boxShadow: "0 4px 24px rgba(0,0,0,0.05)", border: "1px solid rgba(200,16,46,0.06)" }}>
-                <h2 style={{ margin: "0 0 18px", fontSize: 16, fontWeight: 800, color: "#1a1a2e" }}>📋 გადახდების ისტორია</h2>
-                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  {FINANCES.map((f, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 18px", background: "#f9fafb", borderRadius: 14, border: "1px solid #f1f5f9" }}>
-                      <div style={{ fontSize: 22 }}>{f.icon}</div>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 700, fontSize: 13, color: "#1a1a2e" }}>{f.type}</div>
-                        <div style={{ fontSize: 12, color: "#9ca3af" }}>{f.month}</div>
-                      </div>
-                      <div style={{ textAlign: "right" }}>
-                        <div style={{ fontWeight: 800, fontSize: 16, color: "#1a1a2e" }}>{f.amount}</div>
-                        <div style={{ fontSize: 11, fontWeight: 600, color: f.status === "გადარიცხული" ? "#10b981" : f.status === "მომლოდინე" ? "#f59e0b" : "#6b7280" }}>{f.status}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* ════ SCHEDULE ════ */}
-          {dashTab === "schedule" && (
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ background: "white", borderRadius: 20, padding: "24px 28px", boxShadow: "0 4px 24px rgba(0,0,0,0.05)", border: "1px solid rgba(200,16,46,0.06)" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-                  <h2 style={{ margin: 0, fontSize: 18, fontWeight: 800, color: "#1a1a2e" }}>📅 ჩემი განრიგი</h2>
-                  <div style={{ background: "#fff1f2", border: "1.5px solid #fca5a5", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 700, color: "#C8102E" }}>{scheduleItems.length} ვიზიტი</div>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                  {scheduleItems.map((s, i) => (
-                    <div
-                      key={i}
-                      style={{ display: "flex", gap: 16, padding: "18px 20px", background: "#f9fafb", borderRadius: 16, border: `1.5px solid ${s.type === "procedure" ? "#fca5a5" : s.type === "virtual" ? "#bfdbfe" : "#e5e7eb"}`, position: "relative", overflow: "hidden" }}
-                    >
-                      {s.type === "procedure" && (
-                        <div style={{ position: "absolute", top: 0, left: 0, width: 4, height: "100%", background: "linear-gradient(180deg, #C8102E, #8B0000)" }} />
-                      )}
-                      <div style={{ width: 54, height: 54, borderRadius: 14, background: s.type === "procedure" ? "linear-gradient(135deg, #C8102E, #8B0000)" : s.type === "virtual" ? "linear-gradient(135deg, #3b82f6, #2563eb)" : "linear-gradient(135deg, #6b7280, #4b5563)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "white" }}>
-                        <div style={{ fontSize: 14, fontWeight: 900, lineHeight: 1 }}>{s.date.split(" ")[0]}</div>
-                        <div style={{ fontSize: 10, opacity: 0.8 }}>{s.date.split(" ")[1]?.substring(0, 3)}</div>
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 700, fontSize: 14, color: "#1a1a2e", marginBottom: 4 }}>{s.title}</div>
-                        <div style={{ fontSize: 12, color: "#6b7280", marginBottom: 4 }}>⏰ {s.time} • 📍 {s.location}</div>
-                        <div style={{ display: "inline-block", fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 8, background: s.type === "procedure" ? "#fff1f2" : s.type === "virtual" ? "#eff6ff" : "#f1f5f9", color: s.type === "procedure" ? "#C8102E" : s.type === "virtual" ? "#3b82f6" : "#6b7280" }}>
-                          {s.type === "procedure" ? "🌱 პროცედურა" : s.type === "virtual" ? "💻 ვირტუალური" : "🏥 სამედიცინო"}
-                        </div>
-                      </div>
-                      <div>
-                        {s.confirmed ? (
-                          <div style={{ background: "#f0fdf4", border: "1.5px solid #bbf7d0", borderRadius: 12, padding: "6px 12px", fontSize: 11, fontWeight: 700, color: "#10b981", whiteSpace: "nowrap" }}>✅ დადასტურდა</div>
-                        ) : (
-                          <button
-                            onClick={() => confirmAppointment(i)}
-                            style={{ background: "linear-gradient(135deg, #C8102E, #8B0000)", border: "none", borderRadius: 12, padding: "8px 14px", fontSize: 11, fontWeight: 700, color: "white", cursor: "pointer", whiteSpace: "nowrap", boxShadow: "0 3px 12px rgba(200,16,46,0.3)", fontFamily: "'Georgia', serif" }}
-                          >დადასტურება</button>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* ════ SUPPORT ════ */}
-          {dashTab === "support" && (
-            <div style={{ display: "flex", gap: 20 }}>
-              <div style={{ flex: 1, background: "white", borderRadius: 20, boxShadow: "0 4px 24px rgba(0,0,0,0.06)", border: "1px solid rgba(200,16,46,0.06)", display: "flex", flexDirection: "column", overflow: "hidden", height: "calc(100vh - 200px)", minHeight: 480, maxHeight: 680 }}>
-                <div style={{ padding: "18px 22px", borderBottom: "1px solid #f1f5f9", display: "flex", alignItems: "center", gap: 14, background: "linear-gradient(135deg, #fff9f9, white)" }}>
-                  <div style={{ position: "relative" }}>
-                    <div style={{ width: 44, height: 44, borderRadius: "50%", background: "linear-gradient(135deg, #C8102E, #E8B84B)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 800, fontSize: 16, boxShadow: "0 4px 14px rgba(200,16,46,0.3)" }}>{SURROGATE.coordinator.avatar}</div>
-                    <div style={{ position: "absolute", bottom: 1, right: 1, width: 11, height: 11, borderRadius: "50%", background: "#10b981", border: "2px solid white" }} />
+                {[
+                  { icon: "📱", label: "ტელეფონი", val: "+995 32 2XX XXXX" },
+                  { icon: "📧", label: "ელ-ფოსტა", val: "lile@gestlife.com" },
+                  { icon: "💬", label: "WhatsApp", val: "+995 577 XXX XXX" },
+                ].map((c, i) => (
+                  <div key={i} className="mb-3.5 last:mb-0">
+                    <div className="text-[9px] font-bold text-gestlife-grey-45 uppercase tracking-wide mb-0.5">{c.icon} {c.label}</div>
+                    <div className="text-xs font-extrabold text-gestlife-grey-80">{c.val}</div>
                   </div>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: 14, color: "#1a1a2e" }}>{SURROGATE.coordinator.name}</div>
-                    <div style={{ fontSize: 11, color: "#10b981", fontWeight: 600 }}>● ონლაინ • პასუხობს &lt; 30 წთ</div>
-                  </div>
-                  <div style={{ marginLeft: "auto", background: "#fff1f2", border: "1.5px solid #fca5a5", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 700, color: "#C8102E" }}>💬 პირადი ჩატი</div>
+                ))}
+              </div>
+
+              {/* copies copy request button lists */}
+              <div className="bg-white rounded-3xl p-5 shadow-sm border border-gestlife-grey-20/40">
+                <div className="text-[10px] font-extrabold uppercase tracking-widest text-gestlife-grey-40 mb-3">
+                  ❓ სწრაფი მოთხოვნები
                 </div>
-                <div style={{ flex: 1, overflowY: "auto", padding: "20px 22px", display: "flex", flexDirection: "column", gap: 14, background: "#fafafa" }}>
-                  {chatMessages.map((msg) => (
-                    <div key={msg.id} style={{ display: "flex", flexDirection: msg.from === "user" ? "row-reverse" : "row", alignItems: "flex-end", gap: 8 }}>
-                      {msg.from === "coordinator" && (
-                        <div style={{ width: 30, height: 30, borderRadius: "50%", background: "linear-gradient(135deg, #C8102E, #E8B84B)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 800, fontSize: 11, flexShrink: 0 }}>LL</div>
-                      )}
-                      <div style={{ maxWidth: "72%", padding: "12px 16px", borderRadius: msg.from === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px", background: msg.from === "user" ? "linear-gradient(135deg, #C8102E, #8B0000)" : "white", color: msg.from === "user" ? "white" : "#1a1a2e", fontSize: 13, lineHeight: 1.6, boxShadow: msg.from === "user" ? "0 4px 16px rgba(200,16,46,0.3)" : "0 2px 10px rgba(0,0,0,0.06)", border: msg.from === "coordinator" ? "1px solid #f1f5f9" : "none" }}>
-                        {msg.text}
-                        <div style={{ fontSize: 10, opacity: 0.6, marginTop: 4, textAlign: msg.from === "user" ? "right" : "left" }}>{msg.time}</div>
-                      </div>
-                    </div>
-                  ))}
-                  {chatTyping && (
-                    <div style={{ display: "flex", alignItems: "flex-end", gap: 8 }}>
-                      <div style={{ width: 30, height: 30, borderRadius: "50%", background: "linear-gradient(135deg, #C8102E, #E8B84B)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 800, fontSize: 11, flexShrink: 0 }}>LL</div>
-                      <div style={{ padding: "12px 18px", background: "white", borderRadius: "18px 18px 18px 4px", border: "1px solid #f1f5f9", boxShadow: "0 2px 10px rgba(0,0,0,0.06)", display: "flex", gap: 4, alignItems: "center" }}>
-                        {[0, 1, 2].map((dot) => (
-                          <div key={dot} style={{ width: 8, height: 8, borderRadius: "50%", background: "#C8102E", opacity: 0.6, animation: `ariaBounce 1.2s ${dot * 0.2}s infinite` }} />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  <div ref={chatEndRef} />
-                </div>
-                <div style={{ padding: "16px 18px", borderTop: "1px solid #f1f5f9", display: "flex", gap: 10, alignItems: "center", background: "white" }}>
-                  <input
-                    ref={chatInputRef}
-                    type="text"
-                    value={chatInput}
-                    onChange={(e) => setChatInput(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                    placeholder="შეტყობინება..."
-                    style={{ flex: 1, padding: "11px 18px", borderRadius: 20, border: "1.5px solid #e5e7eb", fontSize: 13, outline: "none", fontFamily: "'Georgia', serif", color: "#1a1a2e", background: "#f9fafb", transition: "border-color 0.2s" }}
-                    onFocus={(e) => (e.target.style.borderColor = "#C8102E88")}
-                    onBlur={(e) => (e.target.style.borderColor = "#e5e7eb")}
-                  />
+                {["ხელშეკრულების ასლი", "სამედიცინო ცნობა", "ფინანსური ისტორია", "გადაუდებელი კონტაქტი"].map((item, i) => (
                   <button
-                    onClick={sendMessage}
-                    disabled={!chatInput.trim()}
-                    style={{ width: 42, height: 42, borderRadius: "50%", border: "none", background: chatInput.trim() ? "linear-gradient(135deg, #C8102E, #8B0000)" : "#f1f5f9", color: chatInput.trim() ? "white" : "#9ca3af", fontSize: 16, cursor: chatInput.trim() ? "pointer" : "default", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s", boxShadow: chatInput.trim() ? "0 4px 14px rgba(200,16,46,0.35)" : "none", flexShrink: 0 }}
-                  >➤</button>
-                </div>
-              </div>
-
-              <div style={{ width: 220, display: "flex", flexDirection: "column", gap: 14, flexShrink: 0 }}>
-                <div style={{ background: "white", borderRadius: 16, padding: "18px", boxShadow: "0 4px 20px rgba(0,0,0,0.05)", border: "1px solid rgba(200,16,46,0.06)" }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#9ca3af", letterSpacing: "0.08em", marginBottom: 12 }}>📞 კავშირი</div>
-                  {[
-                    { icon: "📱", label: "ტელეფონი", val: "+995 32 2XX XXXX" },
-                    { icon: "📧", label: "ელ-ფოსტა", val: "lile@aria-surrogacy.com" },
-                    { icon: "💬", label: "WhatsApp", val: "+995 577 XXX XXX" },
-                  ].map((c, i) => (
-                    <div key={i} style={{ marginBottom: 10 }}>
-                      <div style={{ fontSize: 10, color: "#9ca3af", marginBottom: 2 }}>{c.icon} {c.label}</div>
-                      <div style={{ fontSize: 12, fontWeight: 600, color: "#1a1a2e" }}>{c.val}</div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ background: "white", borderRadius: 16, padding: "18px", boxShadow: "0 4px 20px rgba(0,0,0,0.05)", border: "1px solid rgba(200,16,46,0.06)" }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#9ca3af", letterSpacing: "0.08em", marginBottom: 12 }}>❓ სწრაფი დახმარება</div>
-                  {["ხელშეკრულების ასლი", "სამედიცინო ცნობა", "გადახდის ისტორია", "გადაუდებელი კონტაქტი"].map((item, i) => (
-                    <button
-                      key={i}
-                      style={{ display: "block", width: "100%", textAlign: "left", padding: "8px 12px", marginBottom: 6, borderRadius: 10, border: "1px solid #f1f5f9", background: "#f9fafb", fontSize: 11, color: "#374151", fontWeight: 600, cursor: "pointer", transition: "all 0.2s", fontFamily: "'Georgia', serif" }}
-                      onMouseEnter={e => { e.currentTarget.style.background = "#fff1f2"; e.currentTarget.style.borderColor = "#fca5a5"; e.currentTarget.style.color = "#C8102E"; }}
-                      onMouseLeave={e => { e.currentTarget.style.background = "#f9fafb"; e.currentTarget.style.borderColor = "#f1f5f9"; e.currentTarget.style.color = "#374151"; }}
-                    >{item}</button>
-                  ))}
-                </div>
+                    key={i}
+                    className="block w-full text-left px-3 py-2.5 mb-2 last:mb-0 rounded-xl border border-gestlife-grey-20 hover:border-gestlife-pink/40 bg-gestlife-grey-20/5 hover:bg-gestlife-pink-sub/5 text-xs font-bold text-gestlife-grey-60 hover:text-gestlife-pink transition-all cursor-pointer"
+                  >
+                    {item}
+                  </button>
+                ))}
               </div>
             </div>
-          )}
-        </main>
-      </div>
-
-      <style>{`
-        @keyframes ariaPulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-        @keyframes ariaBounce {
-          0%, 80%, 100% { transform: translateY(0); }
-          40% { transform: translateY(-6px); }
-        }
-      `}</style>
+          </div>
+        )}
+      </main>
     </div>
   );
 }
