@@ -438,7 +438,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
           
           {/* Official Logo Image */}
           <div className="flex items-center gap-3 shrink-0 cursor-pointer" onClick={() => switchProgram("georgia")}>
-            <img src="/logo_cropped.png" alt="Gestlife Logo" className="h-9 sm:h-10 w-auto hover:scale-[1.02] transition-transform" />
+            <img src={program === "greece" ? "/logo_blue.png" : "/logo_cropped.png"} alt="Gestlife Logo" className="h-9 sm:h-10 w-auto hover:scale-[1.02] transition-transform" />
           </div>
 
           {/* Program Segmented Control Selector */}
@@ -969,7 +969,7 @@ function SurrogateDashboard({ user, onLogout }) {
         <div>
           {/* Logo brand segment */}
           <div className="p-5 border-b border-gestlife-grey-20/30 flex items-center justify-center">
-            <img src="/logo_cropped.png" alt="Gestlife Logo" className="h-8 w-auto hover:scale-[1.02] transition-transform" />
+            <img src={user?.program === "greece" ? "/logo_blue.png" : "/logo_cropped.png"} alt="Gestlife Logo" className="h-8 w-auto hover:scale-[1.02] transition-transform" />
           </div>
 
           {/* Mini profile header */}
