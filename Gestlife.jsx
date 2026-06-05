@@ -294,10 +294,12 @@ function BellyWaveTop({ className = "", program = "georgia" }) {
 // ════════════════════════════════════════════════════
 // LANGUAGE DROPDOWN (Glassmorphic)
 // ════════════════════════════════════════════════════
-function LanguageDropdown() {
+function LanguageDropdown({ program = "georgia" }) {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const theme = getTheme(program);
 
   const languages = [
     { code: "ka", label: "KA", flag: "🇬🇪" },
@@ -318,16 +320,23 @@ function LanguageDropdown() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const shadowClass = program === "greece" ? "shadow-[0_10px_30px_-10px_rgba(121,176,245,0.25)]" : "shadow-[0_10px_30px_-10px_rgba(242,107,193,0.25)]";
+  const borderClass = program === "greece" ? "border-gestlife-blue-sub/30" : "border-gestlife-pink-sub/30";
+
   return (
-    <div className="relative shrink-0" ref={dropdownRef}>
+    <div className="relative shrink-0 transition-all duration-300" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gestlife-grey-20/40 bg-white/40 hover:bg-white/60 backdrop-blur-md text-xs font-bold text-gestlife-grey-70 shadow-sm transition-all duration-300 ease-in-out cursor-pointer select-none"
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border backdrop-blur-md text-xs font-bold shadow-sm transition-all duration-300 ease-in-out cursor-pointer select-none ${
+          isOpen
+            ? `bg-white/80 border-transparent text-gestlife-grey-80 ${program === "greece" ? "ring-2 ring-gestlife-blue/20" : "ring-2 ring-gestlife-pink/20"}`
+            : `bg-white/40 border-gestlife-grey-20/40 text-gestlife-grey-70 hover:bg-white/60 hover:border-transparent ${theme.hoverText}`
+        }`}
       >
         <span>{currentLang.flag}</span>
         <span>{currentLang.label}</span>
         <svg
-          className={`w-3 h-3 text-gestlife-grey-50 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3 h-3 transition-all duration-300 ${isOpen ? "rotate-180" : ""} ${isOpen ? theme.accent : "text-gestlife-grey-50"}`}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -340,7 +349,7 @@ function LanguageDropdown() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-32 origin-top-right rounded-xl border border-gestlife-grey-20/40 bg-white/90 backdrop-blur-md shadow-lg py-1.5 z-[100] transition-all duration-300 ease-in-out">
+        <div className={`absolute right-0 mt-2 w-32 origin-top-right rounded-xl border bg-white/95 backdrop-blur-md py-1.5 z-[100] transition-all duration-300 ease-in-out ${borderClass} ${shadowClass}`}>
           {languages.map((lang) => {
             const isSelected = lang.code === i18n.language;
             return (
@@ -352,8 +361,8 @@ function LanguageDropdown() {
                 }}
                 className={`w-full flex items-center gap-2 px-3 py-2 text-left text-xs font-bold transition-all duration-200 ${
                   isSelected
-                    ? "bg-gestlife-grey-20/40 text-gestlife-grey-80"
-                    : "text-gestlife-grey-60 hover:bg-gestlife-grey-20/20 hover:text-gestlife-grey-80"
+                    ? `${theme.subBg10} ${theme.accent}`
+                    : `text-gestlife-grey-60 hover:${theme.hoverBg5} hover:${theme.hoverText}`
                 }`}
               >
                 <span>{lang.flag}</span>
@@ -562,7 +571,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
             </div>
             
             {/* Language Selection Dropdown */}
-            <LanguageDropdown />
+            <LanguageDropdown program={program} />
           </div>
 
           {/* Navigation Links */}
@@ -1128,7 +1137,7 @@ function SurrogateDashboard({ user, onLogout }) {
           {/* Logo brand segment */}
           <div className="p-5 border-b border-gestlife-grey-20/30 flex items-center justify-between gap-2">
             <img src={user?.program === "greece" ? "/logo_blue.png" : "/logo_cropped.png"} alt="Gestlife Logo" className="h-7 w-auto hover:scale-[1.02] transition-transform" />
-            <LanguageDropdown />
+            <LanguageDropdown program={user?.program || "georgia"} />
           </div>
 
           {/* Mini profile header */}
@@ -1203,7 +1212,7 @@ function SurrogateDashboard({ user, onLogout }) {
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <LanguageDropdown />
+            <LanguageDropdown program={user?.program || "georgia"} />
             <button
               onClick={onLogout}
               className="text-xs font-bold text-red-500 bg-red-50 px-3 py-1.5 rounded-lg border border-red-100 whitespace-nowrap"

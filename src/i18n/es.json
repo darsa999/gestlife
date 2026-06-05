@@ -66,7 +66,35 @@
       "continue": "Continuar con el registro →",
       "retry": "Intentar de nuevo"
     },
-    "questionStep": "Pregunta {{step}} de 4"
+    "questionStep": "Pregunta {{step}} de 4",
+    "questions": {
+      "age": {
+        "title": "¿Cuál es su edad?",
+        "o1": "25–35 años",
+        "o2": "36–42 años",
+        "o3": "43–50 años",
+        "o4": "50+ años"
+      },
+      "bmi": {
+        "title": "¿Cuál es su estado de salud / IMC?",
+        "o1": "Excelente — IMC 18–24",
+        "o2": "Bueno — IMC 25–28",
+        "o3": "Promedio — IMC 29–32",
+        "o4": "Bajo revisión — IMC 32+"
+      },
+      "child": {
+        "title": "¿Tiene un hijo propio?",
+        "o1": "Sí, 1 o más",
+        "o2": "No, pero queremos",
+        "o3": "Tenemos una condición médica"
+      },
+      "legal": {
+        "title": "¿Estado de antecedentes legales?",
+        "o1": "Completamente limpio",
+        "o2": "Infracción administrativa menor",
+        "o3": "Demanda / antecedentes penales"
+      }
+    }
   },
   "programs": {
     "georgia": {

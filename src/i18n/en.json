@@ -66,7 +66,35 @@
       "continue": "Continue Registration →",
       "retry": "Try Again"
     },
-    "questionStep": "Question {{step}} of 4"
+    "questionStep": "Question {{step}} of 4",
+    "questions": {
+      "age": {
+        "title": "What is your age?",
+        "o1": "25–35 years",
+        "o2": "36–42 years",
+        "o3": "43–50 years",
+        "o4": "50+ years"
+      },
+      "bmi": {
+        "title": "What is your health status / BMI?",
+        "o1": "Excellent — BMI 18–24",
+        "o2": "Good — BMI 25–28",
+        "o3": "Average — BMI 29–32",
+        "o4": "To be reviewed — BMI 32+"
+      },
+      "child": {
+        "title": "Do you have your own child?",
+        "o1": "Yes, 1 or more",
+        "o2": "No, but we want to",
+        "o3": "We have a medical condition"
+      },
+      "legal": {
+        "title": "Legal background status?",
+        "o1": "Completely clean",
+        "o2": "Minor administrative offense",
+        "o3": "Criminal record / lawsuit"
+      }
+    }
   },
   "programs": {
     "georgia": {
