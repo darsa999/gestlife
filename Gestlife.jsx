@@ -353,15 +353,9 @@ function SurrogacyHomepage({ onEnterDashboard }) {
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gestlife-grey-20/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
           
-          {/* Logo Symbol & Text */}
+          {/* Official Logo Image */}
           <div className="flex items-center gap-3 shrink-0 cursor-pointer" onClick={() => switchProgram("georgia")}>
-            <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md bg-brand-gradient hover:scale-105 transition-transform">
-              <HeartIcon fill="white" className="w-[18px] h-[18px] text-white" />
-            </div>
-            <div>
-              <div className="font-montserrat font-extrabold text-gestlife-grey-80 text-xl leading-none">Gestlife</div>
-              <div className="text-[10px] text-gestlife-grey-60 font-semibold tracking-wider uppercase mt-0.5">FemTech Surrogacy</div>
-            </div>
+            <img src="/logo_cropped.png" alt="Gestlife Logo" className="h-9 sm:h-10 w-auto hover:scale-[1.02] transition-transform" />
           </div>
 
           {/* Program Segmented Control Selector */}
@@ -401,6 +395,8 @@ function SurrogacyHomepage({ onEnterDashboard }) {
         
         {/* ── HERO SECTION ── */}
         <section className="relative bg-gradient-to-b from-[#FCFBFE] to-[#F5F5FA] pt-14 pb-20 overflow-hidden">
+          {/* Subtle logo watermark (Top-Left) */}
+          <img src="/logo_symbol.png" alt="" className="absolute top-10 left-10 w-44 sm:w-60 opacity-[0.025] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
           {/* Pregnancy Belly Wave watermark in background */}
           <div className="absolute right-[-100px] top-[-50px] opacity-[0.04] select-none pointer-events-none w-[600px] h-[800px] text-gestlife-pink rotate-45">
             <svg viewBox="0 0 100 100" className="w-full h-full fill-current">
@@ -504,7 +500,9 @@ function SurrogacyHomepage({ onEnterDashboard }) {
         </section>
 
         {/* ── MYTHS VS TRUTHS SECTION (White background space) ── */}
-        <section id="myths" className="py-20 px-4 bg-white relative">
+        <section id="myths" className="py-20 px-4 bg-white relative overflow-hidden">
+          {/* Subtle logo watermark (Bottom-Right) */}
+          <img src="/logo_symbol.png" alt="" className="absolute bottom-10 right-10 w-44 sm:w-60 opacity-[0.025] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 space-y-3.5">
               <div className="inline-block px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-gestlife-pink-sub/30 text-gestlife-grey-80 border border-gestlife-pink-sub/20">
@@ -555,6 +553,8 @@ function SurrogacyHomepage({ onEnterDashboard }) {
 
         {/* ── INTERACTIVE QUALIFICATION QUIZ SECTION ── */}
         <section id="quiz" ref={quizRef} className="relative py-20 px-4 bg-gradient-to-b from-[#F5F5FA] to-[#FCFBFE] overflow-hidden">
+          {/* Subtle logo watermark (Top-Right) */}
+          <img src="/logo_symbol.png" alt="" className="absolute top-20 right-10 w-44 sm:w-60 opacity-[0.025] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
           {/* Top wave spacer */}
           <BellyWaveTop className="absolute top-0 left-0" />
 
@@ -883,11 +883,8 @@ function SurrogateDashboard({ user, onLogout }) {
       <aside className="w-64 bg-white border-r border-gestlife-grey-20/40 flex-col justify-between hidden md:flex shrink-0">
         <div>
           {/* Logo brand segment */}
-          <div className="p-6 border-b border-gestlife-grey-20/30 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white bg-brand-gradient">
-              <HeartIcon fill="white" className="w-[14px] h-[14px]" />
-            </div>
-            <span className="font-montserrat font-bold text-gestlife-grey-80 text-lg">Gestlife Portal</span>
+          <div className="p-5 border-b border-gestlife-grey-20/30 flex items-center justify-center">
+            <img src="/logo_cropped.png" alt="Gestlife Logo" className="h-8 w-auto hover:scale-[1.02] transition-transform" />
           </div>
 
           {/* Mini profile header */}
@@ -948,7 +945,7 @@ function SurrogateDashboard({ user, onLogout }) {
       </div>
 
       {/* ── MAIN CONTENT CONTAINER ── */}
-      <main className="flex-1 p-5 sm:p-8 md:p-10 pb-24 md:pb-10 min-w-0 flex flex-col gap-6">
+      <main className="flex-1 p-5 sm:p-8 md:p-10 pb-24 md:pb-10 min-w-0 flex flex-col gap-6 relative overflow-hidden">
         
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between bg-white p-4 rounded-2xl border border-gestlife-grey-20/30 shadow-sm">
@@ -972,6 +969,8 @@ function SurrogateDashboard({ user, onLogout }) {
         {/* ════ OVERVIEW TAB ════ */}
         {dashTab === "overview" && (
           <div className="flex flex-col gap-6 text-left">
+            {/* Subtle logo watermark (Bottom-Right) */}
+            <img src="/logo_symbol.png" alt="" className="absolute bottom-10 right-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
             {/* Welcome Dashboard Banner card */}
             <div className="bg-brand-gradient rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg">
               {/* Flag backdrop indicator */}
@@ -1105,6 +1104,8 @@ function SurrogateDashboard({ user, onLogout }) {
         {/* ════ PROFILE TAB ════ */}
         {dashTab === "profile" && (
           <div className="flex flex-col gap-6 text-left">
+            {/* Subtle logo watermark (Top-Right) */}
+            <img src="/logo_symbol.png" alt="" className="absolute top-24 right-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
             <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gestlife-grey-20/40">
               
               {/* Profile Card Header banner */}
@@ -1170,6 +1171,8 @@ function SurrogateDashboard({ user, onLogout }) {
         {/* ════ MEDICAL TAB ════ */}
         {dashTab === "medical" && (
           <div className="flex flex-col gap-6 text-left">
+            {/* Subtle logo watermark (Bottom-Left) */}
+            <img src="/logo_symbol.png" alt="" className="absolute bottom-10 left-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
                 <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">🧬 სამედიცინო შეფასებები & კვლევები</h2>
@@ -1235,6 +1238,8 @@ function SurrogateDashboard({ user, onLogout }) {
         {/* ════ FINANCE TAB ════ */}
         {dashTab === "finance" && (
           <div className="flex flex-col gap-6 text-left">
+            {/* Subtle logo watermark (Top-Left) */}
+            <img src="/logo_symbol.png" alt="" className="absolute top-10 left-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
             
             {/* Total Balance Card indicator */}
             <div className="bg-[#1C1D26] rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-md">
@@ -1282,6 +1287,8 @@ function SurrogateDashboard({ user, onLogout }) {
         {/* ════ SCHEDULE TAB ════ */}
         {dashTab === "schedule" && (
           <div className="flex flex-col gap-6 text-left">
+            {/* Subtle logo watermark (Bottom-Right) */}
+            <img src="/logo_symbol.png" alt="" className="absolute bottom-10 right-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
                 <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">📅 კლინიკური და საკონსულტაციო ვიზიტები</h2>
@@ -1357,6 +1364,8 @@ function SurrogateDashboard({ user, onLogout }) {
         {/* ════ SUPPORT TAB ════ */}
         {dashTab === "support" && (
           <div className="flex flex-col lg:flex-row gap-6 text-left">
+            {/* Subtle logo watermark (Top-Right) */}
+            <img src="/logo_symbol.png" alt="" className="absolute top-10 right-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
             {/* Chat Box panel */}
             <div className="flex-1 bg-white rounded-3xl shadow-sm border border-gestlife-grey-20/40 flex flex-col overflow-hidden" style={{ minHeight: "500px", height: "calc(100vh - 220px)" }}>
               {/* Header profile segment */}
