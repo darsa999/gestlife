@@ -234,28 +234,106 @@ function HeartIcon({ className = "w-5 h-5", fill = "none" }) {
 }
 
 // ════════════════════════════════════════════════════
+// DYNAMIC THEME SYSTEM & ACCENT SWITCHER
+// ════════════════════════════════════════════════════
+const getTheme = (program) => {
+  const isGreece = program === "greece";
+  return {
+    // gradients
+    gradient: isGreece ? "bg-greece-gradient" : "bg-brand-gradient",
+    textGradient: isGreece ? "text-greece-gradient" : "text-brand-gradient",
+    
+    // solid main brand colors
+    accent: isGreece ? "text-gestlife-blue" : "text-gestlife-pink",
+    accentBg: isGreece ? "bg-gestlife-blue" : "bg-gestlife-pink",
+    accentBorder: isGreece ? "border-gestlife-blue" : "border-gestlife-pink",
+    accentBorderSub: isGreece ? "border-gestlife-blue-sub" : "border-gestlife-pink-sub",
+    accentBorderSub30: isGreece ? "border-gestlife-blue-sub/30" : "border-gestlife-pink-sub/30",
+    accentBorderSub80: isGreece ? "border-gestlife-blue-sub/80" : "border-gestlife-pink-sub/80",
+    accentBorder40: isGreece ? "border-gestlife-blue/40" : "border-gestlife-pink/40",
+    accentBorder50: isGreece ? "border-gestlife-blue/50" : "border-gestlife-pink/50",
+    accentBorder60: isGreece ? "border-gestlife-blue/60" : "border-gestlife-pink/60",
+    accentBorder20: isGreece ? "border-gestlife-blue-sub/20" : "border-gestlife-pink-sub/20",
+    
+    // subtone / light overlays
+    subBg5: isGreece ? "bg-gestlife-blue-sub/5" : "bg-gestlife-pink-sub/5",
+    subBg10: isGreece ? "bg-gestlife-blue-sub/10" : "bg-gestlife-pink-sub/10",
+    subBg30: isGreece ? "bg-gestlife-blue-sub/30" : "bg-gestlife-pink-sub/30",
+    
+    // hover states
+    hoverBorder: isGreece ? "hover:border-gestlife-blue/40" : "hover:border-gestlife-pink/40",
+    hoverBorder50: isGreece ? "hover:border-gestlife-blue/50" : "hover:border-gestlife-pink/50",
+    hoverBorder30: isGreece ? "hover:border-gestlife-blue/30" : "hover:border-gestlife-pink/30",
+    hoverBg5: isGreece ? "hover:bg-gestlife-blue-sub/5" : "hover:bg-gestlife-pink-sub/5",
+    hoverBg10: isGreece ? "hover:bg-gestlife-blue-sub/10" : "hover:bg-gestlife-pink-sub/10",
+    hoverText: isGreece ? "hover:text-gestlife-blue" : "hover:text-gestlife-pink",
+    focusBorder: isGreece ? "focus:border-gestlife-blue" : "focus:border-gestlife-pink",
+    focusBorder50: isGreece ? "focus:border-gestlife-blue/50" : "focus:border-gestlife-pink/50",
+    
+    // shadows and rings
+    shadow: isGreece ? "shadow-gestlife-blue/20" : "shadow-gestlife-pink/20",
+    ring: isGreece ? "ring-gestlife-blue/20" : "ring-gestlife-pink/20",
+    
+    // other specific elements
+    legalBorder: isGreece ? "border-l-[#79B0F5]" : "border-l-[#F26BC1]",
+    heroSvgColor: isGreece ? "text-gestlife-blue" : "text-gestlife-pink",
+  };
+};
+
+// ════════════════════════════════════════════════════
+// STANDALONE BRAND ISOTYPE WATERMARK (100% Brand Compliant)
+// ════════════════════════════════════════════════════
+function BrandWatermark({ className = "", rotation = 0, program = "georgia" }) {
+  const bg = program === "greece" 
+    ? "linear-gradient(40deg, #79B0F5 0%, #C7DBFF 100%)" // Blue gradient for Greece
+    : "linear-gradient(40deg, #F26BC1 0%, #79B0F5 100%)"; // Pink-Blue gradient for Georgia
+  
+  return (
+    <div
+      style={{
+        maskImage: "url(/logo_symbol.png)",
+        WebkitMaskImage: "url(/logo_symbol.png)",
+        maskSize: "contain",
+        WebkitMaskSize: "contain",
+        maskRepeat: "no-repeat",
+        WebkitMaskRepeat: "no-repeat",
+        background: bg,
+        transform: `rotate(${rotation}deg)`,
+      }}
+      className={`absolute w-24 sm:w-32 aspect-[151/186] opacity-[0.15] z-0 pointer-events-none select-none transition-all duration-300 ${className}`}
+    />
+  );
+}
+
+// ════════════════════════════════════════════════════
 // BRAND GEOMETRIC RESOURCE — The Pregnancy-Profile Wave
 // ════════════════════════════════════════════════════
-function BellyWaveBottom({ className = "" }) {
+function BellyWaveBottom({ className = "", program = "georgia" }) {
+  const isGreece = program === "greece";
+  const fill1 = isGreece ? "#C7DBFF" : "#79B0F5";
+  const fill2 = isGreece ? "#79B0F5" : "#F26BC1";
+  const fill3 = isGreece ? "url(#greece-gradient-element)" : "url(#brand-gradient-element)";
   return (
     <div className={`relative w-full overflow-hidden leading-none ${className}`}>
       <svg className="relative block w-full h-[80px] sm:h-[120px] md:h-[160px]" viewBox="0 0 1440 160" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         {/* Layer 1 (Subtone Blue) */}
-        <path d="M0,96 C240,144 480,168 720,112 C960,56 1200,32 1440,80 L1440,160 L0,160 Z" fill="#79B0F5" opacity="0.15" />
-        {/* Layer 2 (Subtone Pink) */}
-        <path d="M0,128 C280,168 560,128 840,96 C1120,64 1280,112 1440,128 L1440,160 L0,160 Z" fill="#F26BC1" opacity="0.2" />
+        <path d="M0,96 C240,144 480,168 720,112 C960,56 1200,32 1440,80 L1440,160 L0,160 Z" fill={fill1} opacity="0.15" />
+        {/* Layer 2 (Subtone Pink/Blue) */}
+        <path d="M0,128 C280,168 560,128 840,96 C1120,64 1280,112 1440,128 L1440,160 L0,160 Z" fill={fill2} opacity="0.2" />
         {/* Layer 3 (Primary Gradient 40deg) */}
-        <path d="M0,135 C320,165 640,110 960,135 C1120,150 1280,135 1440,140 L1440,160 L0,160 Z" fill="url(#brand-gradient-element)" />
+        <path d="M0,135 C320,165 640,110 960,135 C1120,150 1280,135 1440,140 L1440,160 L0,160 Z" fill={fill3} />
       </svg>
     </div>
   );
 }
 
-function BellyWaveTop({ className = "" }) {
+function BellyWaveTop({ className = "", program = "georgia" }) {
+  const isGreece = program === "greece";
+  const fill = isGreece ? "url(#greece-gradient-element)" : "url(#brand-gradient-element)";
   return (
     <div className={`relative w-full overflow-hidden leading-none rotate-180 ${className}`}>
       <svg className="relative block w-full h-[50px] sm:h-[80px]" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0,60 C320,110 640,110 960,60 C1120,35 1280,15 1440,30 L1440,120 L0,120 Z" fill="url(#brand-gradient-element)" />
+        <path d="M0,60 C320,110 640,110 960,60 C1120,35 1280,15 1440,30 L1440,120 L0,120 Z" fill={fill} />
       </svg>
     </div>
   );
@@ -277,6 +355,10 @@ export default function GestlifeApp() {
           <linearGradient id="brand-gradient-element" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#F26BC1" />
             <stop offset="100%" stopColor="#79B0F5" />
+          </linearGradient>
+          <linearGradient id="greece-gradient-element" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#79B0F5" />
+            <stop offset="100%" stopColor="#C7DBFF" />
           </linearGradient>
         </defs>
       </svg>
@@ -311,6 +393,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
   const quizRef = useRef(null);
 
   const data = PROGRAMS[program];
+  const theme = getTheme(program);
 
   const switchProgram = (newProg) => {
     if (newProg === program) return;
@@ -360,20 +443,24 @@ function SurrogacyHomepage({ onEnterDashboard }) {
 
           {/* Program Segmented Control Selector */}
           <div className="flex bg-gestlife-grey-20/50 rounded-full p-1 border border-gestlife-grey-20/30 shadow-inner">
-            {Object.values(PROGRAMS).map((prog) => (
-              <button
-                key={prog.id}
-                onClick={() => switchProgram(prog.id)}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 ${
-                  program === prog.id
-                    ? "bg-white shadow-md text-gestlife-grey-80 scale-105"
-                    : "text-gestlife-grey-60 hover:text-gestlife-grey-80"
-                }`}
-              >
-                <span className="text-base">{prog.flag}</span>
-                <span className="hidden sm:inline font-montserrat">{prog.nameEn}</span>
-              </button>
-            ))}
+            {Object.values(PROGRAMS).map((prog) => {
+              const isActive = program === prog.id;
+              const activeBg = prog.id === "greece" ? "bg-greece-gradient shadow-md" : "bg-brand-gradient shadow-md";
+              return (
+                <button
+                  key={prog.id}
+                  onClick={() => switchProgram(prog.id)}
+                  className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 ease-in-out ${
+                    isActive
+                      ? `${activeBg} text-white scale-105`
+                      : "text-gestlife-grey-60 hover:text-gestlife-grey-80"
+                  }`}
+                >
+                  <span className="text-base">{prog.flag}</span>
+                  <span className="hidden sm:inline font-montserrat">{prog.nameEn}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Navigation Links */}
@@ -382,7 +469,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
             <a href="#quiz" className="hidden md:inline text-sm font-semibold text-gestlife-grey-60 hover:text-gestlife-grey-80 transition-colors">კვალიფიკაცია</a>
             <button
               onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(6); }}
-              className="px-5 py-2.5 rounded-full text-white text-xs font-bold shadow-md bg-brand-gradient hover:shadow-lg hover:scale-105 transition-all cursor-pointer"
+              className={`px-5 py-2.5 rounded-full text-white text-xs font-bold shadow-md ${theme.gradient} hover:shadow-lg hover:scale-105 transition-all cursor-pointer`}
             >
               შესვლა
             </button>
@@ -394,11 +481,11 @@ function SurrogacyHomepage({ onEnterDashboard }) {
       <main className={`flex-1 transition-all duration-300 ${transitioning ? "opacity-0 scale-[0.98]" : "opacity-100 scale-100"}`}>
         
         {/* ── HERO SECTION ── */}
-        <section className="relative bg-gradient-to-b from-[#FCFBFE] to-[#F5F5FA] pt-14 pb-20 overflow-hidden">
+        <section className={`relative pt-14 pb-20 overflow-hidden ${program === "greece" ? "bg-gradient-to-b from-[#FCFBFE] to-gestlife-blue-sub/10" : "bg-gradient-to-b from-[#FCFBFE] to-[#F5F5FA]"}`}>
           {/* Subtle logo watermark (Top-Left) */}
-          <img src="/logo_symbol.png" alt="" className="absolute top-10 left-10 w-44 sm:w-60 opacity-[0.025] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
+          <BrandWatermark program={program} rotation={15} className="top-8 right-6 sm:top-12 sm:right-[8%] md:right-[12%]" />
           {/* Pregnancy Belly Wave watermark in background */}
-          <div className="absolute right-[-100px] top-[-50px] opacity-[0.04] select-none pointer-events-none w-[600px] h-[800px] text-gestlife-pink rotate-45">
+          <div className={`absolute right-[-100px] top-[-50px] opacity-[0.04] select-none pointer-events-none w-[600px] h-[800px] ${theme.heroSvgColor} rotate-45`}>
             <svg viewBox="0 0 100 100" className="w-full h-full fill-current">
               <path d="M30,10 Q65,40 55,70 T85,90 L30,90 Z" />
             </svg>
@@ -425,7 +512,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
               <div className="grid grid-cols-3 gap-4 border-t border-b border-gestlife-grey-20/30 py-6 max-w-md">
                 {data.stats.map((s, i) => (
                   <div key={i} className="text-left">
-                    <div className="text-2xl sm:text-3xl font-montserrat font-black text-brand-gradient">{s.value}</div>
+                    <div className={`text-2xl sm:text-3xl font-montserrat font-black ${theme.textGradient}`}>{s.value}</div>
                     <div className="text-[10px] sm:text-xs font-semibold text-gestlife-grey-60 mt-1 uppercase tracking-wide leading-tight">{s.label}</div>
                   </div>
                 ))}
@@ -435,20 +522,20 @@ function SurrogacyHomepage({ onEnterDashboard }) {
               <div className="flex flex-wrap gap-4 pt-2">
                 <button
                   onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(1); }}
-                  className="px-7 py-3.5 rounded-full text-white font-bold text-sm tracking-wide shadow-xl bg-brand-gradient hover:shadow-2xl hover:scale-105 active:scale-98 transition-all cursor-pointer"
+                  className={`px-7 py-3.5 rounded-full text-white font-bold text-sm tracking-wide shadow-xl ${theme.gradient} hover:shadow-2xl hover:scale-105 active:scale-98 transition-all cursor-pointer`}
                 >
                   ტესტის დაწყება →
                 </button>
                 <button 
                   onClick={() => { quizRef.current?.scrollIntoView({ behavior: "smooth" }); setQuizStep(0); }}
-                  className="px-7 py-3.5 rounded-full border-2 border-gestlife-grey-20 text-gestlife-grey-80 font-bold text-sm hover:bg-white hover:border-gestlife-pink/40 hover:shadow-sm transition-all cursor-pointer"
+                  className={`px-7 py-3.5 rounded-full border-2 border-gestlife-grey-20 text-gestlife-grey-80 font-bold text-sm hover:bg-white ${theme.hoverBorder} hover:shadow-sm transition-all cursor-pointer`}
                 >
                   გაიგეთ მეტი
                 </button>
               </div>
 
               {/* Legal Notice */}
-              <div className={`border rounded-xl p-4 text-xs font-medium leading-relaxed bg-white/60 backdrop-blur-sm shadow-sm border-l-4 border-l-[#F26BC1] max-w-xl`}>
+              <div className={`border rounded-xl p-4 text-xs font-medium leading-relaxed bg-white/60 backdrop-blur-sm shadow-sm border-l-4 ${theme.legalBorder} max-w-xl`}>
                 <span className="font-bold text-gestlife-grey-80">⚖️ სამართლებრივი ინფო:</span> {data.legalNote}
               </div>
             </div>
@@ -456,14 +543,14 @@ function SurrogacyHomepage({ onEnterDashboard }) {
             {/* Video Preview Column */}
             <div className="relative">
               {/* Outer frame wave accent */}
-              <div className="absolute -inset-1.5 rounded-3xl bg-brand-gradient opacity-20 blur-lg -z-10 animate-pulse" />
+              <div className={`absolute -inset-1.5 rounded-3xl ${theme.gradient} opacity-20 blur-lg -z-10 animate-pulse`} />
               
               <div
                 className="rounded-3xl overflow-hidden shadow-2xl aspect-video bg-gestlife-grey-80 flex items-center justify-center cursor-pointer group relative"
                 onClick={() => setVideoPlaying(!videoPlaying)}
               >
                 {/* Visual cover gradient overlay */}
-                <div className="absolute inset-0 opacity-40 bg-gradient-to-tr from-[#F26BC1] to-[#79B0F5] transition-opacity group-hover:opacity-30 z-0" />
+                <div className={`absolute inset-0 opacity-40 ${program === "greece" ? "bg-gradient-to-tr from-[#79B0F5] to-[#C7DBFF]" : "bg-gradient-to-tr from-[#F26BC1] to-[#79B0F5]"} transition-opacity group-hover:opacity-30 z-0`} />
                 
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 p-6">
                   {videoPlaying ? (
@@ -474,7 +561,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                     </div>
                   ) : (
                     <div className="text-center space-y-4 flex flex-col items-center">
-                      <div className="w-16 h-16 rounded-full flex items-center justify-center text-white shadow-lg bg-brand-gradient opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-all">
+                      <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white shadow-lg ${theme.gradient} opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-all`}>
                         <span className="translate-x-0.5 text-xl">▶</span>
                       </div>
                       <div>
@@ -496,16 +583,16 @@ function SurrogacyHomepage({ onEnterDashboard }) {
           </div>
           
           {/* Transition wave at the bottom */}
-          <BellyWaveBottom className="absolute bottom-0 left-0" />
+          <BellyWaveBottom program={program} className="absolute bottom-0 left-0" />
         </section>
 
         {/* ── MYTHS VS TRUTHS SECTION (White background space) ── */}
         <section id="myths" className="py-20 px-4 bg-white relative overflow-hidden">
           {/* Subtle logo watermark (Bottom-Right) */}
-          <img src="/logo_symbol.png" alt="" className="absolute bottom-10 right-10 w-44 sm:w-60 opacity-[0.025] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <BrandWatermark program={program} rotation={-15} className="top-12 left-12" />
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-12 space-y-3.5">
-              <div className="inline-block px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-gestlife-pink-sub/30 text-gestlife-grey-80 border border-gestlife-pink-sub/20">
+              <div className={`inline-block px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest ${theme.subBg30} text-gestlife-grey-80 border ${theme.accentBorder20}`}>
                 {data.flag} FACT CHECK
               </div>
               <h2 className="text-2xl sm:text-3xl font-montserrat font-extrabold text-gestlife-grey-80">მითები vs. სინამდვილე</h2>
@@ -519,7 +606,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                 <div
                   key={idx}
                   className={`rounded-2xl border cursor-pointer transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md ${
-                    openMyth === idx ? "border-gestlife-pink/60 bg-gestlife-pink-sub/5" : "border-gestlife-grey-20/60 hover:border-gestlife-grey-40/60"
+                    openMyth === idx ? `${theme.accentBorder60} ${theme.subBg5}` : "border-gestlife-grey-20/60 hover:border-gestlife-grey-40/60"
                   }`}
                   onClick={() => setOpenMyth(openMyth === idx ? null : idx)}
                 >
@@ -531,7 +618,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                           <div className="text-[10px] font-extrabold uppercase tracking-wider text-gestlife-grey-40 mb-1">❌ მითი</div>
                           <h3 className="font-montserrat font-bold text-gestlife-grey-80 text-base leading-snug">"{item.myth}"</h3>
                         </div>
-                        <div className={`w-7 h-7 rounded-full flex items-center justify-center text-white text-xs shrink-0 transition-transform duration-300 bg-brand-gradient ${openMyth === idx ? "rotate-180" : ""}`}>
+                        <div className={`w-7 h-7 rounded-full flex items-center justify-center text-white text-xs shrink-0 transition-transform duration-300 ${theme.gradient} ${openMyth === idx ? "rotate-180" : ""}`}>
                           ▼
                         </div>
                       </div>
@@ -554,13 +641,13 @@ function SurrogacyHomepage({ onEnterDashboard }) {
         {/* ── INTERACTIVE QUALIFICATION QUIZ SECTION ── */}
         <section id="quiz" ref={quizRef} className="relative py-20 px-4 bg-gradient-to-b from-[#F5F5FA] to-[#FCFBFE] overflow-hidden">
           {/* Subtle logo watermark (Top-Right) */}
-          <img src="/logo_symbol.png" alt="" className="absolute top-20 right-10 w-44 sm:w-60 opacity-[0.025] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
+          <BrandWatermark program={program} rotation={10} className="bottom-12 right-12" />
           {/* Top wave spacer */}
-          <BellyWaveTop className="absolute top-0 left-0" />
+          <BellyWaveTop program={program} className="absolute top-0 left-0" />
 
           <div className="max-w-2xl mx-auto px-4 relative z-10 mt-8">
             <div className="text-center mb-10 space-y-3">
-              <div className="inline-block px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-brand-gradient text-white">
+              <div className={`inline-block px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest ${theme.gradient} text-white`}>
                 ⏱ 30 წამი
               </div>
               <h2 className="text-2xl sm:text-3xl font-montserrat font-extrabold text-gestlife-grey-80">კვალიფიკაციის ტესტი</h2>
@@ -573,7 +660,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
               {quizStep >= 1 && quizStep <= 4 && (
                 <div className="h-1.5 bg-gestlife-grey-20/30">
                   <div
-                    className="h-full bg-brand-gradient transition-all duration-500 rounded-r-full"
+                    className={`h-full ${theme.gradient} transition-all duration-500 rounded-r-full`}
                     style={{ width: `${(quizStep / 4) * 100}%` }}
                   />
                 </div>
@@ -583,7 +670,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                 {/* Step 0: Intro */}
                 {quizStep === 0 && (
                   <div className="text-center space-y-6">
-                    <div className="w-16 h-16 rounded-full flex items-center justify-center bg-brand-gradient text-white text-3xl mx-auto shadow-md">
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center ${theme.gradient} text-white text-3xl mx-auto shadow-md`}>
                       ✨
                     </div>
                     <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-gestlife-grey-80">მზად ხართ ტესტისთვის?</h3>
@@ -593,7 +680,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                     <ul className="text-left space-y-3.5 max-w-xs mx-auto py-2 font-medium text-sm text-gestlife-grey-80">
                       {["ასაკობრივი ზღვარი", "ჯანმრთელობის ინდექსი / BMI", "ოჯახური მდგომარეობა", "სამართლებრივი ფონი"].map((item, i) => (
                         <li key={i} className="flex items-center gap-3">
-                          <span className="w-5.5 h-5.5 rounded-full text-white text-[10px] flex items-center justify-center font-bold bg-brand-gradient shrink-0">
+                          <span className={`w-5.5 h-5.5 rounded-full text-white text-[10px] flex items-center justify-center font-bold ${theme.gradient} shrink-0`}>
                             {i + 1}
                           </span>
                           <span>{item}</span>
@@ -602,7 +689,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                     </ul>
                     <button
                       onClick={() => setQuizStep(1)}
-                      className="w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg hover:shadow-xl hover:scale-102 active:scale-98 transition-all bg-brand-gradient cursor-pointer"
+                      className={`w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg hover:shadow-xl hover:scale-102 active:scale-98 transition-all ${theme.gradient} cursor-pointer`}
                     >
                       ტესტის დაწყება →
                     </button>
@@ -626,7 +713,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                         <button
                           key={i}
                           onClick={() => handleAnswer(opt)}
-                          className="w-full text-left px-5 py-4 rounded-xl border border-gestlife-grey-20 hover:bg-gestlife-pink-sub/5 hover:border-gestlife-pink/50 transition-all text-gestlife-grey-80 font-bold text-sm cursor-pointer flex items-center justify-between"
+                          className={`w-full text-left px-5 py-4 rounded-xl border border-gestlife-grey-20 ${theme.hoverBg5} ${theme.hoverBorder50} transition-all text-gestlife-grey-80 font-bold text-sm cursor-pointer flex items-center justify-between`}
                         >
                           <span>{opt.label}</span>
                           <span className="w-5 h-5 rounded-full border border-gestlife-grey-20 flex items-center justify-center">
@@ -659,7 +746,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                         </p>
                         <button
                           onClick={() => setQuizStep(6)}
-                          className="w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg bg-brand-gradient hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                          className={`w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg ${theme.gradient} hover:scale-102 active:scale-98 transition-all cursor-pointer`}
                         >
                           რეგისტრაციის გაგრძელება →
                         </button>
@@ -699,7 +786,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                               placeholder="მაგ: ნინო გელაშვილი"
                               value={formData.name}
                               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                              className="w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none focus:border-gestlife-pink transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40"
+                              className={`w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none ${theme.focusBorder} transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40`}
                             />
                           </div>
                           <div>
@@ -709,7 +796,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                               placeholder="+995 5XX XXX XXX"
                               value={formData.phone}
                               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                              className="w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none focus:border-gestlife-pink transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40"
+                              className={`w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none ${theme.focusBorder} transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40`}
                             />
                           </div>
                           <div>
@@ -719,7 +806,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                               placeholder="მინ. 8 სიმბოლო"
                               value={formData.password}
                               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                              className="w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none focus:border-gestlife-pink transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40"
+                              className={`w-full px-4 py-3 rounded-xl border border-gestlife-grey-20 focus:outline-none ${theme.focusBorder} transition-colors font-bold text-sm text-gestlife-grey-85 placeholder:text-gestlife-grey-40`}
                             />
                           </div>
                         </div>
@@ -727,7 +814,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                         <button
                           onClick={handleFormSubmit}
                           disabled={!formData.name || !formData.phone || !formData.password}
-                          className="w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg bg-brand-gradient hover:scale-102 active:scale-98 disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed transition-all cursor-pointer mt-4"
+                          className={`w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg ${theme.gradient} hover:scale-102 active:scale-98 disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed transition-all cursor-pointer mt-4`}
                         >
                           ანგარიშის შექმნა და შესვლა →
                         </button>
@@ -747,7 +834,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                         </div>
                         <button
                           onClick={() => onEnterDashboard({ name: formData.name, program: data.id })}
-                          className="w-full py-4 rounded-2xl text-white font-bold text-base shadow-xl bg-brand-gradient hover:scale-102 transition-all cursor-pointer"
+                          className={`w-full py-4 rounded-2xl text-white font-bold text-base shadow-xl ${theme.gradient} hover:scale-102 transition-all cursor-pointer`}
                         >
                           🚀 Dashboard-ზე გადასვლა
                         </button>
@@ -766,11 +853,8 @@ function SurrogacyHomepage({ onEnterDashboard }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-10 text-left">
             <div className="space-y-4">
-              <div className="flex items-center gap-2 text-white font-montserrat font-extrabold text-lg">
-                <span className="w-6.5 h-6.5 rounded-full flex items-center justify-center bg-brand-gradient text-white text-xs">
-                  ♥
-                </span>
-                <span>Gestlife Platform</span>
+              <div className="mb-4">
+                <img src="/logo_white.png" alt="Gestlife Logo" className="h-9 w-auto" />
               </div>
               <p className="text-sm font-medium text-gestlife-grey-40 leading-relaxed">
                 FemTech პლატფორმა — საერთაშორისო სამედიცინო და იურიდიული მხარდაჭერა სუროგაციის მიმართულებით. INVESTMEDICAL-ის წევრი ჯგუფი.
@@ -816,6 +900,7 @@ function SurrogacyHomepage({ onEnterDashboard }) {
 // ════════════════════════════════════════════════════
 function SurrogateDashboard({ user, onLogout }) {
   const [dashTab, setDashTab] = useState("overview");
+  const theme = getTheme(user?.program || "georgia");
   
   // App State management
   const [scheduleItems, setScheduleItems] = useState(SCHEDULE_DATA);
@@ -888,8 +973,8 @@ function SurrogateDashboard({ user, onLogout }) {
           </div>
 
           {/* Mini profile header */}
-          <div className="p-5 bg-gestlife-pink-sub/10 border-b border-gestlife-grey-20/20 text-center">
-            <div className="w-12 h-12 rounded-full bg-brand-gradient flex items-center justify-center text-white font-extrabold text-base mx-auto mb-2.5 border-2 border-white shadow-sm">
+          <div className={`p-5 ${theme.subBg10} border-b border-gestlife-grey-20/20 text-center`}>
+            <div className={`w-12 h-12 rounded-full ${theme.gradient} flex items-center justify-center text-white font-extrabold text-base mx-auto mb-2.5 border-2 border-white shadow-sm`}>
               {displayName[0] + (displayName.split(" ")[1]?.[0] || "")}
             </div>
             <div className="font-bold text-sm text-gestlife-grey-80 leading-none">{displayName}</div>
@@ -906,7 +991,7 @@ function SurrogateDashboard({ user, onLogout }) {
                 onClick={() => setDashTab(tab.id)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-bold text-xs tracking-wider uppercase transition-all cursor-pointer ${
                   dashTab === tab.id
-                    ? "bg-brand-gradient text-white shadow-md shadow-gestlife-pink/20"
+                    ? `${theme.gradient} text-white shadow-md ${theme.shadow}`
                     : "text-gestlife-grey-60 hover:bg-gestlife-grey-20/20 hover:text-gestlife-grey-80"
                 }`}
               >
@@ -935,7 +1020,7 @@ function SurrogateDashboard({ user, onLogout }) {
             key={tab.id}
             onClick={() => setDashTab(tab.id)}
             className={`flex-1 min-w-[56px] flex flex-col items-center py-2.5 gap-1 text-[9px] font-bold tracking-wider transition-all cursor-pointer ${
-              dashTab === tab.id ? "text-gestlife-pink" : "text-gestlife-grey-40"
+              dashTab === tab.id ? theme.accent : "text-gestlife-grey-40"
             }`}
           >
             <span className="text-base">{tab.icon}</span>
@@ -950,7 +1035,7 @@ function SurrogateDashboard({ user, onLogout }) {
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between bg-white p-4 rounded-2xl border border-gestlife-grey-20/30 shadow-sm">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-brand-gradient flex items-center justify-center text-white text-xs font-bold">
+            <div className={`w-8 h-8 rounded-full ${theme.gradient} flex items-center justify-center text-white text-xs font-bold`}>
               {SURROGATE.avatar}
             </div>
             <div className="text-left">
@@ -968,11 +1053,11 @@ function SurrogateDashboard({ user, onLogout }) {
 
         {/* ════ OVERVIEW TAB ════ */}
         {dashTab === "overview" && (
-          <div className="flex flex-col gap-6 text-left">
+          <div className="flex flex-col gap-6 text-left relative">
             {/* Subtle logo watermark (Bottom-Right) */}
-            <img src="/logo_symbol.png" alt="" className="absolute bottom-10 right-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
+            <BrandWatermark program={user?.program} rotation={0} className="bottom-12 right-12 opacity-[0.12]" />
             {/* Welcome Dashboard Banner card */}
-            <div className="bg-brand-gradient rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg">
+            <div className={`rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg ${theme.gradient}`}>
               {/* Flag backdrop indicator */}
               <div className="absolute right-[-20px] bottom-[-20px] text-[120px] sm:text-[160px] opacity-[0.08] select-none pointer-events-none leading-none rotate-12">
                 {user?.program === "greece" ? "🇬🇷" : "🇬🇪"}
@@ -999,13 +1084,13 @@ function SurrogateDashboard({ user, onLogout }) {
                         stage.done
                           ? "bg-emerald-500 border-emerald-500 text-white shadow-sm"
                           : stage.active
-                          ? "bg-brand-gradient border-transparent text-white ring-4 ring-gestlife-pink/20 shadow-md animate-pulse"
+                          ? `${theme.gradient} border-transparent text-white ring-4 ${theme.ring} shadow-md animate-pulse`
                           : "bg-gestlife-grey-20/40 border-transparent text-gestlife-grey-45"
                       }`}>
                         {stage.done ? "✓" : stage.icon}
                       </div>
                       <span className={`text-[9px] font-bold text-center max-w-[64px] leading-tight ${
-                        stage.active ? "text-gestlife-pink" : stage.done ? "text-emerald-600" : "text-gestlife-grey-40"
+                        stage.active ? theme.accent : stage.done ? "text-emerald-600" : "text-gestlife-grey-40"
                       }`}>
                         {stage.label}
                       </span>
@@ -1043,7 +1128,7 @@ function SurrogateDashboard({ user, onLogout }) {
                   ) : (
                     <button
                       onClick={() => confirmAppointment(0)}
-                      className="px-5 py-2 rounded-xl text-white text-xs font-bold shadow-md bg-brand-gradient hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                      className={`px-5 py-2 rounded-xl text-white text-xs font-bold shadow-md ${theme.gradient} hover:scale-102 active:scale-98 transition-all cursor-pointer`}
                     >
                       ვიზიტის დადასტურება
                     </button>
@@ -1059,7 +1144,7 @@ function SurrogateDashboard({ user, onLogout }) {
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="relative shrink-0">
-                      <div className="w-14 h-14 rounded-full bg-brand-gradient flex items-center justify-center text-white font-extrabold text-base border-2 border-white shadow-md">
+                      <div className={`w-14 h-14 rounded-full ${theme.gradient} flex items-center justify-center text-white font-extrabold text-base border-2 border-white shadow-md`}>
                         {SURROGATE.coordinator.avatar}
                       </div>
                       <div className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white animate-ping" />
@@ -1076,7 +1161,7 @@ function SurrogateDashboard({ user, onLogout }) {
                 </div>
                 <button
                   onClick={() => setDashTab("support")}
-                  className="w-full py-2.5 rounded-xl border border-gestlife-pink text-gestlife-pink hover:bg-gestlife-pink-sub/10 text-xs font-bold tracking-wide transition-all cursor-pointer uppercase"
+                  className={`w-full py-2.5 rounded-xl border ${theme.accentBorder} ${theme.accent} ${theme.hoverBg10} text-xs font-bold tracking-wide transition-all cursor-pointer uppercase`}
                 >
                   ჩატის გახსნა
                 </button>
@@ -1087,7 +1172,7 @@ function SurrogateDashboard({ user, onLogout }) {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
                 { icon: "🧬", label: "ბოლო ანალიზი", value: "ნორმა", sub: "17 მაი 2025", border: "border-emerald-200/80 bg-emerald-50/10", valCls: "text-emerald-600" },
-                { icon: "💳", label: "ბოლო გადარიცხვა", value: "₾ 1,800", sub: "მაისი 2025", border: "border-gestlife-pink-sub/80 bg-gestlife-pink-sub/5", valCls: "text-gestlife-pink" },
+                { icon: "💳", label: "ბოლო გადარიცხვა", value: "₾ 1,800", sub: "მაისი 2025", border: `${theme.accentBorderSub80} ${theme.subBg5}`, valCls: theme.accent },
                 { icon: "📅", label: "ვიზიტამდე დარჩა", value: "4 დღე", sub: "22 მაი 10:00", border: "border-blue-200/80 bg-blue-50/10", valCls: "text-gestlife-blue" },
               ].map((c, i) => (
                 <div key={i} className={`bg-white rounded-2xl p-5 shadow-sm border ${c.border}`}>
@@ -1103,13 +1188,13 @@ function SurrogateDashboard({ user, onLogout }) {
 
         {/* ════ PROFILE TAB ════ */}
         {dashTab === "profile" && (
-          <div className="flex flex-col gap-6 text-left">
+          <div className="flex flex-col gap-6 text-left relative">
             {/* Subtle logo watermark (Top-Right) */}
-            <img src="/logo_symbol.png" alt="" className="absolute top-24 right-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
+            <BrandWatermark program={user?.program} rotation={0} className="top-24 right-12 opacity-[0.12]" />
             <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gestlife-grey-20/40">
               
               {/* Profile Card Header banner */}
-              <div className="bg-brand-gradient p-6 sm:p-8 text-white relative">
+              <div className={`p-6 sm:p-8 text-white relative ${theme.gradient}`}>
                 <div className="flex items-center gap-5 flex-wrap">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 flex items-center justify-center text-white font-extrabold text-2xl border-4 border-white/30 shrink-0 shadow-md">
                     {SURROGATE.avatar}
@@ -1147,8 +1232,8 @@ function SurrogateDashboard({ user, onLogout }) {
                 </div>
 
                 {/* Subcontract details card */}
-                <div className="mt-6 bg-gestlife-pink-sub/10 border border-gestlife-pink-sub/30 rounded-2xl p-5">
-                  <div className="text-xs font-bold text-gestlife-pink uppercase tracking-widest mb-3.5">📋 ხელშეკრულების მონაცემები</div>
+                <div className={`mt-6 ${theme.subBg10} border ${theme.accentBorderSub30} rounded-2xl p-5`}>
+                  <div className={`text-xs font-bold ${theme.accent} uppercase tracking-widest mb-3.5`}>📋 ხელშეკრულების მონაცემები</div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {[
                       { label: "დოკუმენტის №", value: "ARG-2025-0472" },
@@ -1170,9 +1255,9 @@ function SurrogateDashboard({ user, onLogout }) {
 
         {/* ════ MEDICAL TAB ════ */}
         {dashTab === "medical" && (
-          <div className="flex flex-col gap-6 text-left">
+          <div className="flex flex-col gap-6 text-left relative">
             {/* Subtle logo watermark (Bottom-Left) */}
-            <img src="/logo_symbol.png" alt="" className="absolute bottom-10 left-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
+            <BrandWatermark program={user?.program} rotation={0} className="bottom-12 left-12 opacity-[0.12]" />
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
                 <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">🧬 სამედიცინო შეფასებები & კვლევები</h2>
@@ -1185,7 +1270,7 @@ function SurrogateDashboard({ user, onLogout }) {
                 {MEDICAL_RESULTS.map((r, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-4 p-4 bg-gestlife-grey-20/10 rounded-xl border border-gestlife-grey-20/20 hover:border-gestlife-pink/30 hover:bg-gestlife-pink-sub/5 transition-all"
+                    className={`flex items-center gap-4 p-4 bg-gestlife-grey-20/10 rounded-xl border border-gestlife-grey-20/20 ${theme.hoverBorder30} ${theme.hoverBg5} transition-all`}
                   >
                     <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-base shrink-0 shadow-sm">
                       ✓
@@ -1215,11 +1300,11 @@ function SurrogateDashboard({ user, onLogout }) {
                   { val: 10.2, date: "14 მაი", active: true },
                 ].map((bar, i) => (
                   <div key={i} className="flex flex-col items-center gap-2 flex-1">
-                    <span className={`text-[10px] font-black ${bar.active ? "text-gestlife-pink" : "text-gestlife-grey-60"}`}>{bar.val} მმ</span>
+                    <span className={`text-[10px] font-black ${bar.active ? theme.accent : "text-gestlife-grey-60"}`}>{bar.val} მმ</span>
                     <div
                       className={`w-full rounded-t-lg transition-all duration-500 ${
                         bar.active 
-                          ? "bg-brand-gradient shadow-md" 
+                          ? `${theme.gradient} shadow-md` 
                           : "bg-gestlife-grey-20"
                       }`}
                       style={{ height: `${(bar.val / 12) * 85}px` }}
@@ -1237,9 +1322,9 @@ function SurrogateDashboard({ user, onLogout }) {
 
         {/* ════ FINANCE TAB ════ */}
         {dashTab === "finance" && (
-          <div className="flex flex-col gap-6 text-left">
+          <div className="flex flex-col gap-6 text-left relative">
             {/* Subtle logo watermark (Top-Left) */}
-            <img src="/logo_symbol.png" alt="" className="absolute top-10 left-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
+            <BrandWatermark program={user?.program} rotation={0} className="top-12 left-12 opacity-[0.12]" />
             
             {/* Total Balance Card indicator */}
             <div className="bg-[#1C1D26] rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-md">
@@ -1253,7 +1338,7 @@ function SurrogateDashboard({ user, onLogout }) {
               </div>
               
               <div className="mt-5.5 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                <div className="h-full w-[19%] bg-brand-gradient rounded-full" />
+                <div className={`h-full w-[19%] ${theme.gradient} rounded-full`} />
               </div>
               <div className="text-[9px] font-bold text-white/45 mt-2 uppercase tracking-wide">პროგრესი: 19% დასრულებული</div>
             </div>
@@ -1286,13 +1371,13 @@ function SurrogateDashboard({ user, onLogout }) {
 
         {/* ════ SCHEDULE TAB ════ */}
         {dashTab === "schedule" && (
-          <div className="flex flex-col gap-6 text-left">
+          <div className="flex flex-col gap-6 text-left relative">
             {/* Subtle logo watermark (Bottom-Right) */}
-            <img src="/logo_symbol.png" alt="" className="absolute bottom-10 right-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
+            <BrandWatermark program={user?.program} rotation={0} className="bottom-12 right-12 opacity-[0.12]" />
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gestlife-grey-20/40">
               <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
                 <h2 className="text-base font-bold text-gestlife-grey-80 uppercase tracking-widest">📅 კლინიკური და საკონსულტაციო ვიზიტები</h2>
-                <div className="bg-gestlife-pink-sub/30 border border-gestlife-pink-sub/20 rounded-full px-4 py-1 text-xs font-bold text-gestlife-pink">
+                <div className={`${theme.subBg30} border ${theme.accentBorder20} rounded-full px-4 py-1 text-xs font-bold ${theme.accent}`}>
                   {scheduleItems.length} დაგეგმილი ღონისძიება
                 </div>
               </div>
@@ -1348,7 +1433,7 @@ function SurrogateDashboard({ user, onLogout }) {
                       ) : (
                         <button
                           onClick={() => confirmAppointment(i)}
-                          className="px-3 py-2 rounded-xl text-white text-[10px] font-bold shadow-md bg-brand-gradient hover:scale-102 transition-all cursor-pointer whitespace-nowrap"
+                          className={`px-3 py-2 rounded-xl text-white text-[10px] font-bold shadow-md ${theme.gradient} hover:scale-102 transition-all cursor-pointer whitespace-nowrap`}
                         >
                           დადასტურება
                         </button>
@@ -1363,15 +1448,15 @@ function SurrogateDashboard({ user, onLogout }) {
 
         {/* ════ SUPPORT TAB ════ */}
         {dashTab === "support" && (
-          <div className="flex flex-col lg:flex-row gap-6 text-left">
+          <div className="flex flex-col lg:flex-row gap-6 text-left relative">
             {/* Subtle logo watermark (Top-Right) */}
-            <img src="/logo_symbol.png" alt="" className="absolute top-10 right-10 w-48 sm:w-64 opacity-[0.02] -z-10 pointer-events-none select-none grayscale brightness-90 contrast-125" />
+            <BrandWatermark program={user?.program} rotation={0} className="top-12 right-12 opacity-[0.12]" />
             {/* Chat Box panel */}
             <div className="flex-1 bg-white rounded-3xl shadow-sm border border-gestlife-grey-20/40 flex flex-col overflow-hidden" style={{ minHeight: "500px", height: "calc(100vh - 220px)" }}>
               {/* Header profile segment */}
-              <div className="px-5 py-4 border-b border-gestlife-grey-20/30 flex items-center gap-3.5 bg-gestlife-pink-sub/10">
+              <div className={`px-5 py-4 border-b border-gestlife-grey-20/30 flex items-center gap-3.5 ${theme.subBg10}`}>
                 <div className="relative shrink-0">
-                  <div className="w-11 h-11 rounded-full bg-brand-gradient flex items-center justify-center text-white font-extrabold text-sm border-2 border-white shadow-sm">
+                  <div className={`w-11 h-11 rounded-full ${theme.gradient} flex items-center justify-center text-white font-extrabold text-sm border-2 border-white shadow-sm`}>
                     {SURROGATE.coordinator.avatar}
                   </div>
                   <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white" />
@@ -1380,7 +1465,7 @@ function SurrogateDashboard({ user, onLogout }) {
                   <div className="font-bold text-sm text-gestlife-grey-80 leading-none">{SURROGATE.coordinator.name}</div>
                   <div className="text-[10px] text-emerald-600 font-extrabold tracking-wide mt-1">● ონლაინ • პასუხობს 30 წთ-ში</div>
                 </div>
-                <div className="ml-auto text-[10px] font-bold text-gestlife-pink bg-white px-3 py-1 rounded-full border border-gestlife-pink-sub/30 uppercase tracking-widest">
+                <div className={`ml-auto text-[10px] font-bold ${theme.accent} bg-white px-3 py-1 rounded-full border ${theme.accentBorderSub30} uppercase tracking-widest`}>
                   პირადი კოორდინატორი
                 </div>
               </div>
@@ -1393,13 +1478,13 @@ function SurrogateDashboard({ user, onLogout }) {
                     className={`flex items-end gap-2.5 ${msg.from === "user" ? "flex-row-reverse" : "flex-row"}`}
                   >
                     {msg.from === "coordinator" && (
-                      <div className="w-6.5 h-6.5 rounded-full bg-brand-gradient text-white flex items-center justify-center text-[10px] font-black shrink-0 shadow-sm border border-white">
+                      <div className={`w-6.5 h-6.5 rounded-full ${theme.gradient} text-white flex items-center justify-center text-[10px] font-black shrink-0 shadow-sm border border-white`}>
                         LL
                       </div>
                     )}
                     <div className={`max-w-[70%] px-4.5 py-3 text-xs sm:text-sm leading-relaxed shadow-sm font-medium ${
                       msg.from === "user"
-                        ? "bg-brand-gradient text-white rounded-[18px_18px_4px_18px]"
+                        ? `${theme.gradient} text-white rounded-[18px_18px_4px_18px]`
                         : "bg-white text-gestlife-grey-80 rounded-[18px_18px_18px_4px] border border-gestlife-grey-20/40"
                     }`}>
                       <div>{msg.text}</div>
@@ -1412,14 +1497,14 @@ function SurrogateDashboard({ user, onLogout }) {
 
                 {chatTyping && (
                   <div className="flex items-end gap-2.5">
-                    <div className="w-6.5 h-6.5 rounded-full bg-brand-gradient text-white flex items-center justify-center text-[10px] font-black shrink-0">
+                    <div className={`w-6.5 h-6.5 rounded-full ${theme.gradient} text-white flex items-center justify-center text-[10px] font-black shrink-0`}>
                       LL
                     </div>
                     <div className="bg-white rounded-[18px_18px_18px_4px] border border-gestlife-grey-20/40 shadow-sm px-4 py-3 flex gap-1 items-center">
                       {[0, 1, 2].map((dot) => (
                         <div
                           key={dot}
-                          className="w-1.5 h-1.5 rounded-full bg-gestlife-pink animate-bounce"
+                          className={`w-1.5 h-1.5 rounded-full ${theme.accentBg} animate-bounce`}
                           style={{ animationDelay: `${dot * 0.15}s` }}
                         />
                       ))}
@@ -1438,14 +1523,14 @@ function SurrogateDashboard({ user, onLogout }) {
                   onChange={(e) => setChatInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                   placeholder="ჩაწერეთ შეტყობინება..."
-                  className="flex-1 px-4.5 py-2.5 rounded-full border border-gestlife-grey-20 text-xs sm:text-sm font-semibold text-gestlife-grey-80 focus:outline-none focus:border-gestlife-pink/50 bg-[#FBFBFF] transition-colors"
+                  className={`flex-1 px-4.5 py-2.5 rounded-full border border-gestlife-grey-20 text-xs sm:text-sm font-semibold text-gestlife-grey-80 focus:outline-none ${theme.focusBorder50} bg-[#FBFBFF] transition-colors`}
                 />
                 <button
                   onClick={sendMessage}
                   disabled={!chatInput.trim()}
                   className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-sm shrink-0 transition-all ${
                     chatInput.trim()
-                      ? "bg-brand-gradient shadow-md shadow-gestlife-pink/20 hover:scale-105 active:scale-95 cursor-pointer"
+                      ? `${theme.gradient} shadow-md ${theme.shadow} hover:scale-105 active:scale-95 cursor-pointer`
                       : "bg-gestlife-grey-20 text-gestlife-grey-40 cursor-default"
                   }`}
                 >
@@ -1481,7 +1566,7 @@ function SurrogateDashboard({ user, onLogout }) {
                 {["ხელშეკრულების ასლი", "სამედიცინო ცნობა", "ფინანსური ისტორია", "გადაუდებელი კონტაქტი"].map((item, i) => (
                   <button
                     key={i}
-                    className="block w-full text-left px-3 py-2.5 mb-2 last:mb-0 rounded-xl border border-gestlife-grey-20 hover:border-gestlife-pink/40 bg-gestlife-grey-20/5 hover:bg-gestlife-pink-sub/5 text-xs font-bold text-gestlife-grey-60 hover:text-gestlife-pink transition-all cursor-pointer"
+                    className={`block w-full text-left px-3 py-2.5 mb-2 last:mb-0 rounded-xl border border-gestlife-grey-20 ${theme.hoverBorder} bg-gestlife-grey-20/5 ${theme.hoverBg5} text-xs font-bold text-gestlife-grey-60 ${theme.hoverText} transition-all cursor-pointer`}
                   >
                     {item}
                   </button>

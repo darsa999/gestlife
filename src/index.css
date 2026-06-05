@@ -82,6 +82,19 @@ html {
   border-image: linear-gradient(40deg, #F26BC1 0%, #79B0F5 100%) 1;
 }
 
+/* 40-degree Greece Program Gradient Utilities */
+.bg-greece-gradient {
+  background: linear-gradient(40deg, #79B0F5 0%, #C7DBFF 100%);
+}
+.text-greece-gradient {
+  background: linear-gradient(40deg, #79B0F5 0%, #C7DBFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.border-greece-gradient {
+  border-image: linear-gradient(40deg, #79B0F5 0%, #C7DBFF 100%) 1;
+}
+
 /* Text selections */
 ::selection {
   background-color: rgba(242, 107, 193, 0.2);
