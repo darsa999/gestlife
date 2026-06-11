@@ -426,7 +426,7 @@ export default function GestlifeApp() {
 // PHASE 1 — PUBLIC BRANDED HOMEPAGE
 // ════════════════════════════════════════════════════
 function SurrogacyHomepage({ onEnterDashboard }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [program, setProgram] = useState("georgia");
   const [transitioning, setTransitioning] = useState(false);
   const [openMyth, setOpenMyth] = useState(null);
@@ -479,6 +479,15 @@ function SurrogacyHomepage({ onEnterDashboard }) {
       });
     }
   }, [videoUrl]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      const tracks = videoRef.current.textTracks;
+      for (let i = 0; i < tracks.length; i++) {
+        tracks[i].mode = (tracks[i].language === i18n.language) ? "showing" : "disabled";
+      }
+    }
+  }, [i18n.language, videoUrl]);
 
   const handleVideoClick = () => {
     if (videoRef.current) {
@@ -721,7 +730,36 @@ function SurrogacyHomepage({ onEnterDashboard }) {
                   playsInline
                   className="absolute inset-0 w-full h-full object-contain z-10"
                   style={{ objectFit: "contain", width: "100%", height: "100%" }}
-                />
+                >
+                  <track
+                    kind="subtitles"
+                    src="/subtitles/subs-ka.vtt"
+                    srcLang="ka"
+                    label="Georgian"
+                    default={i18n.language === "ka"}
+                  />
+                  <track
+                    kind="subtitles"
+                    src="/subtitles/subs-en.vtt"
+                    srcLang="en"
+                    label="English"
+                    default={i18n.language === "en"}
+                  />
+                  <track
+                    kind="subtitles"
+                    src="/subtitles/subs-ru.vtt"
+                    srcLang="ru"
+                    label="Russian"
+                    default={i18n.language === "ru"}
+                  />
+                  <track
+                    kind="subtitles"
+                    src="/subtitles/subs-es.vtt"
+                    srcLang="es"
+                    label="Spanish"
+                    default={i18n.language === "es"}
+                  />
+                </video>
               </div>
             </div>
           </div>
