@@ -7,6 +7,12 @@ import { useState, useEffect, useRef } from "react";
 import { I18nProvider, useTranslation } from "./src/i18n/i18nContext";
 
 // ════════════════════════════════════════════════════
+// CONFIGURABLE EXTERNAL VIDEO STREAMING URLS (Cloud-Hosted)
+// ════════════════════════════════════════════════════
+const GEORGIA_VIDEO_URL = "https://res.cloudinary.com/dioc22a2x/video/upload/q_auto/f_auto/v1781172191/14_01_REEL_GE_fuos7j.mp4"; // Georgia configuration placeholder
+const GREECE_VIDEO_URL = "https://res.cloudinary.com/dioc22a2x/video/upload/q_auto/f_auto/v1781172191/14_01_REEL_GE_fuos7j.mp4"; // Greece video URL
+
+// ════════════════════════════════════════════════════
 // SHARED DATA — Country Programs (Refactored visual accents)
 // ════════════════════════════════════════════════════
 const PROGRAMS = {
@@ -428,7 +434,8 @@ function SurrogacyHomepage({ onEnterDashboard }) {
   const [quizScore, setQuizScore] = useState(0);
   const [formData, setFormData] = useState({ name: "", phone: "", password: "" });
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [videoPlaying, setVideoPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const videoRef = useRef(null);
   const quizRef = useRef(null);
 
   const data = {
@@ -457,6 +464,37 @@ function SurrogacyHomepage({ onEnterDashboard }) {
   };
 
   const theme = getTheme(program);
+
+  const videoUrl = program === "greece" ? GREECE_VIDEO_URL : GEORGIA_VIDEO_URL;
+  const posterUrl = videoUrl.replace(".mp4", ".jpg");
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((err) => {
+        console.log("Autoplay failed on source change:", err);
+        setIsPlaying(false);
+      });
+    }
+  }, [videoUrl]);
+
+  const handleVideoClick = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        videoRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch((err) => {
+          console.log("Play failed:", err);
+          setIsPlaying(false);
+        });
+      }
+    }
+  };
 
   const switchProgram = (newProg) => {
     if (newProg === program) return;
@@ -654,43 +692,36 @@ function SurrogacyHomepage({ onEnterDashboard }) {
             {/* Video Preview Column */}
             <div className="relative">
               {/* Outer frame wave accent */}
-              <div className={`absolute -inset-1.5 rounded-3xl ${theme.gradient} opacity-20 blur-lg -z-10 animate-pulse`} />
+              <div className={`absolute -inset-1.5 rounded-2xl ${theme.gradient} opacity-20 blur-lg -z-10 animate-pulse`} />
               
               <div
-                className="rounded-3xl overflow-hidden shadow-2xl aspect-video bg-gestlife-grey-80 flex items-center justify-center cursor-pointer group relative"
-                onClick={() => setVideoPlaying(!videoPlaying)}
+                className="rounded-2xl overflow-hidden shadow-2xl aspect-video flex items-center justify-center cursor-pointer group relative border border-white/10 isolate"
+                onClick={handleVideoClick}
               >
-                {/* Visual cover gradient overlay */}
-                <div className={`absolute inset-0 opacity-40 ${program === "greece" ? "bg-gradient-to-tr from-[#79B0F5] to-[#C7DBFF]" : "bg-gradient-to-tr from-[#F26BC1] to-[#79B0F5]"} transition-opacity group-hover:opacity-30 z-0`} />
-                
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 p-6">
-                  {videoPlaying ? (
-                    <div className="text-center space-y-4">
-                      <div className="text-5xl animate-bounce">🎬</div>
-                      <div className="text-xs font-bold tracking-widest uppercase bg-black/40 rounded-full px-4 py-1.5">{t("hero.videoLoading")}</div>
-                      <div className="text-[11px] text-white/70">{t("hero.videoDemoMode")}</div>
-                    </div>
-                  ) : (
-                    <div className="text-center space-y-4 flex flex-col items-center">
-                      <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white shadow-lg ${theme.gradient} opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-all`}>
-                        <span className="translate-x-0.5 text-xl">▶</span>
-                      </div>
-                      <div>
-                        <div className="font-bold text-sm sm:text-base leading-snug">
-                          {program === "georgia" ? t("hero.videoTitleGeorgia") : t("hero.videoTitleGreece")}
-                        </div>
-                        <div className="text-[10px] text-white/70 mt-1 uppercase tracking-wide">
-                          {program === "georgia" ? t("hero.videoSubtitleGeorgia") : t("hero.videoSubtitleGreece")}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                
-                <div className="absolute bottom-4 left-4 flex gap-2 z-10">
-                  <span className="bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">{t("hero.tagMedical")}</span>
-                  <span className="bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">{t("hero.tagLegal")}</span>
-                </div>
+                {/* Background video for ambient glow */}
+                <video
+                  src={videoUrl}
+                  poster={posterUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-50 scale-105 z-0 pointer-events-none"
+                  style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                />
+
+                {/* Foreground clean video stream */}
+                <video
+                  ref={videoRef}
+                  src={videoUrl}
+                  poster={posterUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-contain z-10"
+                  style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                />
               </div>
             </div>
           </div>
